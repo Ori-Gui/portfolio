@@ -513,5 +513,83 @@
   </div>
 
 </div>
+<!-- PAGE NAVIGATION INJECTED -->
+<style>
+  .page-nav {
+    position: fixed;
+    bottom: 16px; left: 50%;
+    transform: translateX(-50%);
+    background: rgba(30, 30, 46, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: #FFFFFF;
+    padding: 10px 14px;
+    border-radius: 99px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    font-family: 'Pretendard', sans-serif;
+    font-size: 13px;
+    z-index: 1000;
+  }
+  .page-nav .pn-btn {
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 7px 14px;
+    border-radius: 99px;
+    font-weight: 600;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+  .page-nav .pn-btn:hover {
+    background: rgba(255,255,255,0.12);
+  }
+  .page-nav .pn-disabled {
+    color: rgba(255,255,255,0.3);
+    padding: 7px 14px;
+    cursor: not-allowed;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .page-nav .pn-home {
+    color: #FFFFFF;
+    text-decoration: none;
+    width: 36px; height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    font-size: 16px;
+    transition: background 0.15s;
+  }
+  .page-nav .pn-home:hover {
+    background: rgba(255,255,255,0.22);
+  }
+  .page-nav .pn-indicator {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: rgba(255,255,255,0.7);
+    padding: 0 8px;
+    font-weight: 600;
+  }
+  @media print { .page-nav { display: none !important; } }
+</style>
+<nav class="page-nav">
+  <a href="ttomanito_page1_overview.html" class="pn-btn pn-prev" title="이전: 개요">← 개요</a>
+  <a href="../../index.html" class="pn-home" title="홈으로">⌂</a>
+  <span class="pn-indicator">2 / 3</span>
+  <a href="ttomanito_page3_3db_ai.html" class="pn-btn pn-next" title="다음: 3DB · AI">3DB · AI →</a>
+</nav>
+<script>
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowLeft')  { var p = document.querySelector('.pn-prev'); if (p) p.click(); }
+    if (e.key === 'ArrowRight') { var n = document.querySelector('.pn-next'); if (n) n.click(); }
+    if (e.key === 'h' || e.key === 'H') { window.location.href = '../../index.html'; }
+  });
+</script>
+<!-- /PAGE NAVIGATION INJECTED -->
+
 </body>
 </html>
