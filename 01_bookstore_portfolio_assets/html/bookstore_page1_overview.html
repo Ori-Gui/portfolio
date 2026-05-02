@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>이조핑 북스토어 — Project 4 (Overview, Figma A4 1190×1684)</title>
+<style>
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    font-family: 'Pretendard', -apple-system, sans-serif;
+    background: #DDE0E5;
+    color: #1E1E2E;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @page { size: 1190px 1684px; margin: 0; }
+  @media print { html, body { background: #FFFFFF; margin: 0; padding: 0; } }
+
+  .frame {
+    width: 1190px;
+    height: 1684px;
+    margin: 0;
+    padding: 64px 76px 56px;
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 34px;
+    flex-shrink: 0;
+  }
+  .project-name {
+    font-size: 56px;          /* 이조핑 북스토어 — 6글자라 살짝 줄임 */
+    font-weight: 800;
+    color: #B0B5BD;
+    letter-spacing: -2px;
+    line-height: 1;
+  }
+  .project-name .underline {
+    border-bottom: 3px solid #B0B5BD;
+    padding-bottom: 4px;
+  }
+  .project-chip {
+    background: #FB923C;          /* 주황 — bookstore 퍼스널 */
+    color: #FFFFFF;
+    font-size: 22px;
+    font-weight: 800;
+    padding: 14px 38px;
+    border-radius: 99px;
+    letter-spacing: -0.5px;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.05);
+  }
+
+  /* ============ Hero — 데스크탑 mockup 2장 (가로) ============ */
+  .hero-mockups {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 36px;
+    flex-shrink: 0;
+    height: 360px;
+  }
+  /* MacOS 윈도우 스타일 데스크탑 mockup */
+  .desktop {
+    position: relative;
+    background: #1E1E2E;
+    border-radius: 10px;
+    padding: 22px 6px 6px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.08);
+  }
+  .desktop::before {
+    content: '';
+    position: absolute;
+    top: 8px; left: 14px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: #F38BA8;
+    box-shadow: 18px 0 0 #F9E2AF, 36px 0 0 #A6E3A1;
+  }
+  .desktop .label {
+    position: absolute;
+    top: 6px; right: 14px;
+    color: rgba(255,255,255,0.65);
+    font-size: 11px;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.5px;
+  }
+  .desktop .screen {
+    width: 100%; height: 100%;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #FFFFFF;
+  }
+  .desktop img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: top;
+    display: block;
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: auto;
+    align-content: space-between;
+    column-gap: 40px;
+    row-gap: 28px;
+    flex: 1;
+    min-height: 0;
+  }
+  .meta-block { display: flex; flex-direction: column; }
+  .meta-block .meta-label {
+    font-size: 22px;
+    font-weight: 800;
+    color: #1E1E2E;
+    margin-bottom: 14px;
+    letter-spacing: -0.5px;
+  }
+  .meta-block .meta-value {
+    font-size: 17px;
+    color: #374151;
+    line-height: 1.6;
+  }
+  .meta-block .meta-value b { color: #1E1E2E; font-weight: 700; }
+  .meta-block .meta-value a {
+    color: #FB923C;
+    text-decoration: underline;
+    font-size: 15.5px;
+  }
+  .meta-block .meta-value .strong {
+    font-size: 19px;
+    font-weight: 700;
+    color: #1E1E2E;
+    margin-bottom: 4px;
+    display: block;
+  }
+  .meta-block .meta-value .desc-line {
+    font-size: 14.5px;
+    color: #6B7280;
+    line-height: 1.5;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .award-inline {
+    display: inline-block;
+    background: #FEF3C7;
+    color: #92400E;
+    font-size: 12px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 99px;
+    margin-left: 6px;
+    letter-spacing: -0.3px;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+  .github-btn {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 8px;
+    background: #1E1E2E;
+    color: #FFFFFF !important;
+    text-decoration: none !important;
+    padding: 7px 14px;
+    border-radius: 6px;
+    font-size: 13px !important;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: -0.3px;
+  }
+  .github-btn::before {
+    content: '';
+    width: 18px;
+    height: 18px;
+    background: url('../../skill_icon/svg/Github-Dark.svg') no-repeat center;
+    background-size: contain;
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 4px;
+  }
+
+  .tech-stack {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px 12px;
+  }
+  .tech-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1E1E2E;
+  }
+  .tech-item img { width: 30px; height: 30px; object-fit: contain; }
+
+  /* 역할 (BE/FE/협업 분리) */
+  .role-section { display: flex; flex-direction: column; gap: 14px; }
+  .role-section .role-cat {
+    font-size: 15px;
+    font-weight: 800;
+    color: #FB923C;
+    letter-spacing: -0.3px;
+    margin-bottom: 4px;
+  }
+  .role-list { list-style: none; padding: 0; }
+  .role-list > li { margin-top: 10px; }
+  .role-list > li:first-child { margin-top: 0; }
+  .role-list .role-name {
+    font-size: 16px;
+    font-weight: 800;
+    color: #1E1E2E;
+    margin-bottom: 4px;
+    display: block;
+  }
+  .role-list .role-desc {
+    font-size: 14.5px;
+    color: #4B5563;
+    line-height: 1.55;
+  }
+
+  .review-list { list-style: none; padding: 0; }
+  .review-list > li {
+    font-size: 16px;
+    color: #374151;
+    line-height: 1.55;
+    padding: 6px 0 6px 18px;
+    position: relative;
+  }
+  .review-list > li::before {
+    content: '·';
+    position: absolute; left: 4px; top: 6px;
+    color: #1E1E2E; font-weight: 800; font-size: 18px;
+  }
+  .review-list ul { list-style: none; padding: 4px 0 4px 18px; margin: 0; }
+  .review-list ul li {
+    font-size: 14.5px;
+    color: #6B7280;
+    line-height: 1.55;
+    padding: 3px 0 3px 12px;
+    position: relative;
+  }
+  .review-list ul li::before {
+    content: '◦';
+    position: absolute; left: 0; color: #9CA3AF;
+  }
+  .review-list b { color: #1E1E2E; font-weight: 700; }
+
+</style>
+</head>
+<body>
+<div class="frame">
+
+  <div class="page-header">
+    <div class="project-name"><span class="underline">이조핑 북스토어</span></div>
+    <div class="project-chip">Project - 4</div>
+  </div>
+
+  <!-- Hero — 데스크탑 mockup 2장 -->
+  <div class="hero-mockups">
+    <div class="desktop">
+      <span class="label">ejoping-bookstore.com</span>
+      <div class="screen"><img src="../img/ui-ejoping-bookstore1.png" alt=""></div>
+    </div>
+    <div class="desktop">
+      <span class="label">ejoping-bookstore.com</span>
+      <div class="screen"><img src="../img/ui-ejoping-bookstore2.png" alt=""></div>
+    </div>
+  </div>
+
+  <div class="meta-grid">
+
+    <!-- 행 1: 서비스 ↔ 작업 기간 -->
+    <div class="meta-block">
+      <div class="meta-label">서비스</div>
+      <div class="meta-value">
+        <span class="strong">온라인 도서 쇼핑몰 (대용량 커머스 플랫폼)</span>
+        <span class="desc-line">Spring Boot + Thymeleaf 기반 도서 커머스 / Elasticsearch + Nori 형태소 분석기로 검색 엔진 도입</span>
+        <a href="https://github.com/nhnacademy-be7-2joping" class="github-btn">GitHub Repository</a>
+      </div>
+    </div>
+
+    <div class="meta-block">
+      <div class="meta-label">작업 기간</div>
+      <div class="meta-value">
+        2024. 10. 14 - 2024. 12. 13 (9주)<br>
+        <span style="color:#6B7280;font-size:15px;">NHN Academy 7기 온라인 도서 쇼핑몰 프로젝트</span>
+      </div>
+    </div>
+
+    <!-- 행 2: 기술 스택 ↔ 구성원 -->
+    <div class="meta-block">
+      <div class="meta-label">기술 스택</div>
+      <div class="tech-stack">
+        <div class="tech-item"><img src="../../skill_icon/png/Java.png" alt=""> Java</div>
+        <div class="tech-item"><img src="../../skill_icon/png/springboot.png" alt=""> SpringBoot</div>
+        <div class="tech-item"><img src="../../skill_icon/png/Thymeleaf.png" alt=""> Thymeleaf</div>
+        <div class="tech-item"><img src="../../skill_icon/png/MySQL2.png" alt=""> MySQL</div>
+        <div class="tech-item"><img src="../../skill_icon/png/Elastic Search.png" alt=""> ElasticSearch</div>
+        <div class="tech-item"><img src="../../skill_icon/png/Redis.png" alt=""> Redis</div>
+        <div class="tech-item"><img src="../../skill_icon/png/NGINX.png" alt=""> Nginx</div>
+        <div class="tech-item"><img src="../../skill_icon/png/GitHub Actions.png" alt=""> GH Actions</div>
+        <div class="tech-item"><img src="../../skill_icon/png/SonarQube.png" alt=""> SonarQube</div>
+        <div class="tech-item"><img src="../../skill_icon/png/nhncloud_symbol.png" alt=""> NHN Cloud</div>
+      </div>
+    </div>
+
+    <div class="meta-block">
+      <div class="meta-label">구성원</div>
+      <div class="meta-value">
+        <span class="strong">총 8명</span>
+        <b>FullStack 6명 (본인 포함)</b> · Infra 2명
+      </div>
+    </div>
+
+    <!-- 행 3: 역할 ↔ 회고 -->
+    <div class="meta-block">
+      <div class="meta-label">역할 — FullStack</div>
+      <div class="role-section">
+
+        <div>
+          <div class="role-cat">Backend</div>
+          <ul class="role-list">
+            <li>
+              <span class="role-name">검색 엔진 도입</span>
+              <span class="role-desc">MySQL → ElasticSearch 마이그레이션 / nori + ngram + jaso 분석기 설계</span>
+            </li>
+            <li>
+              <span class="role-name">도메인 API 설계·구현</span>
+              <span class="role-desc">ERD 설계 + Spring Boot REST API (카테고리·검색·기여자·배송)</span>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="role-cat">Frontend</div>
+          <ul class="role-list">
+            <li>
+              <span class="role-name">Thymeleaf layout</span>
+              <span class="role-desc">화면 구성 + 데이터 출력 + 담당 도메인 페이지 퍼블리싱</span>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="role-cat">협업 표준화</div>
+          <ul class="role-list">
+            <li>
+              <span class="role-name">대규모 팀(8인) 일정 관리</span>
+              <span class="role-desc">WBS 기반 분담 + API 기술 문서화 + 스프린트 회고 주도</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="meta-block">
+      <div class="meta-label">프로젝트 회고</div>
+      <ul class="review-list">
+        <li><b>RDBMS 검색 한계 분석</b> — MySQL FULLTEXT 평균 1.2초 응답 / Slow Query 빈발
+          <ul><li>JOIN N+1 + ORDER BY 조합으로 LIKE 검색의 병목 체감</li></ul>
+        </li>
+        <li><b>ElasticSearch 도입으로 구조 개선</b> — 검색 전용 인덱스 분리 구축
+          <ul>
+            <li>한글 분석기 nori + n-gram + jaso 조합 설계</li>
+            <li>복합 검색어 환경에서도 응답 약 <b>280ms (76% 단축)</b></li>
+          </ul>
+        </li>
+        <li><b>형태소 분석으로 검색 본질 학습</b>
+          <ul><li>"검색은 LIKE 가 아니다" — 인덱스 매핑·재색인·동의어 처리 경험</li></ul>
+        </li>
+        <li><b>대규모 팀(8인) 협업 리드</b>
+          <ul><li>WBS · 코드 리뷰 · 스프린트 회고 주도로 생산성 관리</li></ul>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+</div>
+</body>
+</html>

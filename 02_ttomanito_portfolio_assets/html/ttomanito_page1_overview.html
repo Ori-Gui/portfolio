@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>또마니또 — Project 3 (Overview, Figma A4 1190×1684)</title>
+<style>
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    font-family: 'Pretendard', -apple-system, sans-serif;
+    background: #DDE0E5;
+    color: #1E1E2E;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @page { size: 1190px 1684px; margin: 0; }
+  @media print { html, body { background: #FFFFFF; margin: 0; padding: 0; } }
+
+  .frame {
+    width: 1190px;
+    height: 1684px;
+    margin: 0;
+    padding: 64px 76px 56px;
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 34px;
+    flex-shrink: 0;
+  }
+  .project-name {
+    font-size: 64px;
+    font-weight: 800;
+    color: #B0B5BD;
+    letter-spacing: -2px;
+    line-height: 1;
+  }
+  .project-name .underline {
+    border-bottom: 3px solid #B0B5BD;
+    padding-bottom: 4px;
+  }
+  .project-chip {
+    background: #C4B5FD;          /* 연보라 — ttomanito 퍼스널 */
+    color: #1E1E2E;
+    font-size: 22px;
+    font-weight: 800;
+    padding: 14px 38px;
+    border-radius: 99px;
+    letter-spacing: -0.5px;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.05);
+  }
+
+  .hero-mockups {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 36px;
+    flex-shrink: 0;
+  }
+  /* 이미지 자체에 핸드폰 목업 포함 — 프레임 제거 */
+  .mockup-img {
+    aspect-ratio: 9 / 19.5;
+    overflow: hidden;
+    background: transparent;
+  }
+  .mockup-img img {
+    width: 100%; height: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: auto;
+    align-content: space-between;
+    column-gap: 40px;
+    row-gap: 28px;
+    flex: 1;
+    min-height: 0;
+  }
+  .meta-block { display: flex; flex-direction: column; }
+  .meta-block .meta-label {
+    font-size: 22px;
+    font-weight: 800;
+    color: #1E1E2E;
+    margin-bottom: 14px;
+    letter-spacing: -0.5px;
+  }
+  .meta-block .meta-value {
+    font-size: 17px;
+    color: #374151;
+    line-height: 1.6;
+  }
+  .meta-block .meta-value b { color: #1E1E2E; font-weight: 700; }
+  .meta-block .meta-value a {
+    color: #8B5CF6;
+    text-decoration: underline;
+    font-size: 15.5px;
+  }
+  .meta-block .meta-value .strong {
+    font-size: 19px;
+    font-weight: 700;
+    color: #1E1E2E;
+    margin-bottom: 4px;
+    display: block;
+  }
+  .meta-block .meta-value .desc-line {
+    font-size: 14.5px;
+    color: #6B7280;
+    line-height: 1.5;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .award-inline {
+    display: inline-block;
+    background: #FEF3C7;
+    color: #92400E;
+    font-size: 12px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 99px;
+    margin-left: 6px;
+    letter-spacing: -0.3px;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+  .github-btn {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 8px;
+    background: #1E1E2E;
+    color: #FFFFFF !important;
+    text-decoration: none !important;
+    padding: 7px 14px;
+    border-radius: 6px;
+    font-size: 13px !important;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: -0.3px;
+  }
+  .github-btn::before {
+    content: '';
+    width: 18px;
+    height: 18px;
+    background: url('../../skill_icon/svg/Github-Dark.svg') no-repeat center;
+    background-size: contain;
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 4px;
+  }
+
+  .tech-stack {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px 12px;
+  }
+  .tech-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1E1E2E;
+  }
+  .tech-item img { width: 30px; height: 30px; object-fit: contain; }
+
+  .role-list { list-style: none; padding: 0; }
+  .role-list > li { margin-top: 16px; }
+  .role-list > li:first-child { margin-top: 0; }
+  .role-list .role-name {
+    font-size: 17px;
+    font-weight: 800;
+    color: #1E1E2E;
+    margin-bottom: 5px;
+    display: block;
+  }
+  .role-list .role-desc {
+    font-size: 15px;
+    color: #4B5563;
+    line-height: 1.55;
+  }
+
+  .review-list { list-style: none; padding: 0; }
+  .review-list > li {
+    font-size: 16px;
+    color: #374151;
+    line-height: 1.55;
+    padding: 6px 0 6px 18px;
+    position: relative;
+  }
+  .review-list > li::before {
+    content: '·';
+    position: absolute; left: 4px; top: 6px;
+    color: #1E1E2E; font-weight: 800; font-size: 18px;
+  }
+  .review-list ul { list-style: none; padding: 4px 0 4px 18px; margin: 0; }
+  .review-list ul li {
+    font-size: 14.5px;
+    color: #6B7280;
+    line-height: 1.55;
+    padding: 3px 0 3px 12px;
+    position: relative;
+  }
+  .review-list ul li::before {
+    content: '◦';
+    position: absolute; left: 0; color: #9CA3AF;
+  }
+  .review-list b { color: #1E1E2E; font-weight: 700; }
+
+</style>
+</head>
+<body>
+<div class="frame">
+
+  <div class="page-header">
+    <div class="project-name"><span class="underline">또마니또</span></div>
+    <div class="project-chip">Project - 3</div>
+  </div>
+
+  <div class="hero-mockups">
+    <div class="mockup-img"><img src="../img/ui-splash-ttomanito-intro.png" alt=""></div>
+    <div class="mockup-img"><img src="../img/ui-room-create-name-period-days.png" alt=""></div>
+    <div class="mockup-img"><img src="../img/ui-chatroom-anonymous-manitto-manitti.png" alt=""></div>
+    <div class="mockup-img"><img src="../img/ui-mission-today-poem-3stars-complete.png" alt=""></div>
+  </div>
+
+  <div class="meta-grid">
+
+    <div class="meta-block">
+      <div class="meta-label">서비스</div>
+      <div class="meta-value">
+        <span class="strong">실시간 익명 채팅 마니또 게임 모바일 웹</span>
+        <span class="desc-line">익명 1:1 채팅·미션·푸시 알림·AI 성향 분석으로 사용자 간 자연스러운 교류를 지원하는 소셜 웹앱</span>
+        <a href="https://github.com/ttomanito/ttomanito" class="github-btn">GitHub Repository</a>
+      </div>
+    </div>
+
+    <div class="meta-block">
+      <div class="meta-label">작업 기간</div>
+      <div class="meta-value">
+        2025. 07. 14 - 2025. 08. 15 (5주)<br>
+        <span style="color:#6B7280;font-size:15px;">SSAFY 13기 공통 프로젝트 (웹기술)</span>
+      </div>
+    </div>
+
+    <div class="meta-block">
+      <div class="meta-label">기술 스택</div>
+      <div class="tech-stack">
+        <div class="tech-item"><img src="../../skill_icon/png/Java.png" alt=""> Java</div>
+        <div class="tech-item"><img src="../../skill_icon/png/springboot.png" alt=""> SpringBoot</div>
+        <div class="tech-item"><img src="../../skill_icon/png/MySQL2.png" alt=""> MySQL</div>
+        <div class="tech-item"><img src="../../skill_icon/png/Redis.png" alt=""> Redis</div>
+        <div class="tech-item"><img src="../../skill_icon/png/MongoDB.png" alt=""> MongoDB</div>
+        <div class="tech-item"><img src="../../skill_icon/png/FCM.png" alt=""> FCM</div>
+        <div class="tech-item"><img src="../../skill_icon/png/Docker.png" alt=""> Docker</div>
+        <div class="tech-item"><img src="../../skill_icon/png/Jenkins.png" alt=""> Jenkins</div>
+        <div class="tech-item"><img src="../../skill_icon/png/NGINX.png" alt=""> Nginx</div>
+        <div class="tech-item"><img src="../../skill_icon/png/AWS EC2.png" alt=""> AWS EC2</div>
+        <div class="tech-item"><img src="../../skill_icon/png/React.png" alt=""> React</div>
+        <div class="tech-item"><img src="../../skill_icon/svg/open-ai-seeklogo.svg" alt=""> GPT-4.1 mini</div>
+      </div>
+    </div>
+
+    <div class="meta-block">
+      <div class="meta-label">구성원</div>
+      <div class="meta-value">
+        <span class="strong">총 6명</span>
+        FE 3명 · <b>BE 2명 (본인 포함)</b> · Infra 1명
+      </div>
+    </div>
+
+    <div class="meta-block">
+      <div class="meta-label">역할 — Backend</div>
+      <ul class="role-list">
+        <li>
+          <span class="role-name">실시간 1:1 채팅</span>
+          <span class="role-desc">WebSocket+STOMP 라우팅 / MongoDB 채팅 메시지 영속</span>
+        </li>
+        <li>
+          <span class="role-name">JWT Principal 통일</span>
+          <span class="role-desc">WebSocket 인증 충돌 → JWT 기반 Principal 주입으로 1:1 라우팅 안정화</span>
+        </li>
+        <li>
+          <span class="role-name">인증/보안</span>
+          <span class="role-desc">JWT + OAuth2 / Redis RTR / Nginx·SSL·CORS 환경 대응</span>
+        </li>
+        <li>
+          <span class="role-name">AI 성향 분석</span>
+          <span class="role-desc">GPT-4.1 mini 연동 — 채팅 참여자 성향 분석 API 제공</span>
+        </li>
+        <li>
+          <span class="role-name">PWA 푸시</span>
+          <span class="role-desc">Firebase FCM — 모바일 웹 실시간 알림 + PWA 설치</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="meta-block">
+      <div class="meta-label">프로젝트 회고</div>
+      <ul class="review-list">
+        <li><b>WebSocket 인증 충돌 → JWT Principal 주입으로 재설계</b>
+          <ul>
+            <li>STOMP 핸드셰이크 + 채널 메시지에서 동일한 사용자 식별 보장</li>
+            <li><code>Principal.getName() = userId</code> 통일로 1:1 라우팅 안정화</li>
+          </ul>
+        </li>
+        <li><b>3DB 분리</b> — MySQL(메타) · MongoDB(메시지) · Redis(세션·캐시)
+          <ul><li>채팅 영속과 메타 데이터의 갱신 빈도·정렬 비용 차이를 저장소로 분리</li></ul>
+        </li>
+        <li><b>운영 환경 보안 이슈 해결</b> — Nginx·SSL·CORS 실서비스 경험
+          <ul><li>JWT 쿠키 처리 + Refresh Token 회전 + 세션 안정화</li></ul>
+        </li>
+        <li><b>모바일 웹 PWA 적용</b>으로 앱 체감 향상 + 푸시 알림 자동 수신</li>
+      </ul>
+    </div>
+
+  </div>
+
+</div>
+</body>
+</html>

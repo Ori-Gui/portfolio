@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>아그작 — Project 1 (Architecture, Figma A4 1190×1684)</title>
+<style>
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    font-family: 'Pretendard', -apple-system, sans-serif;
+    background: #DDE0E5;
+    color: #1E1E2E;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ============ PDF 출력 ============ */
+  @page { size: 1190px 1684px; margin: 0; }
+  @media print { html, body { background: #FFFFFF; margin: 0; padding: 0; } }
+
+  /* ========== Figma A4 1190 × 1684 ========== */
+  .frame {
+    width: 1190px;
+    height: 1684px;
+    margin: 0;
+    padding: 64px 76px 56px;
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    gap: 28px;
+  }
+
+  /* ============ 1. 헤더 ============ */
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .page-title {
+    font-size: 56px;
+    font-weight: 800;
+    color: #B0B5BD;
+    letter-spacing: -2px;
+    line-height: 1;
+  }
+  .project-chip {
+    background: #FFD43B;
+    color: #1E1E2E;
+    font-size: 22px;
+    font-weight: 800;
+    padding: 14px 38px;
+    border-radius: 99px;
+    letter-spacing: -0.5px;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.05);
+  }
+
+  /* ============ 2. 아키텍처 이미지 (상단) ============ */
+  .arch-wrap {
+    width: 100%;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .arch-wrap img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  /* ============ 3. 설명 카드 4분할 ============ */
+  .desc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 18px;
+    flex: 1;
+    min-height: 0;
+  }
+  .desc-card {
+    background: #FAFBFD;
+    border: 1.5px solid #E5E7EB;
+    border-radius: 14px;
+    padding: 20px 22px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .desc-card.deploy   { border-left: 5px solid #4A6CF7; }
+  .desc-card.cicd     { border-left: 5px solid #DC2626; }
+  .desc-card.monitor  { border-left: 5px solid #047857; }
+  .desc-card.aitest   { border-left: 5px solid #7C3AED; }
+
+  .card-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+  .card-num {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    color: #FFFFFF;
+    font-weight: 800;
+    font-size: 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .deploy  .card-num { background: #4A6CF7; }
+  .cicd    .card-num { background: #DC2626; }
+  .monitor .card-num { background: #047857; }
+  .aitest  .card-num { background: #7C3AED; }
+
+  .card-title {
+    font-size: 19px;
+    font-weight: 800;
+    color: #1E1E2E;
+    letter-spacing: -0.4px;
+  }
+  .card-sub {
+    font-size: 12.5px;
+    font-weight: 500;
+    color: #6B7280;
+    margin-left: auto;
+    font-family: 'JetBrains Mono', monospace;
+    background: #F3F4F6;
+    padding: 3px 10px;
+    border-radius: 99px;
+  }
+
+  .card-list {
+    list-style: none;
+    padding: 0;
+    flex: 1;
+  }
+  .card-list li {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: #374151;
+    padding: 5px 0 5px 16px;
+    position: relative;
+    border-bottom: 1px dashed rgba(0,0,0,0.06);
+  }
+  .card-list li:last-child { border-bottom: none; }
+  .card-list li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    top: 5px;
+    color: #9CA3AF;
+    font-size: 11px;
+  }
+  .card-list li b { color: #1E1E2E; font-weight: 700; }
+  .card-list li code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    background: #F3F4F6;
+    padding: 1px 6px;
+    border-radius: 4px;
+    color: #4A6CF7;
+  }
+
+  .card-metric {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed #E5E7EB;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #6B7280;
+  }
+  .card-metric .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800;
+    color: #1E1E2E;
+    font-size: 13.5px;
+  }
+  .card-metric .num.green { color: #047857; }
+  .card-metric .num.red   { color: #DC2626; }
+
+</style>
+</head>
+<body>
+<div class="frame">
+
+  <!-- ============ 1. 헤더 ============ -->
+  <div class="page-header">
+    <div class="page-title">프로젝트 아키텍처</div>
+    <div class="project-chip">Project - 1</div>
+  </div>
+
+  <!-- ============ 2. 아키텍처 이미지 ============ -->
+  <div class="arch-wrap">
+    <img src="../img/arch-overall-full-system-aws-ec2.png" alt="아그작 아키텍처 — AWS EC2 + Docker compose + Blue/Green + AI 분리">
+  </div>
+
+  <!-- ============ 3. 설명 카드 4분할 ============ -->
+  <div class="desc-grid">
+
+    <!-- ① Deploy -->
+    <div class="desc-card deploy">
+      <div class="card-head">
+        <div class="card-num">①</div>
+        <div class="card-title">Deploy 환경</div>
+        <div class="card-sub">AWS EC2 · Blue/Green</div>
+      </div>
+      <ul class="card-list">
+        <li>헬스 엔드포인트(<code>/actuator/health</code>)로 트래픽 전환 트리거 제공</li>
+        <li>ShedLock 으로 두 슬롯 동시 기동 안전성 보장 (스케줄러 중복 실행 차단)</li>
+        <li>운영/테스트 환경 동일 이미지 — 환경변수만으로 기동 분기</li>
+        <li>Spring Boot 두 슬롯 + Nginx upstream swap 으로 무중단 배포</li>
+      </ul>
+      <div class="card-metric">배포 다운타임 <span class="num green">0초</span> · 동시 두 슬롯 안전</div>
+    </div>
+
+    <!-- ② CI/CD -->
+    <div class="desc-card cicd">
+      <div class="card-head">
+        <div class="card-num">②</div>
+        <div class="card-title">CI / CD</div>
+        <div class="card-sub">Jenkins · 4 파이프라인</div>
+      </div>
+      <ul class="card-list">
+        <li>Gradle 빌드 → Docker 이미지 → 레지스트리 푸시 자동화 흐름 호환</li>
+        <li><code>health=UP</code> 응답 보장으로 무중단 슬롯 컷오버</li>
+        <li>운영 동일 이미지로 테스트 환경(격리 DB/Redis) 회귀 검증 통과</li>
+        <li>4 파이프라인(운영·테스트 × BE·FE) + Mattermost 자동 알림</li>
+      </ul>
+      <div class="card-metric">Docker 캐시 적중 시 빌드 <span class="num">1m 20s → 14s</span></div>
+    </div>
+
+    <!-- ③ 모니터링·로그 -->
+    <div class="desc-card monitor">
+      <div class="card-head">
+        <div class="card-num">③</div>
+        <div class="card-title">모니터링 · 로그</div>
+        <div class="card-sub">Prom · Graf · Loki · EFK</div>
+      </div>
+      <ul class="card-list">
+        <li>Spring Actuator 메트릭 + <code>trace_id</code> 표준 로그 포맷 노출</li>
+        <li>Mattermost 알람(5xx · Broken Pipe · Deadlock 40001) 추적·원인 규명</li>
+        <li>메트릭 — Prometheus + Grafana + Exporter (서버·MySQL·Nginx)</li>
+        <li>로그 — Loki/Promtail · EFK 병행 + Notion DB 일별 자동 리포트</li>
+      </ul>
+      <div class="card-metric">14일 운영 Slow Query <span class="num green">0건</span> · ShedLock 적용 후 자정 데드락 <span class="num green">재발 0건</span></div>
+    </div>
+
+    <!-- ④ AI · Test -->
+    <div class="desc-card aitest">
+      <div class="card-head">
+        <div class="card-num">④</div>
+        <div class="card-title">AI 연동 · Test</div>
+        <div class="card-sub">FastAPI 게이트웨이 호출</div>
+      </div>
+      <ul class="card-list">
+        <li>운세 계산(결정론, Swisseph) / 해설(AI 변동) 책임 분리 설계</li>
+        <li>항목별 AI 호출 병렬화 + 응답 캐싱으로 Broken Pipe 회복</li>
+        <li>외부 호출은 AI 게이트웨이 1곳으로 통제 — 내부 네트워크 호출만</li>
+        <li>AI 게이트웨이 별도 컨테이너 (FastAPI · OpenAI · RAG · Swisseph)</li>
+      </ul>
+      <div class="card-metric">AI 호출 분리·병렬·캐싱 → <span class="num">Broken Pipe 회복</span></div>
+    </div>
+
+  </div>
+
+</div>
+</body>
+</html>

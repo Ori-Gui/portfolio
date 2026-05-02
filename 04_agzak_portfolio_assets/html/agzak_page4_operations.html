@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>아그작 — Project 1 (Operations, Figma A4 1190×1684)</title>
+<style>
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    font-family: 'Pretendard', -apple-system, sans-serif;
+    background: #DDE0E5;
+    color: #1E1E2E;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ============ PDF 출력 ============ */
+  @page { size: 1190px 1684px; margin: 0; }
+  @media print { html, body { background: #FFFFFF; margin: 0; padding: 0; } }
+
+  /* ========== Figma A4 1190 × 1684 ========== */
+  .frame {
+    width: 1190px;
+    height: 1684px;
+    margin: 0;
+    padding: 64px 76px 56px;
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;   /* 섹션 사이 여백 자동 균등 분배 */
+    overflow: hidden;
+  }
+
+  /* ============ 1. 헤더 (Page 1·2·3와 동일) ============ */
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .page-title {
+    font-size: 56px;
+    font-weight: 800;
+    color: #B0B5BD;
+    letter-spacing: -2px;
+    line-height: 1;
+  }
+  .page-title .accent { color: #1E1E2E; }
+  .project-chip {
+    background: #FFD43B;
+    color: #1E1E2E;
+    font-size: 22px;
+    font-weight: 800;
+    padding: 14px 38px;
+    border-radius: 99px;
+    letter-spacing: -0.5px;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.05);
+  }
+
+  /* ============ 2. 상단 운영 수치 3분할 ============ */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    flex-shrink: 0;
+  }
+  .stat-card {
+    border-radius: 14px;
+    padding: 24px 26px;
+    color: #FFFFFF;
+    text-align: left;
+    position: relative;
+  }
+  .stat-card.main { background: linear-gradient(135deg, #CA8A04 0%, #854D0E 100%); }
+  .stat-card.dark { background: linear-gradient(135deg, #1E1E2E 0%, #2C2C44 100%); }
+
+  .stat-num {
+    font-size: 44px;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    line-height: 1;
+    margin-bottom: 8px;
+    color: #FACC15;
+  }
+  .stat-card.main .stat-num { color: #FFFFFF; }
+  .stat-label {
+    font-size: 16px;             /* 14 → 16 */
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .stat-desc {
+    font-size: 12.5px;            /* 11.5 → 12.5 */
+    color: rgba(255,255,255,0.82);
+    line-height: 1.45;
+  }
+
+  /* ============ 공통 섹션 타이틀 ============ */
+  .section-title {
+    font-size: 19px;
+    font-weight: 800;
+    color: #1E1E2E;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+  .section-title::before {
+    content: '';
+    display: inline-block;
+    width: 5px; height: 20px;
+    background: #FFD43B;
+    border-radius: 3px;
+  }
+  .section-title .src {
+    margin-left: auto;
+    font-size: 11px;
+    color: #9CA3AF;
+    font-weight: 500;
+    font-family: 'JetBrains Mono', monospace;
+    background: #F3F4F6;
+    padding: 3px 10px;
+    border-radius: 99px;
+  }
+
+  /* ============ 3. GA4 2 × 2 ============ */
+  .ga4-section { flex-shrink: 0; }
+  .ga4-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 14px;
+  }
+  .ga4-card {
+    background: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .ga4-card .ga4-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    object-position: top;
+    background: #F9FAFB;
+    display: block;
+  }
+  .ga4-card .ga4-cap {
+    padding: 12px 16px;
+    background: #F9FAFB;
+    border-top: 1px solid #E5E7EB;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .ga4-card .ga4-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1E1E2E;
+    line-height: 1.3;
+  }
+  .ga4-card .ga4-val {
+    font-size: 12px;
+    color: #1E40AF;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    background: #DBEAFE;
+    padding: 3px 10px;
+    border-radius: 99px;
+    white-space: nowrap;
+  }
+
+  /* ============ 4. 트러블슈팅 회복 사이클 ============ */
+  .recover-section { flex-shrink: 0; }
+  .recover-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .recover-card {
+    background: #FAFBFD;
+    border: 1.5px solid #E5E7EB;
+    border-radius: 12px;
+    padding: 18px 20px;
+    border-left: 5px solid #DC2626;
+  }
+  .recover-card.green { border-left-color: #047857; }
+  .recover-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .recover-num {
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    color: #FFFFFF;
+    background: #DC2626;
+    font-weight: 800;
+    font-size: 13px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .recover-card.green .recover-num { background: #047857; }
+  .recover-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #1E1E2E;
+    letter-spacing: -0.3px;
+  }
+  .recover-desc {
+    font-size: 13px;
+    color: #4B5563;
+    line-height: 1.55;
+    margin-bottom: 10px;
+  }
+  .recover-desc b { color: #1E1E2E; font-weight: 700; }
+  .recover-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11.5px;
+  }
+  .recover-table th {
+    background: #F9FAFB;
+    text-align: left;
+    padding: 5px 8px;
+    color: #6B7280;
+    font-weight: 700;
+    font-size: 10.5px;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #E5E7EB;
+  }
+  .recover-table td {
+    padding: 6px 8px;
+    border-bottom: 1px dashed #E5E7EB;
+    color: #374151;
+    line-height: 1.45;
+  }
+  .recover-table tr:last-child td { border-bottom: none; }
+  .recover-table .v-before { color: #DC2626; font-weight: 700; }
+  .recover-table .v-after  { color: #047857; font-weight: 700; }
+
+  /* ============ 5. 운영 캡처 (Mattermost · Notion · Grafana · Jenkins) ============ */
+  .ops-section { flex-shrink: 0; }
+  .ops-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+  }
+  .ops-grid.four {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  .ops-card {
+    background: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .ops-head {
+    padding: 8px 12px;
+    background: #F9FAFB;
+    border-bottom: 1px solid #E5E7EB;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .ops-tag {
+    font-size: 10px;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 4px;
+    color: #FFFFFF;
+    background: #1E1E2E;
+    letter-spacing: 0.3px;
+  }
+  .ops-tag.matter  { background: #1E40AF; }
+  .ops-tag.jenkins { background: #DC2626; }
+  .ops-tag.grafana { background: #7C3AED; }
+  .ops-tag.notion  { background: #1E1E2E; }
+  .ops-name {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #1E1E2E;
+  }
+  .ops-img {
+    width: 100%;
+    height: 165px;            /* 130 → 165 */
+    object-fit: cover;
+    object-position: top;
+    display: block;
+    background: #F9FAFB;
+  }
+  .ops-foot {
+    padding: 6px 12px 8px;
+    font-size: 10.5px;
+    color: #6B7280;
+    line-height: 1.4;
+  }
+
+</style>
+</head>
+<body>
+<div class="frame">
+
+  <!-- ============ 1. 헤더 ============ -->
+  <div class="page-header">
+    <div class="page-title">운영 <span class="accent">성과</span></div>
+    <div class="project-chip">Project - 1</div>
+  </div>
+
+  <!-- ============ 2. 상단 운영 수치 3분할 ============ -->
+  <div class="stats-row">
+    <div class="stat-card main">
+      <div class="stat-num">1.1천 명</div>
+      <div class="stat-label">활성 사용자</div>
+      <div class="stat-desc">14일 (2025.11.11~24) · 신규 97%</div>
+    </div>
+    <div class="stat-card dark">
+      <div class="stat-num">11만</div>
+      <div class="stat-label">이벤트 수</div>
+      <div class="stat-desc">강화 시도 / 운세 조회 / 쿠키 굽기</div>
+    </div>
+    <div class="stat-card dark">
+      <div class="stat-num">91 %</div>
+      <div class="stat-label">참여율 (이탈 8%)</div>
+      <div class="stat-desc">GA4 — agzak 페이지 8.8% 이탈</div>
+    </div>
+  </div>
+
+  <!-- ============ 3. GA4 4분할 ============ -->
+  <div class="ga4-section">
+    <div class="section-title">
+      Google Analytics 4 — 14일 운영 데이터
+      <span class="src">2025.11.11 ~ 11.24</span>
+    </div>
+    <div class="ga4-grid">
+
+      <div class="ga4-card">
+        <img class="ga4-img" src="../img/ga4-summary-1100users-4min38sec-100k-events.png" alt="">
+        <div class="ga4-cap">
+          <div class="ga4-name">Summary</div>
+          <div class="ga4-val">1,100 / 4m38s / 100k</div>
+        </div>
+      </div>
+      <div class="ga4-card">
+        <img class="ga4-img" src="../img/ga4-engagement-91pct-bounce-8pct.png" alt="">
+        <div class="ga4-cap">
+          <div class="ga4-name">Engagement</div>
+          <div class="ga4-val">참여 91% · 이탈 8%</div>
+        </div>
+      </div>
+      <div class="ga4-card">
+        <img class="ga4-img" src="../img/ga4-traffic-source-direct-instagram.png" alt="">
+        <div class="ga4-cap">
+          <div class="ga4-name">Traffic Source</div>
+          <div class="ga4-val">Direct + Instagram</div>
+        </div>
+      </div>
+      <div class="ga4-card">
+        <img class="ga4-img" src="../img/ga4-events-pageview-gameattempt-fortuneview.png" alt="">
+        <div class="ga4-cap">
+          <div class="ga4-name">Top Events</div>
+          <div class="ga4-val">page_view · game_attempt</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============ 4. 트러블슈팅 회복 사이클 (IT 포트폴리오 톤) ============ -->
+  <div class="recover-section">
+    <div class="section-title">
+      구조적 장애 해결 — Before vs After
+      <span class="src">velog 트러블슈팅 2건</span>
+    </div>
+    <div class="recover-grid">
+
+      <!-- ① 자정 스케줄러 데드락 -->
+      <div class="recover-card green">
+        <div class="recover-head">
+          <div class="recover-num">①</div>
+          <div class="recover-title">심야 스케줄러 데드락</div>
+        </div>
+        <div class="recover-desc">
+          14일 운영 중 <b>23:59 cron + Blue/Green 두 컨테이너 동시 트리거</b>로 InnoDB Deadlock(SQLState 40001) 발생.
+          Mattermost 5xx FIRING 알람으로 발견 → 로그 추적 후 <b>ShedLock + 매시간 분할</b>로 단일 인스턴스 실행 보장.
+        </div>
+        <table class="recover-table">
+          <thead>
+            <tr><th></th><th>Before</th><th>After (ShedLock 적용)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>자정 데드락 알람</td><td><span class="v-before">매일 1회</span></td><td><span class="v-after">재발 0건</span></td></tr>
+            <tr><td>랭킹 스냅샷 누락</td><td><span class="v-before">발견됨</span></td><td><span class="v-after">0건</span></td></tr>
+            <tr><td>스케줄러 중복 실행</td><td><span class="v-before">두 컨테이너 모두</span></td><td><span class="v-after">한쪽만 + 즉시 skip</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ② 랭킹 저장소 이원화 -->
+      <div class="recover-card green">
+        <div class="recover-head">
+          <div class="recover-num">②</div>
+          <div class="recover-title">랭킹 저장소 이원화</div>
+        </div>
+        <div class="recover-desc">
+          단일 MySQL ORDER BY 로는 <b>실시간성·영속성·과거 보존</b> 세 요구를 만족시킬 수 없음.
+          <b>Redis ZSET(실시간) + MySQL 스냅샷(영속)</b> 으로 저장소 자체를 분리.
+        </div>
+        <table class="recover-table">
+          <thead>
+            <tr><th></th><th>Before</th><th>After</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>오늘 TOP 100 응답</td><td><span class="v-before">풀스캔 + 정렬</span></td><td><span class="v-after">ZREVRANGE 단건</span></td></tr>
+            <tr><td>"내 등수" 조회</td><td><span class="v-before">SELECT + 정렬</span></td><td><span class="v-after">ZREVRANK O(log N)</span></td></tr>
+            <tr><td>14일 Slow Query</td><td><span class="v-before">측정됨</span></td><td><span class="v-after">0건 유지</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============ 5. 운영 캡처 (실증) ============ -->
+  <div class="ops-section">
+    <div class="section-title">
+      운영 실증 — Mattermost · Notion · Jenkins · Grafana
+      <span class="src">실 운영 캡처</span>
+    </div>
+    <div class="ops-grid four">
+
+      <div class="ops-card">
+        <div class="ops-head">
+          <span class="ops-tag matter">MATTERMOST</span>
+          <span class="ops-name">데드락 SQLState 40001</span>
+        </div>
+        <img class="ops-img" src="../img/mattermost-deadlock-scheduler-sqlstate-40001.png" alt="">
+        <div class="ops-foot">자정 cron 직후 5xx FIRING — 추적 출발점</div>
+      </div>
+
+      <div class="ops-card">
+        <div class="ops-head">
+          <span class="ops-tag notion">NOTION</span>
+          <span class="ops-name">일별 로그 자동 리포트</span>
+        </div>
+        <img class="ops-img" src="../img/notion-daily-weekly-report-list.png" alt="">
+        <div class="ops-foot">ES 로그 → Notion DB 자동 푸시 (peak·error rate)</div>
+      </div>
+
+      <div class="ops-card">
+        <div class="ops-head">
+          <span class="ops-tag grafana">GRAFANA</span>
+          <span class="ops-name">ShedLock ACQUIRED / skipped</span>
+        </div>
+        <img class="ops-img" src="../img/capture-grafana-shedlock-acquired-skipped.png" alt="">
+        <div class="ops-foot">두 컨테이너 동시 시도 → 한쪽만 실행</div>
+      </div>
+
+      <div class="ops-card">
+        <div class="ops-head">
+          <span class="ops-tag jenkins">JENKINS</span>
+          <span class="ops-name">Docker Build cache</span>
+        </div>
+        <img class="ops-img" src="../img/jenkins-docker-buildcache-1m20s-to-14s.png" alt="">
+        <div class="ops-foot">캐시 적중 시 1m 20s → <b>14s</b></div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

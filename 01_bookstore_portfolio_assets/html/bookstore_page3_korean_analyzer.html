@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>이조핑 북스토어 — Page 3 (한글 분석기, A4 1190×1684)</title>
+<style>
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    font-family: 'Pretendard', -apple-system, sans-serif;
+    background: #DDE0E5;
+    color: #1E1E2E;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @page { size: 1190px 1684px; margin: 0; }
+  @media print { html, body { background: #FFFFFF; margin: 0; padding: 0; } }
+
+  .frame {
+    width: 1190px;
+    height: 1684px;
+    margin: 0;
+    padding: 70px 76px 70px;
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    gap: 32px;
+  }
+
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .page-title {
+    font-size: 50px;
+    font-weight: 800;
+    color: #B0B5BD;
+    letter-spacing: -2px;
+    line-height: 1;
+  }
+  .page-title .accent { color: #1E1E2E; }
+  .project-chip {
+    background: #FB923C;
+    color: #FFFFFF;
+    font-size: 22px;
+    font-weight: 800;
+    padding: 14px 38px;
+    border-radius: 99px;
+    letter-spacing: -0.5px;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.05);
+  }
+
+  .section-title {
+    font-size: 19px;
+    font-weight: 800;
+    color: #1E1E2E;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    letter-spacing: -0.3px;
+  }
+  .section-title::before {
+    content: '';
+    display: inline-block;
+    width: 5px; height: 20px;
+    background: #FB923C;
+    border-radius: 3px;
+  }
+  .section-title .src {
+    margin-left: auto;
+    font-size: 12px;
+    color: #9CA3AF;
+    font-weight: 500;
+    font-family: 'JetBrains Mono', monospace;
+    background: #F3F4F6;
+    padding: 3px 10px;
+    border-radius: 99px;
+  }
+
+  /* 분석기 3 종 카드 */
+  .analyzer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 18px;
+    flex-shrink: 0;
+  }
+  .ana-card {
+    border: 2px solid #E5E7EB;
+    border-radius: 12px;
+    padding: 20px 22px;
+    background: #FAFBFD;
+    position: relative;
+  }
+  .ana-card.nori   { border-color: #FB923C; background: #FFFBEB; }
+  .ana-card.ngram  { border-color: #4A6CF7; background: #EFF6FF; }
+  .ana-card.jaso   { border-color: #047857; background: #F0FDF4; }
+  .ana-num {
+    position: absolute;
+    top: -12px; left: 18px;
+    width: 28px; height: 28px;
+    background: #1E1E2E;
+    color: #FFFFFF;
+    border-radius: 6px;
+    font-weight: 800;
+    font-size: 13px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .ana-name {
+    font-size: 18px;
+    font-weight: 800;
+    color: #1E1E2E;
+    margin-top: 8px;
+    margin-bottom: 4px;
+    letter-spacing: -0.3px;
+  }
+  .ana-purpose {
+    font-size: 12px;
+    color: #6B7280;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .ana-config {
+    background: #FFFFFF;
+    border: 1px dashed rgba(0,0,0,0.15);
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    line-height: 1.65;
+    color: #374151;
+    margin-bottom: 12px;
+  }
+  .ana-config .key { color: #2563EB; font-weight: 700; }
+  .ana-config .val { color: #047857; font-weight: 700; }
+  .ana-desc {
+    font-size: 12.5px;
+    color: #4B5563;
+    line-height: 1.55;
+  }
+  .ana-desc b { color: #1E1E2E; font-weight: 700; }
+
+  /* UI 검색 결과 (2x2 큰 사이즈) */
+  .ui-section {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .ui-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 16px;
+    flex: 1;
+    min-height: 0;
+  }
+  .ui-card {
+    background: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+  }
+  .ui-head {
+    padding: 11px 16px;
+    background: #F9FAFB;
+    border-bottom: 1px solid #E5E7EB;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .ui-tag {
+    font-size: 11px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 5px;
+    color: #FFFFFF;
+    background: #FB923C;
+    letter-spacing: 0.3px;
+  }
+  .ui-tag.sort { background: #1E40AF; }
+  .ui-name {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #1E1E2E;
+  }
+  .ui-img {
+    width: 100%;
+    flex: 1;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+    background: #F9FAFB;
+    min-height: 0;
+  }
+
+  /* 운영 카드 — 페이지 하단 고정 */
+  .opcollab-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    flex-shrink: 0;
+    margin-top: 0;
+  }
+  .info-card {
+    background: #FAFBFD;
+    border: 1.5px solid #E5E7EB;
+    border-radius: 12px;
+    padding: 20px 24px;
+    border-left: 5px solid;
+  }
+  .info-card.idx { border-left-color: #FB923C; }
+  .info-card.team { border-left-color: #1E40AF; }
+  .info-card .info-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .info-card .info-num {
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    color: #FFFFFF;
+    font-weight: 800;
+    font-size: 13px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .info-card.idx .info-num { background: #FB923C; }
+  .info-card.team .info-num { background: #1E40AF; }
+  .info-card .info-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #1E1E2E;
+    letter-spacing: -0.3px;
+  }
+  .info-card ul { list-style: none; padding: 0; }
+  .info-card li {
+    font-size: 13px;
+    line-height: 1.55;
+    color: #374151;
+    padding: 6px 0 6px 16px;
+    position: relative;
+    border-bottom: 1px dashed rgba(0,0,0,0.06);
+  }
+  .info-card li:last-child { border-bottom: none; }
+  .info-card li::before {
+    content: '▸';
+    position: absolute;
+    left: 0; top: 6px;
+    color: #9CA3AF;
+    font-size: 11px;
+  }
+  .info-card li b { color: #1E1E2E; font-weight: 700; }
+  .info-card li code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    background: #F3F4F6;
+    color: #FB923C;
+    padding: 1px 6px;
+    border-radius: 3px;
+  }
+</style>
+</head>
+<body>
+<div class="frame">
+
+  <!-- 헤더 -->
+  <div class="page-header">
+    <div class="page-title">한글 형태소 <span class="accent">분석기</span></div>
+    <div class="project-chip">Project - 4</div>
+  </div>
+
+  <!-- 분석기 3 종 -->
+  <div>
+    <div class="section-title">
+      한글 검색 3 분석기 조합
+      <span class="src">ejoping-books index</span>
+    </div>
+    <div class="analyzer-grid">
+
+      <div class="ana-card nori">
+        <div class="ana-num">①</div>
+        <div class="ana-name">my_nori_analyzer</div>
+        <div class="ana-purpose">한국어 형태소 분석</div>
+        <div class="ana-config"><span class="key">tokenizer</span>: nori_tokenizer
+  <span class="key">decompound_mode</span>: <span class="val">"mixed"</span>
+<span class="key">filter</span>:
+  · nori_part_of_speech
+    (불용 품사 제거 E·J·MM…)
+  · synonym_filter (자바=java)
+  · lowercase · trim · stop
+<span class="key">char_filter</span>: html_strip</div>
+        <div class="ana-desc">
+          <b>"객체지향" → [객체, 지향, 객체지향]</b> 형태소 분리.
+          <b>불용 품사·동의어·HTML 태그</b> 까지 정제하여 본문 검색 정확도 향상.
+        </div>
+      </div>
+
+      <div class="ana-card ngram">
+        <div class="ana-num">②</div>
+        <div class="ana-name">ngram_analyzer</div>
+        <div class="ana-purpose">부분 일치 / 자동완성</div>
+        <div class="ana-config"><span class="key">tokenizer</span>: ngram_tokenizer
+  <span class="key">min_gram</span>: <span class="val">2</span>
+  <span class="key">max_gram</span>: <span class="val">3</span>
+<span class="key">filter</span>:
+  · 동일 (lowercase, stop,
+    nori_part_of_speech,
+    synonym_filter)</div>
+        <div class="ana-desc">
+          <b>"자바스크립트" → [자바, 바스, 스크, 크립, 립트, ...]</b> 2~3자 토큰 생성.
+          중간 일부만 맞아도 인덱스 매칭.
+        </div>
+      </div>
+
+      <div class="ana-card jaso">
+        <div class="ana-num">③</div>
+        <div class="ana-name">suggest_(index/search)</div>
+        <div class="ana-purpose">자모 검색 / 오타 허용</div>
+        <div class="ana-config"><span class="key">tokenizer</span>: jaso_tokenizer
+  <span class="key">mistype</span>: <span class="val">true</span>  · 오타 허용
+  <span class="key">chosung</span>: index <span class="val">true</span> /
+           search <span class="val">false</span>
+<span class="key">filter</span> (인덱스만):
+  · edge_ngram (1~50)
+    suggest_filter</div>
+        <div class="ana-desc">
+          한글을 자모 분해. <b>색인엔 초성 포함</b>으로 "ㅈㅂㅅㅋㄹㅍㅌ" 같은
+          <b>초성 검색</b> + <b>오타 보정</b> 자동완성 지원.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- UI 검색 결과 — 검색 + 정렬 4 분할 -->
+  <div class="ui-section">
+    <div class="section-title">
+      검색 결과 화면 — 분석기 + 가중치 + 정렬 6 종
+      <span class="src">ejoping-bookstore.com</span>
+    </div>
+    <div class="ui-grid">
+
+      <div class="ui-card">
+        <div class="ui-head">
+          <span class="ui-tag">SEARCH</span>
+          <span class="ui-name">키워드 "컴퓨터"</span>
+        </div>
+        <img class="ui-img" src="../img/ui-search-computer-word.png" alt="">
+      </div>
+
+      <div class="ui-card">
+        <div class="ui-head">
+          <span class="ui-tag">SEARCH</span>
+          <span class="ui-name">카테고리 "과학"</span>
+        </div>
+        <img class="ui-img" src="../img/ui-search-category-science.png" alt="">
+      </div>
+
+      <div class="ui-card">
+        <div class="ui-head">
+          <span class="ui-tag sort">SORT</span>
+          <span class="ui-name">평점순 정렬</span>
+        </div>
+        <img class="ui-img" src="../img/ui-book-list-order-by-score.png" alt="">
+      </div>
+
+      <div class="ui-card">
+        <div class="ui-head">
+          <span class="ui-tag sort">SORT</span>
+          <span class="ui-name">낮은 가격순</span>
+        </div>
+        <img class="ui-img" src="../img/ui-book-list-order-by-low-cost.png" alt="">
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 인덱스 운영 + 협업 -->
+  <div class="opcollab-grid">
+
+    <div class="info-card idx">
+      <div class="info-head">
+        <div class="info-num">A</div>
+        <div class="info-title">검색 인덱스 운영</div>
+      </div>
+      <ul>
+        <li>운영 DB와 <b>검색 전용 인덱스 분리</b> — 부하 격리</li>
+        <li><b>Logstash JDBC input</b> — MySQL 5 join + JSON_ARRAYAGG → ES upsert</li>
+        <li>정렬 6종: <code>popularity·newest·price·rating·reviews</code></li>
+        <li>BM25 + 가중치 — <code>title^10 · desc^3 · publisher^2</code></li>
+      </ul>
+    </div>
+
+    <div class="info-card team">
+      <div class="info-head">
+        <div class="info-num">B</div>
+        <div class="info-title">8 인 팀 협업 표준화</div>
+      </div>
+      <ul>
+        <li><b>WBS 기반 일정 관리</b> + 분담 및 마일스톤 추적</li>
+        <li><b>API 기술 문서화</b> 표준화 (Swagger + 명세서)</li>
+        <li><b>스프린트 회고</b> 주도 — 매 스프린트 KPT 작성</li>
+        <li>Pull Request 코드 리뷰 정책 + SonarQube 정적 분석</li>
+      </ul>
+    </div>
+
+  </div>
+
+</div>
+</body>
+</html>

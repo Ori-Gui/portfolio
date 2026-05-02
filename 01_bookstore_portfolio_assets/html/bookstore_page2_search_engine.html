@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>이조핑 북스토어 — Page 2 (검색 엔진 도입, A4 1190×1684)</title>
+<style>
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    font-family: 'Pretendard', -apple-system, sans-serif;
+    background: #DDE0E5;
+    color: #1E1E2E;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @page { size: 1190px 1684px; margin: 0; }
+  @media print { html, body { background: #FFFFFF; margin: 0; padding: 0; } }
+
+  .frame {
+    width: 1190px;
+    height: 1684px;
+    margin: 0;
+    padding: 70px 76px 70px;
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    gap: 32px;
+  }
+
+  /* 헤더 */
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .page-title {
+    font-size: 50px;
+    font-weight: 800;
+    color: #B0B5BD;
+    letter-spacing: -2px;
+    line-height: 1;
+  }
+  .page-title .accent { color: #1E1E2E; }
+  .project-chip {
+    background: #FB923C;
+    color: #FFFFFF;
+    font-size: 22px;
+    font-weight: 800;
+    padding: 14px 38px;
+    border-radius: 99px;
+    letter-spacing: -0.5px;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.05);
+  }
+
+  /* PROBLEM 박스 */
+  .problem {
+    background: linear-gradient(135deg, #FFFBEB 0%, #FFFFFF 100%);
+    border-left: 5px solid #FB923C;
+    border-radius: 10px;
+    padding: 18px 24px;
+    flex-shrink: 0;
+  }
+  .problem .label {
+    font-size: 12px;
+    font-weight: 800;
+    color: #9A3412;
+    letter-spacing: 1.5px;
+    margin-bottom: 6px;
+  }
+  .problem .text {
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.55;
+    color: #1E1E2E;
+    letter-spacing: -0.3px;
+  }
+  .problem .text b { color: #DC2626; }
+  .problem .text code {
+    background: #1E1E2E;
+    color: #FAB387;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 14px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* 공통 섹션 타이틀 */
+  .section-title {
+    font-size: 19px;
+    font-weight: 800;
+    color: #1E1E2E;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    letter-spacing: -0.3px;
+  }
+  .section-title::before {
+    content: '';
+    display: inline-block;
+    width: 5px; height: 20px;
+    background: #FB923C;
+    border-radius: 3px;
+  }
+
+  /* Before/After 카드 */
+  .ba-section { flex-shrink: 0; }
+  .ba-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  .ba-card {
+    border: 2px solid;
+    border-radius: 12px;
+    padding: 18px 20px;
+    position: relative;
+  }
+  .ba-card.before { border-color: #FCA5A5; background: #FEF2F2; }
+  .ba-card.after  { border-color: #86EFAC; background: #F0FDF4; }
+  .ba-tag {
+    position: absolute;
+    top: -12px; left: 18px;
+    padding: 4px 14px;
+    border-radius: 99px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #FFFFFF;
+  }
+  .ba-card.before .ba-tag { background: #DC2626; }
+  .ba-card.after  .ba-tag { background: #047857; }
+  .ba-title {
+    font-size: 17px;
+    font-weight: 800;
+    margin: 4px 0 12px;
+    letter-spacing: -0.4px;
+  }
+  .ba-card.before .ba-title { color: #991B1B; }
+  .ba-card.after  .ba-title { color: #064E3B; }
+  .ba-list { list-style: none; padding: 0; }
+  .ba-list li {
+    font-size: 13.5px;
+    line-height: 1.55;
+    padding: 6px 0 6px 22px;
+    position: relative;
+    color: #374151;
+  }
+  .ba-list li b { color: #1E1E2E; font-weight: 700; }
+  .ba-card.before .ba-list li::before {
+    content: '✕';
+    position: absolute; left: 0; top: 5px;
+    color: #DC2626; font-weight: 800; font-size: 13.5px;
+  }
+  .ba-card.after .ba-list li::before {
+    content: '✓';
+    position: absolute; left: 0; top: 5px;
+    color: #047857; font-weight: 800; font-size: 13.5px;
+  }
+
+  /* Logstash 운영 흐름 */
+  .pipeline-section { flex-shrink: 0; }
+  .pipeline-card {
+    background: #FAFBFD;
+    border: 1.5px solid #E5E7EB;
+    border-radius: 12px;
+    padding: 18px 22px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    gap: 8px;
+    align-items: center;
+  }
+  .stage {
+    background: #FFFFFF;
+    border: 2px solid #E5E7EB;
+    border-radius: 10px;
+    padding: 14px 12px;
+    text-align: center;
+  }
+  .stage.mysql { border-color: #2563EB; background: #EFF6FF; }
+  .stage.lstash { border-color: #FB923C; background: #FFFBEB; }
+  .stage.es { border-color: #047857; background: #F0FDF4; }
+  .stage .step-name {
+    font-size: 14px;
+    font-weight: 800;
+    color: #1E1E2E;
+    margin-bottom: 4px;
+  }
+  .stage .step-tech {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #6B7280;
+    line-height: 1.45;
+  }
+  .stage-arrow {
+    text-align: center;
+    color: #6B7280;
+  }
+  .stage-arrow .arrow-symbol {
+    font-size: 22px;
+    font-weight: 800;
+    color: #FB923C;
+    display: block;
+  }
+  .stage-arrow .arrow-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #1E1E2E;
+    margin-top: 2px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* 코드 카드 */
+  .code-section { flex-shrink: 0; }
+  .code-card {
+    background: #1E1E2E;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .code-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 11px 18px;
+    background: #11111B;
+    border-bottom: 1px solid #313244;
+  }
+  .code-head .left { display: flex; align-items: center; gap: 8px; }
+  .code-head .dots { display: flex; gap: 5px; }
+  .code-head .dot { width: 9px; height: 9px; border-radius: 50%; }
+  .code-head .dot.r { background: #F38BA8; }
+  .code-head .dot.y { background: #F9E2AF; }
+  .code-head .dot.g { background: #A6E3A1; }
+  .code-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #89B4FA;
+    font-weight: 700;
+  }
+  .code-tag {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 99px;
+    background: #313244;
+    color: #A6E3A1;
+    letter-spacing: 0.3px;
+  }
+  pre.code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    line-height: 1.55;
+    color: #CDD6F4;
+    white-space: pre;
+    overflow: hidden;
+    padding: 16px 20px;
+  }
+  pre.code .kw   { color: #CBA6F7; font-weight: 600; }
+  pre.code .fn   { color: #89B4FA; }
+  pre.code .str  { color: #A6E3A1; }
+  pre.code .num  { color: #FAB387; }
+  pre.code .cmt  { color: #6C7086; font-style: italic; }
+  pre.code .anno { color: #F9E2AF; }
+  pre.code .type { color: #94E2D5; }
+
+  /* 결과 메트릭 — 주황 메인 1 + 다크 3 */
+  .result-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    flex-shrink: 0;
+  }
+  .result-item {
+    border-radius: 12px;
+    padding: 22px 22px;
+    color: #FFFFFF;
+    text-align: center;
+  }
+  .result-item.main { background: linear-gradient(135deg, #9A3412 0%, #7C2D12 100%); }
+  .result-item.dark { background: linear-gradient(135deg, #1E1E2E 0%, #2C2C44 100%); }
+  .result-num {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    line-height: 1;
+    margin-bottom: 10px;
+    color: #FB923C;
+  }
+  .result-item.main .result-num { color: #FFFFFF; }
+  .result-label {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .result-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,0.78);
+    line-height: 1.45;
+  }
+</style>
+</head>
+<body>
+<div class="frame">
+
+  <!-- 헤더 -->
+  <div class="page-header">
+    <div class="page-title">검색 엔진 <span class="accent">도입</span></div>
+    <div class="project-chip">Project - 4</div>
+  </div>
+
+  <!-- PROBLEM -->
+  <div class="problem">
+    <div class="label">PROBLEM → SOLUTION</div>
+    <div class="text">
+      개발 단계 검색 응답 평균 <b>1,200ms</b> · Slow Query <b>30%</b> 발생.
+      <code>LIKE '%키워드%'</code> 앞 와일드카드는 B-Tree 인덱스 사용 불가 → MySQL FULLTEXT 한계 확인 후
+      <b>Elasticsearch + 한글 형태소 분석기</b> 도입 + <b>Logstash JDBC</b> 로 10초 단위 자동 동기화.
+    </div>
+  </div>
+
+  <!-- Before / After -->
+  <div class="ba-section">
+    <div class="section-title">Before vs After</div>
+    <div class="ba-grid">
+
+      <div class="ba-card before">
+        <span class="ba-tag">BEFORE</span>
+        <div class="ba-title">QueryDSL <code>.contains()</code> + 4 LEFT JOIN</div>
+        <ul class="ba-list">
+          <li><b>Full Table Scan</b> — <code>LIKE '%keyword%'</code> 앞 와일드카드로 인덱스 미사용</li>
+          <li><b>4 테이블 LEFT JOIN</b> — contributor·tag·category 결과 행 폭발</li>
+          <li><b>N+1 쿼리</b> — 도서별 기여자/카테고리 추가 조회</li>
+          <li><b>한국어 형태소 미지원</b> — '자바' 검색 시 '자바스크립트' 누락</li>
+          <li><b>관련성 정렬 미지원</b> — 단순 views 컬럼 정렬만 가능</li>
+        </ul>
+      </div>
+
+      <div class="ba-card after">
+        <span class="ba-tag">AFTER</span>
+        <div class="ba-title">Elasticsearch + nori 형태소 분석기</div>
+        <ul class="ba-list">
+          <li><b>역색인 + 형태소 토큰화</b> — Inverted Index 기반 빠른 검색</li>
+          <li><b>multi_match + nested</b> — 본문/카테고리/태그/기여자 동시 검색</li>
+          <li><b>관련성 점수(BM25) + 가중치</b> — title^10 / desc^3 / publisher^2</li>
+          <li><b>한글 분석기 nori + ngram + jaso</b> — 부분 검색 · 자모 검색 지원</li>
+          <li><b>Logstash 자동 동기화</b> — MySQL → ES 10초 polling upsert</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Logstash 운영 흐름 -->
+  <div class="pipeline-section">
+    <div class="section-title">인덱스 운영 — MySQL → Logstash → Elasticsearch</div>
+    <div class="pipeline-card">
+
+      <div class="stage mysql">
+        <div class="step-name">MySQL</div>
+        <div class="step-tech">project_be7_2joping<br>book + 5 join<br>JSON_ARRAYAGG</div>
+      </div>
+
+      <div class="stage-arrow">
+        <span class="arrow-symbol">→</span>
+        <span class="arrow-label">10초마다 polling</span>
+      </div>
+
+      <div class="stage lstash">
+        <div class="step-name">Logstash JDBC</div>
+        <div class="step-tech">jdbc input<br>+ json filter<br>+ es output</div>
+      </div>
+
+      <div class="stage-arrow">
+        <span class="arrow-symbol">→</span>
+        <span class="arrow-label">document_id upsert</span>
+      </div>
+
+      <div class="stage es">
+        <div class="step-name">Elasticsearch</div>
+        <div class="step-tech">index: ejoping-books<br>nori + ngram + jaso<br>nested · synonym</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 핵심 코드 (실제 ElasticRepositoryImpl) -->
+  <div class="code-section">
+    <div class="section-title">검색 쿼리 — multi_match + nested 결합</div>
+    <div class="code-card">
+      <div class="code-head">
+        <div class="left">
+          <div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
+          <span class="code-name">bookset/elastic/repository/impl/ElasticRepositoryImpl.java</span>
+        </div>
+        <span class="code-tag">multi_match · nested · BM25</span>
+      </div>
+<pre class="code"><span class="kw">public</span> <span class="type">Page</span>&lt;<span class="type">ElasticSearchResponseDto</span>&gt; <span class="fn">searchByKeyword</span>(<span class="type">String</span> keyword, <span class="type">Long</span> categoryId, <span class="type">Pageable</span> pageable, <span class="type">String</span> sort) {
+    <span class="kw">var</span> req = <span class="kw">new</span> <span class="type">SearchRequest</span>.<span class="type">Builder</span>()
+        .<span class="fn">index</span>(elasticConfig.<span class="fn">getBookIndexName</span>())   <span class="cmt">// "ejoping-books"</span>
+        .<span class="fn">from</span>((<span class="kw">int</span>) pageable.<span class="fn">getOffset</span>())
+        .<span class="fn">size</span>(pageable.<span class="fn">getPageSize</span>())
+        .<span class="fn">query</span>(q -> q.<span class="fn">bool</span>(b -> {
+
+            <span class="cmt">// ① 본문 필드 multi_match — 가중치 + 4종 분석기 활용</span>
+            b.<span class="fn">should</span>(s -> s.<span class="fn">multiMatch</span>(m -> m.<span class="fn">query</span>(keyword).<span class="fn">fields</span>(
+                <span class="str">"book_title^10"</span>,    <span class="str">"book_title.ngram^3"</span>,
+                <span class="str">"book_title.jaso"</span>,   <span class="str">"book_title.synonym"</span>,
+                <span class="str">"book_desc^3"</span>,       <span class="str">"book_desc.ngram"</span>,    <span class="str">"book_desc.synonym"</span>,
+                <span class="str">"book_publisher^2"</span>,  <span class="str">"book_publisher.ngram"</span>, <span class="str">"book_publisher.synonym"</span>
+            )));
+
+            <span class="cmt">// ② 카테고리 nested — 트리 구조 책 분류 검색</span>
+            b.<span class="fn">should</span>(s -> s.<span class="fn">nested</span>(n -> n.<span class="fn">path</span>(<span class="str">"book_category"</span>).<span class="fn">query</span>(
+                cq -> cq.<span class="fn">multiMatch</span>(m -> m.<span class="fn">query</span>(keyword).<span class="fn">fields</span>(
+                    <span class="str">"book_category.name^3"</span>, <span class="str">"book_category.name.ngram"</span>, <span class="str">"book_category.name.synonym"</span>)))));
+
+            <span class="cmt">// ③ 태그 nested · ④ 기여자 nested (저자/번역/출판) 동일 패턴</span>
+            <span class="cmt">// b.should(...book_tag...);  b.should(...book_contributor...);</span>
+
+            <span class="kw">return</span> b;
+        }));
+
+    <span class="cmt">// 정렬 — popularity / newest / lowest_price / highest_price / rating / reviews</span>
+    sortCriteria.<span class="fn">forEach</span>(e -> req.<span class="fn">sort</span>(s -> s.<span class="fn">field</span>(f -> f.<span class="fn">field</span>(e.<span class="fn">getKey</span>()).<span class="fn">order</span>(...))));
+
+    <span class="cmt">// → 평균 280ms · Slow Query 0건</span>
+    <span class="kw">return</span> elasticsearchClient.<span class="fn">search</span>(req.<span class="fn">build</span>(), <span class="type">Map</span>.<span class="kw">class</span>);
+}</pre>
+    </div>
+  </div>
+
+  <!-- 결과 메트릭 -->
+  <div class="result-row">
+    <div class="result-item main">
+      <div class="result-num">76 % ↓</div>
+      <div class="result-label">평균 응답 시간</div>
+      <div class="result-desc">1,200ms → 280ms</div>
+    </div>
+    <div class="result-item dark">
+      <div class="result-num">0건</div>
+      <div class="result-label">Slow Query</div>
+      <div class="result-desc">이전 30% → 0건</div>
+    </div>
+    <div class="result-item dark">
+      <div class="result-num">10초</div>
+      <div class="result-label">Logstash 동기화</div>
+      <div class="result-desc">MySQL → ES 자동 upsert</div>
+    </div>
+    <div class="result-item dark">
+      <div class="result-num">1 쿼리</div>
+      <div class="result-label">검색 호출</div>
+      <div class="result-desc">4 JOIN → multi_match + nested</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

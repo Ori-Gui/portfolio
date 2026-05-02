@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>똑똑꺼비 — Project 2 (Overview, Figma A4 1190×1684)</title>
+<style>
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    font-family: 'Pretendard', -apple-system, sans-serif;
+    background: #DDE0E5;
+    color: #1E1E2E;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @page { size: 1190px 1684px; margin: 0; }
+  @media print { html, body { background: #FFFFFF; margin: 0; padding: 0; } }
+
+  .frame {
+    width: 1190px;
+    height: 1684px;
+    margin: 0;
+    padding: 64px 76px 56px;
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 34px;
+    flex-shrink: 0;
+  }
+  .project-name {
+    font-size: 64px;
+    font-weight: 800;
+    color: #B0B5BD;
+    letter-spacing: -2px;
+    line-height: 1;
+  }
+  .project-name .underline {
+    border-bottom: 3px solid #B0B5BD;
+    padding-bottom: 4px;
+  }
+  .project-chip {
+    background: #38BDF8;          /* 하늘색 — toktokggubi 퍼스널 */
+    color: #FFFFFF;
+    font-size: 22px;
+    font-weight: 800;
+    padding: 14px 38px;
+    border-radius: 99px;
+    letter-spacing: -0.5px;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.05);
+  }
+
+  .hero-mockups {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 36px;
+    flex-shrink: 0;
+  }
+  /* 이미지 자체에 핸드폰 목업 포함 — 프레임 제거, 그림자만 */
+  .mockup-img {
+    aspect-ratio: 9 / 19.5;
+    overflow: hidden;
+    background: transparent;
+  }
+  .mockup-img img {
+    width: 100%; height: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: auto;
+    align-content: space-between;
+    column-gap: 40px;
+    row-gap: 28px;
+    flex: 1;
+    min-height: 0;
+  }
+  .meta-block { display: flex; flex-direction: column; }
+  .meta-block .meta-label {
+    font-size: 22px;
+    font-weight: 800;
+    color: #1E1E2E;
+    margin-bottom: 14px;
+    letter-spacing: -0.5px;
+  }
+  .meta-block .meta-value {
+    font-size: 17px;
+    color: #374151;
+    line-height: 1.6;
+  }
+  .meta-block .meta-value b { color: #1E1E2E; font-weight: 700; }
+  .meta-block .meta-value a {
+    color: #0284C7;
+    text-decoration: underline;
+    font-size: 15.5px;
+  }
+  .meta-block .meta-value .strong {
+    font-size: 19px;
+    font-weight: 700;
+    color: #1E1E2E;
+    margin-bottom: 4px;
+    display: block;
+  }
+  .meta-block .meta-value .desc-line {
+    font-size: 14.5px;
+    color: #6B7280;
+    line-height: 1.5;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .award-inline {
+    display: inline-block;
+    background: #FEF3C7;
+    color: #92400E;
+    font-size: 12px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 99px;
+    margin-left: 6px;
+    letter-spacing: -0.3px;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+  .github-btn {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 8px;
+    background: #1E1E2E;
+    color: #FFFFFF !important;
+    text-decoration: none !important;
+    padding: 7px 14px;
+    border-radius: 6px;
+    font-size: 13px !important;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: -0.3px;
+  }
+  .github-btn::before {
+    content: '';
+    width: 18px;
+    height: 18px;
+    background: url('../../skill_icon/svg/Github-Dark.svg') no-repeat center;
+    background-size: contain;
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 4px;
+  }
+
+  .tech-stack {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px 12px;
+  }
+  .tech-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1E1E2E;
+  }
+  .tech-item img { width: 30px; height: 30px; object-fit: contain; }
+
+  .role-list { list-style: none; padding: 0; }
+  .role-list > li { margin-top: 16px; }
+  .role-list > li:first-child { margin-top: 0; }
+  .role-list .role-name {
+    font-size: 17px;
+    font-weight: 800;
+    color: #1E1E2E;
+    margin-bottom: 5px;
+    display: block;
+  }
+  .role-list .role-desc {
+    font-size: 15px;
+    color: #4B5563;
+    line-height: 1.55;
+  }
+
+  .review-list { list-style: none; padding: 0; }
+  .review-list > li {
+    font-size: 16px;
+    color: #374151;
+    line-height: 1.55;
+    padding: 6px 0 6px 18px;
+    position: relative;
+  }
+  .review-list > li::before {
+    content: '·';
+    position: absolute; left: 4px; top: 6px;
+    color: #1E1E2E; font-weight: 800; font-size: 18px;
+  }
+  .review-list ul { list-style: none; padding: 4px 0 4px 18px; margin: 0; }
+  .review-list ul li {
+    font-size: 14.5px;
+    color: #6B7280;
+    line-height: 1.55;
+    padding: 3px 0 3px 12px;
+    position: relative;
+  }
+  .review-list ul li::before {
+    content: '◦';
+    position: absolute; left: 0; color: #9CA3AF;
+  }
+  .review-list b { color: #1E1E2E; font-weight: 700; }
+
+</style>
+</head>
+<body>
+<div class="frame">
+
+  <div class="page-header">
+    <div class="project-name"><span class="underline">똑똑꺼비</span></div>
+    <div class="project-chip">Project - 2</div>
+  </div>
+
+  <div class="hero-mockups">
+    <div class="mockup-img"><img src="../img/ui-main-budget-sept-28pct-242k.png" alt=""></div>
+    <div class="mockup-img"><img src="../img/ui-ai-suggest-cafe-28k-popup.png" alt=""></div>
+    <div class="mockup-img"><img src="../img/ui-gifticon-list-starbucks-ediya-tamntams.png" alt=""></div>
+    <div class="mockup-img"><img src="../img/ui-mulbbang-result-37k-final-ranking.png" alt=""></div>
+  </div>
+
+  <div class="meta-grid">
+
+    <div class="meta-block">
+      <div class="meta-label">서비스</div>
+      <div class="meta-value">
+        <span class="strong">AI 기반 예산 관리·소비 코칭 모바일 앱<span class="award-inline">🏆 특화 PJT 우수상 1등</span></span>
+        <span class="desc-line">이상 소비 탐지·개인화 예산 추천·기프티콘 통합 관리·게이미피케이션으로 건전한 소비 습관 형성 지원</span>
+        <a href="https://github.com/toktokggubi/toktokggubi" class="github-btn">GitHub Repository</a>
+      </div>
+    </div>
+
+    <div class="meta-block">
+      <div class="meta-label">작업 기간</div>
+      <div class="meta-value">
+        2025. 08. 25 - 2025. 09. 26 (5주)<br>
+        <span style="color:#6B7280;font-size:15px;">SSAFY 13기 특화 PJT (핀테크 도메인)</span>
+      </div>
+    </div>
+
+    <div class="meta-block">
+      <div class="meta-label">기술 스택</div>
+      <div class="tech-stack">
+        <div class="tech-item"><img src="../../skill_icon/png/Java.png" alt=""> Java</div>
+        <div class="tech-item"><img src="../../skill_icon/png/springboot.png" alt=""> SpringBoot</div>
+        <div class="tech-item"><img src="../../skill_icon/png/MySQL2.png" alt=""> MySQL</div>
+        <div class="tech-item"><img src="../../skill_icon/png/Redis.png" alt=""> Redis</div>
+        <div class="tech-item"><img src="../../skill_icon/png/MongoDB.png" alt=""> MongoDB</div>
+        <div class="tech-item"><img src="../../skill_icon/png/GCP AI vision.png" alt=""> GCP Vision</div>
+        <div class="tech-item"><img src="../../skill_icon/png/FCM.png" alt=""> FCM</div>
+        <div class="tech-item"><img src="../../skill_icon/png/Docker.png" alt=""> Docker</div>
+        <div class="tech-item"><img src="../../skill_icon/png/Jenkins.png" alt=""> Jenkins</div>
+        <div class="tech-item"><img src="../../skill_icon/png/NGINX.png" alt=""> Nginx</div>
+        <div class="tech-item"><img src="../../skill_icon/png/AWS EC2.png" alt=""> AWS EC2</div>
+        <div class="tech-item"><img src="../../skill_icon/png/expo.png" alt=""> RN(Expo)</div>
+      </div>
+    </div>
+
+    <div class="meta-block">
+      <div class="meta-label">구성원</div>
+      <div class="meta-value">
+        <span class="strong">총 6명</span>
+        FE 3명 (RN/Expo) · <b>BE 2명 (본인 포함)</b> · Infra/AI 1명
+      </div>
+    </div>
+
+    <div class="meta-block">
+      <div class="meta-label">역할 — Backend</div>
+      <ul class="role-list">
+        <li>
+          <span class="role-name">모바일 OAuth2 SSO</span>
+          <span class="role-desc">카카오 로그인 + 딥링크(<code>toktokggubi://oauth/kakao</code>) 복귀 + JWT RTR</span>
+        </li>
+        <li>
+          <span class="role-name">OCR 파이프라인</span>
+          <span class="role-desc">Google Cloud Vision → 기프티콘 brand·label·expiresAt 파싱 → 정형 엔티티</span>
+        </li>
+        <li>
+          <span class="role-name">실시간 동기화</span>
+          <span class="role-desc">N빵 계산기 / 몰빵 대결 / 흔들기 점수 WebSocket 실시간 동기화</span>
+        </li>
+        <li>
+          <span class="role-name">외부 API 통합</span>
+          <span class="role-desc">SSAFY 금융 OpenAPI / OAuth / OCR — 타임아웃·재시도·예외 격리</span>
+        </li>
+        <li>
+          <span class="role-name">도메인 모델링</span>
+          <span class="role-desc">예산/소비/혜택/카드/기프티콘 핵심 엔티티 + 트랜잭션 설계</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="meta-block">
+      <div class="meta-label">프로젝트 회고</div>
+      <ul class="review-list">
+        <li><b>모바일 딥링크 OAuth2 SSO 직접 설계</b>
+          <ul>
+            <li>Authorization Code 교환 → 사용자 조회/생성 → JWT 발급 → 앱 딥링크 복귀</li>
+            <li>웹과 다른 모바일 앱 환경의 인증 흐름 끊김 없이 연결</li>
+          </ul>
+        </li>
+        <li><b>OCR → 도메인 파싱 파이프라인 구축</b>
+          <ul><li>Google Vision 결과(비정형) → 정형 엔티티(brand/label/expires) 변환·저장</li></ul>
+        </li>
+        <li><b>이기종 외부 API 통합 안정화</b>
+          <ul><li>SSAFY 금융 / OAuth / OCR — 각기 다른 지연 시간을 타임아웃·재시도·격리로 흡수</li></ul>
+        </li>
+        <li><b>WebSocket 실시간 동기화</b>에서 연결·재구독 이슈를 사용자 식별 방식으로 해결</li>
+      </ul>
+    </div>
+
+  </div>
+
+</div>
+</body>
+</html>

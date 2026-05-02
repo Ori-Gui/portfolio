@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>아그작 — Project 1 (Ranking, Figma A4 1190×1684)</title>
+<style>
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    font-family: 'Pretendard', -apple-system, sans-serif;
+    background: #DDE0E5;
+    color: #1E1E2E;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ============ PDF 출력 ============ */
+  @page { size: 1190px 1684px; margin: 0; }
+  @media print { html, body { background: #FFFFFF; margin: 0; padding: 0; } }
+
+  /* ========== Figma A4 1190 × 1684 ========== */
+  .frame {
+    width: 1190px;
+    height: 1684px;
+    margin: 0;
+    padding: 64px 76px 56px;
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    gap: 24px;
+  }
+
+  /* ============ 1. 헤더 (Page 1·2와 동일 톤) ============ */
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .page-title {
+    font-size: 56px;
+    font-weight: 800;
+    color: #B0B5BD;
+    letter-spacing: -2px;
+    line-height: 1;
+  }
+  .page-title .accent { color: #1E1E2E; }
+  .project-chip {
+    background: #FFD43B;
+    color: #1E1E2E;
+    font-size: 22px;
+    font-weight: 800;
+    padding: 14px 38px;
+    border-radius: 99px;
+    letter-spacing: -0.5px;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.05);
+  }
+
+  /* ============ 2. PROBLEM 한 줄 ============ */
+  .problem {
+    background: linear-gradient(135deg, #FFFBEB 0%, #FFFFFF 100%);
+    border-left: 5px solid #F5A700;
+    border-radius: 10px;
+    padding: 16px 22px;
+    flex-shrink: 0;
+  }
+  .problem .label {
+    font-size: 12px;
+    font-weight: 800;
+    color: #B45309;
+    letter-spacing: 1.5px;
+    margin-bottom: 4px;
+  }
+  .problem .text {
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.5;
+    color: #1E1E2E;
+    letter-spacing: -0.3px;
+  }
+  .problem .text b { color: #DC2626; }
+
+  /* ============ 공통 섹션 타이틀 ============ */
+  .section-title {
+    font-size: 19px;
+    font-weight: 800;
+    color: #1E1E2E;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+  .section-title::before {
+    content: '';
+    display: inline-block;
+    width: 5px; height: 20px;
+    background: #FFD43B;
+    border-radius: 3px;
+  }
+
+  /* ============ 3. Before / After 핵심 비교 ============ */
+  .ba-section { flex-shrink: 0; }
+  .ba-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .ba-card {
+    border: 2px solid;
+    border-radius: 12px;
+    padding: 16px 18px;
+    position: relative;
+  }
+  .ba-card.before { border-color: #FCA5A5; background: #FEF2F2; }
+  .ba-card.after  { border-color: #86EFAC; background: #F0FDF4; }
+  .ba-tag {
+    position: absolute;
+    top: -12px;
+    left: 16px;
+    padding: 4px 14px;
+    border-radius: 99px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #FFFFFF;
+  }
+  .ba-card.before .ba-tag { background: #DC2626; }
+  .ba-card.after  .ba-tag { background: #047857; }
+  .ba-title {
+    font-size: 17px;
+    font-weight: 800;
+    margin: 4px 0 10px;
+    letter-spacing: -0.4px;
+  }
+  .ba-card.before .ba-title { color: #991B1B; }
+  .ba-card.after  .ba-title { color: #064E3B; }
+  .ba-list { list-style: none; padding: 0; }
+  .ba-list li {
+    font-size: 13.5px;
+    line-height: 1.5;
+    padding: 5px 0 5px 22px;
+    position: relative;
+    color: #374151;
+  }
+  .ba-list li b { color: #1E1E2E; font-weight: 700; }
+  .ba-card.before .ba-list li::before {
+    content: '✕';
+    position: absolute; left: 0; top: 4px;
+    color: #DC2626; font-weight: 800; font-size: 13.5px;
+  }
+  .ba-card.after .ba-list li::before {
+    content: '✓';
+    position: absolute; left: 0; top: 4px;
+    color: #047857; font-weight: 800; font-size: 13.5px;
+  }
+
+  /* ============ 4. 동기화 다이어그램 ============ */
+  .sync-section { flex-shrink: 0; }
+  .sync-diagram {
+    background: #FAFBFD;
+    border: 1.5px solid #E5E7EB;
+    border-radius: 12px;
+    padding: 18px 22px;
+    display: grid;
+    grid-template-columns: 1fr 1.4fr 1fr;
+    gap: 18px;
+    align-items: center;
+  }
+  .sd-box {
+    background: #FFFFFF;
+    border: 2px solid #E5E7EB;
+    border-radius: 10px;
+    padding: 12px 14px;
+    text-align: center;
+  }
+  .sd-box.event { border-color: #FCD34D; background: #FFFBEB; }
+  .sd-box.redis { border-color: #DC2626; background: #FEF2F2; margin-bottom: 10px; }
+  .sd-box.mysql { border-color: #2563EB; background: #EFF6FF; }
+  .sd-name {
+    font-size: 14.5px;
+    font-weight: 800;
+    color: #1E1E2E;
+    margin-bottom: 4px;
+  }
+  .sd-tech {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #6B7280;
+    line-height: 1.5;
+  }
+  .sd-center { display: flex; flex-direction: column; gap: 12px; }
+  .sd-arrow { text-align: center; position: relative; }
+  .sd-arrow .line {
+    height: 0;
+    border-top: 2px solid #4A6CF7;
+    margin: 8px 0 0;
+    position: relative;
+  }
+  .sd-arrow .line.dashed { border-top-style: dashed; border-top-color: #6B7280; }
+  .sd-arrow .line .arr-r {
+    position: absolute; right: -2px; top: -7px;
+    width: 0; height: 0;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-left: 11px solid #4A6CF7;
+  }
+  .sd-arrow .line.dashed .arr-l {
+    position: absolute; left: -2px; top: -7px;
+    width: 0; height: 0;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-right: 11px solid #6B7280;
+  }
+  .sd-arrow .lbl {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1E1E2E;
+  }
+  .sd-arrow .lbl small {
+    display: block;
+    font-size: 11px;
+    color: #6B7280;
+    font-weight: 500;
+    margin-top: 2px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ============ 5. 핵심 코드 + 결과 ============ */
+  .code-result-grid {
+    display: grid;
+    grid-template-columns: 1.45fr 1fr;
+    gap: 16px;
+    flex: 1;
+    min-height: 0;
+  }
+
+  /* 좌: 코드 카드 */
+  .code-card {
+    background: #1E1E2E;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .code-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 18px;
+    background: #11111B;
+    border-bottom: 1px solid #313244;
+  }
+  .code-head .left { display: flex; align-items: center; gap: 8px; }
+  .code-head .dots { display: flex; gap: 5px; }
+  .code-head .dot { width: 9px; height: 9px; border-radius: 50%; }
+  .code-head .dot.r { background: #F38BA8; }
+  .code-head .dot.y { background: #F9E2AF; }
+  .code-head .dot.g { background: #A6E3A1; }
+  .code-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    color: #89B4FA;
+    font-weight: 700;
+    margin-left: 6px;
+  }
+  .code-tag {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 99px;
+    background: #313244;
+    color: #A6E3A1;
+    letter-spacing: 0.3px;
+  }
+  pre.code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    line-height: 1.55;
+    color: #CDD6F4;
+    white-space: pre;
+    overflow: hidden;
+    padding: 14px 18px;
+    flex: 1;
+  }
+  pre.code .kw   { color: #CBA6F7; font-weight: 600; }
+  pre.code .fn   { color: #89B4FA; }
+  pre.code .str  { color: #A6E3A1; }
+  pre.code .num  { color: #FAB387; }
+  pre.code .cmt  { color: #6C7086; font-style: italic; }
+  pre.code .anno { color: #F9E2AF; }
+  pre.code .star { color: #F5A700; font-weight: 800; }
+  pre.code .type { color: #94E2D5; }
+
+  /* 우: 결과 메트릭 — 노랑 메인 + 다크 */
+  .result-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .result-item {
+    border-radius: 12px;
+    padding: 22px 22px;
+    color: #FFFFFF;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .result-item.main { background: linear-gradient(135deg, #CA8A04 0%, #854D0E 100%); }
+  .result-item.dark { background: linear-gradient(135deg, #1E1E2E 0%, #2C2C44 100%); }
+  .result-num {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1;
+    margin-bottom: 8px;
+    color: #FACC15;
+  }
+  .result-item.main .result-num { color: #FFFFFF; }
+  .result-label {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .result-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,0.78);
+    line-height: 1.45;
+  }
+
+</style>
+</head>
+<body>
+<div class="frame">
+
+  <!-- ============ 1. 헤더 ============ -->
+  <div class="page-header">
+    <div class="page-title">랭킹 저장소 <span class="accent">이원화</span></div>
+    <div class="project-chip">Project - 1</div>
+  </div>
+
+  <!-- ============ 2. PROBLEM ============ -->
+  <div class="problem">
+    <div class="label">PROBLEM → SOLUTION</div>
+    <div class="text">
+      "오늘 랭킹은 즉시 반영, 과거 랭킹은 그 시점 그대로 보존" — 두 요구는
+      <b>같은 자료구조로 풀 수 없다.</b>
+      갱신 빈도·정렬 비용·보존 요구가 다르므로 저장소 자체를 분리한다.
+    </div>
+  </div>
+
+  <!-- ============ 3. Before / After ============ -->
+  <div class="ba-section">
+    <div class="section-title">Before vs After</div>
+    <div class="ba-grid">
+
+      <div class="ba-card before">
+        <span class="ba-tag">BEFORE</span>
+        <div class="ba-title">단일 MySQL + ORDER BY</div>
+        <ul class="ba-list">
+          <li><b>매 요청 풀스캔</b> — 데이터 변경 없어도 매번 전체 read</li>
+          <li><b>세 가지 정렬 모두 메모리</b> — total / original / gain</li>
+          <li><b>"내 등수" 추가 카운트 쿼리</b> — 결과를 다시 정렬</li>
+          <li><b>과거 일자 보존 X</b> — Fortune 갱신 시 어제 순위 흔들림</li>
+        </ul>
+      </div>
+
+      <div class="ba-card after">
+        <span class="ba-tag">AFTER</span>
+        <div class="ba-title">Redis ZSET + MySQL 스냅샷</div>
+        <ul class="ba-list">
+          <li><b>점수 갱신 = ZADD O(log N)</b> — DB 정렬보다 압도적</li>
+          <li><b>TOP N = ZREVRANGE 단건</b> — 정렬 비용 0</li>
+          <li><b>"내 등수" = ZREVRANK 한 번</b> — 별도 쿼리 X</li>
+          <li><b>과거 일자는 MySQL 스냅샷 영속</b> — 갱신에도 흔들리지 않음</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============ 4. 동기화 다이어그램 ============ -->
+  <div class="sync-section">
+    <div class="section-title">동기화 전략 — ShedLock 2 스케줄 + Fallback</div>
+    <div class="sync-diagram">
+
+      <div class="sd-box event">
+        <div class="sd-name">📈 점수 변경</div>
+        <div class="sd-tech">
+          쿠키 먹기<br>
+          Fortune 갱신 직후<br>
+          refreshTodayForMember()
+        </div>
+      </div>
+
+      <div class="sd-center">
+        <div class="sd-arrow">
+          <div class="lbl">즉시 ZADD <small>O(log N) · executePipelined 1 RTT</small></div>
+          <div class="line"><div class="arr-r"></div></div>
+        </div>
+        <div class="sd-arrow">
+          <div class="lbl">매시간 55:00 reseed <small>ZCARD ≠ MySQL count → bulk upsert</small></div>
+          <div class="line dashed"><div class="arr-l"></div></div>
+        </div>
+        <div class="sd-arrow">
+          <div class="lbl">매시간 59:55 snapshot <small>ZREVRANGE → ranking REPLACE INTO</small></div>
+          <div class="line"><div class="arr-r"></div></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="sd-box redis">
+          <div class="sd-name">🔴 Redis ZSET</div>
+          <div class="sd-tech">
+            rank:YYYYMMDD:total<br>
+            rank:YYYYMMDD:original<br>
+            rank:YYYYMMDD:gain
+          </div>
+        </div>
+        <div class="sd-box mysql">
+          <div class="sd-name">🔵 MySQL ranking</div>
+          <div class="sd-tech">
+            (date, rank_no, total,<br>
+            UQ member_id+date,<br>
+            IDX date+rank_no)
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============ 5. 핵심 코드 + 결과 ============ -->
+  <div class="code-result-grid">
+
+    <!-- 좌: 코드 -->
+    <div class="code-card">
+      <div class="code-head">
+        <div class="left">
+          <div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
+          <span class="code-name">domain/ranking/service/RankingService.java</span>
+        </div>
+        <span class="code-tag">매시간 59:55 · ShedLock</span>
+      </div>
+<pre class="code"><span class="anno">@Scheduled</span>(cron = <span class="str">"55 59 * * * *"</span>, zone = <span class="str">"Asia/Seoul"</span>)
+<span class="anno">@SchedulerLock</span>(name = <span class="str">"rankingSnapshot"</span>,
+               lockAtMostFor = <span class="str">"PT4M"</span>, lockAtLeastFor = <span class="str">"PT20S"</span>)
+<span class="kw">public void</span> <span class="fn">todayRebuild</span>() { rankingService.<span class="fn">rebuildTodaySnapshot</span>(); }
+
+<span class="anno">@Transactional</span>
+<span class="kw">public void</span> <span class="fn">rebuildTodaySnapshot</span>() {
+    <span class="type">LocalDate</span> today = redisStore.<span class="fn">today</span>();
+    <span class="kw">var</span> all = redisStore.<span class="fn">readTop</span>(today, redisStore.<span class="fn">zTotal</span>(today),
+                                  <span class="type">Integer</span>.MAX_VALUE);
+
+    <span class="cmt">// ★ 탈퇴 회원 prune — Redis 고아 데이터 정리</span>
+    <span class="type">Set</span>&lt;<span class="type">Long</span>&gt; ids   = all.<span class="fn">stream</span>().<span class="fn">map</span>(<span class="type">UserRow</span>::memberId).<span class="fn">collect</span>(<span class="fn">toSet</span>());
+    <span class="type">Set</span>&lt;<span class="type">Long</span>&gt; alive = mysqlStore.<span class="fn">existingMemberIds</span>(ids);
+    <span class="kw">for</span> (<span class="type">Long</span> mid : ids)
+        <span class="kw">if</span> (!alive.<span class="fn">contains</span>(mid)) redisStore.<span class="fn">removeTodayUser</span>(mid);
+
+    <span class="cmt">// 살아있는 회원만 rank_no 1번부터 영속 저장</span>
+    <span class="kw">int</span> rank = <span class="num">1</span>;
+    <span class="type">List</span>&lt;<span class="type">Ranking</span>&gt; rows = <span class="kw">new</span> <span class="type">ArrayList</span>&lt;&gt;(alive.<span class="fn">size</span>());
+    <span class="kw">for</span> (<span class="kw">var</span> r : all) {
+        <span class="kw">if</span> (!alive.<span class="fn">contains</span>(r.<span class="fn">memberId</span>())) <span class="kw">continue</span>;
+        rows.<span class="fn">add</span>(<span class="type">Ranking</span>.<span class="fn">builder</span>()
+            .<span class="fn">member</span>(mysqlStore.<span class="fn">refMember</span>(r.<span class="fn">memberId</span>()))   <span class="cmt">// em.getReference (N+1 회피)</span>
+            .<span class="fn">date</span>(today).<span class="fn">rankNo</span>(rank++)
+            .<span class="fn">totalScore</span>(r.<span class="fn">total</span>()).<span class="fn">originalTotalScore</span>(r.<span class="fn">original</span>())
+            .<span class="fn">build</span>());
+    }
+    mysqlStore.<span class="fn">replaceTodaySnapshot</span>(today, rows);   <span class="cmt">// deleteByDate + saveAll</span>
+}
+
+<span class="cmt">// ★ 읽기 fallback — Redis 죽어도 MySQL 스냅샷으로 자동 대체</span>
+<span class="kw">public</span> <span class="type">RankingListDto</span> <span class="fn">getTodayTopN</span>(<span class="kw">int</span> limit) {
+    <span class="kw">try</span> { <span class="cmt">/* Redis 경로 */</span> }
+    <span class="kw">catch</span> (<span class="type">Exception</span> e) { <span class="kw">return</span> <span class="fn">getSnapshotTopN</span>(d, limit); }
+}</pre>
+    </div>
+
+    <!-- 우: 결과 메트릭 -->
+    <div class="result-stack">
+      <div class="result-item main">
+        <div class="result-num">0건</div>
+        <div class="result-label">Slow Query</div>
+        <div class="result-desc">14일 운영 · MySQL QPS 한 자리수 유지</div>
+      </div>
+      <div class="result-item dark">
+        <div class="result-num">O(log N)</div>
+        <div class="result-label">랭킹 갱신·조회</div>
+        <div class="result-desc">ZADD · ZREVRANGE · ZREVRANK</div>
+      </div>
+      <div class="result-item dark">
+        <div class="result-num">0초</div>
+        <div class="result-label">캐시 TTL 대기</div>
+        <div class="result-desc">강화 즉시 랭킹 반영</div>
+      </div>
+      <div class="result-item dark">
+        <div class="result-num">3축</div>
+        <div class="result-label">단일 장애점 회피</div>
+        <div class="result-desc">Fallback · Reseed · Prune</div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>똑똑꺼비 — Page 3 (OAuth2 + 딥링크, A4 1190×1684)</title>
+<style>
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    font-family: 'Pretendard', -apple-system, sans-serif;
+    background: #DDE0E5;
+    color: #1E1E2E;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @page { size: 1190px 1684px; margin: 0; }
+  @media print { html, body { background: #FFFFFF; margin: 0; padding: 0; } }
+
+  .frame {
+    width: 1190px;
+    height: 1684px;
+    margin: 0;
+    padding: 64px 76px 56px;
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    gap: 22px;
+  }
+
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .page-title {
+    font-size: 50px;
+    font-weight: 800;
+    color: #B0B5BD;
+    letter-spacing: -2px;
+    line-height: 1;
+  }
+  .page-title .accent { color: #1E1E2E; }
+  .project-chip {
+    background: #38BDF8;
+    color: #FFFFFF;
+    font-size: 22px;
+    font-weight: 800;
+    padding: 14px 38px;
+    border-radius: 99px;
+    letter-spacing: -0.5px;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.05);
+  }
+
+  .problem {
+    background: linear-gradient(135deg, #F0F9FF 0%, #FFFFFF 100%);
+    border-left: 5px solid #38BDF8;
+    border-radius: 10px;
+    padding: 16px 22px;
+    flex-shrink: 0;
+  }
+  .problem .label {
+    font-size: 12px;
+    font-weight: 800;
+    color: #075985;
+    letter-spacing: 1.5px;
+    margin-bottom: 4px;
+  }
+  .problem .text {
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.5;
+    color: #1E1E2E;
+    letter-spacing: -0.3px;
+  }
+  .problem .text b { color: #0284C7; }
+  .problem .text code {
+    background: #1E1E2E;
+    color: #FAB387;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 14px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .section-title {
+    font-size: 19px;
+    font-weight: 800;
+    color: #1E1E2E;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+  .section-title::before {
+    content: '';
+    display: inline-block;
+    width: 5px; height: 20px;
+    background: #38BDF8;
+    border-radius: 3px;
+  }
+
+  /* OAuth2 시퀀스 다이어그램 */
+  .seq-section { flex-shrink: 0; }
+  .seq-card {
+    background: #FAFBFD;
+    border: 1.5px solid #E5E7EB;
+    border-radius: 12px;
+    padding: 18px 22px;
+  }
+  .seq-lanes {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .seq-lane {
+    text-align: center;
+    padding: 8px 4px;
+    border-radius: 6px;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+  }
+  .seq-lane.app    { background: #1E1E2E; }
+  .seq-lane.kakao  { background: #FFB300; color: #1E1E2E; }
+  .seq-lane.be     { background: #38BDF8; }
+  .seq-lane.redis  { background: #DC2626; }
+  .seq-lane small {
+    display: block;
+    font-size: 10px;
+    font-weight: 500;
+    opacity: 0.85;
+    margin-top: 2px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .seq-flow {
+    position: relative;
+  }
+  .seq-flow::before {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    left: calc(100%/8); right: calc(100%/8);
+    background-image:
+      linear-gradient(to right,
+        transparent calc(100%*1/3 - 1px),
+        #E5E7EB calc(100%*1/3 - 1px), #E5E7EB calc(100%*1/3 + 0px),
+        transparent calc(100%*1/3 + 0px),
+        transparent calc(100%*2/3 - 1px),
+        #E5E7EB calc(100%*2/3 - 1px), #E5E7EB calc(100%*2/3 + 0px),
+        transparent calc(100%*2/3 + 0px));
+    z-index: 0;
+  }
+  .seq-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 8px;
+    min-height: 28px;
+    position: relative;
+    z-index: 1;
+  }
+  .arrow {
+    height: 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .arrow .line {
+    position: absolute;
+    top: 50%;
+    left: 8px; right: 8px;
+    height: 2px;
+    background: #38BDF8;
+  }
+  .arrow.return .line { background: #6B7280; border-top: 2px dashed #6B7280; height: 0; }
+  .arrow .head-r {
+    position: absolute;
+    top: 50%; right: 6px;
+    transform: translateY(-50%);
+    width: 0; height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 8px solid #38BDF8;
+  }
+  .arrow .head-l {
+    position: absolute;
+    top: 50%; left: 6px;
+    transform: translateY(-50%);
+    width: 0; height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 8px solid #6B7280;
+  }
+  .arrow.return .head-r { border-left-color: #6B7280; }
+  .arrow .label {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #FAFBFD;
+    padding: 0 6px;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: #1E1E2E;
+    white-space: nowrap;
+  }
+  .arrow.return .label { color: #6B7280; font-weight: 500; }
+
+  /* 코드 + 핵심 포인트 */
+  .code-points-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 16px;
+    flex: 1;
+    min-height: 0;
+  }
+  .code-card {
+    background: #1E1E2E;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .code-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 18px;
+    background: #11111B;
+    border-bottom: 1px solid #313244;
+  }
+  .code-head .left { display: flex; align-items: center; gap: 8px; }
+  .code-head .dots { display: flex; gap: 5px; }
+  .code-head .dot { width: 9px; height: 9px; border-radius: 50%; }
+  .code-head .dot.r { background: #F38BA8; }
+  .code-head .dot.y { background: #F9E2AF; }
+  .code-head .dot.g { background: #A6E3A1; }
+  .code-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #89B4FA;
+    font-weight: 700;
+  }
+  .code-tag {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 99px;
+    background: #313244;
+    color: #7DD3FC;
+    letter-spacing: 0.3px;
+  }
+  pre.code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    line-height: 1.55;
+    color: #CDD6F4;
+    white-space: pre;
+    overflow: hidden;
+    padding: 14px 18px;
+    flex: 1;
+  }
+  pre.code .kw   { color: #CBA6F7; font-weight: 600; }
+  pre.code .fn   { color: #89B4FA; }
+  pre.code .str  { color: #A6E3A1; }
+  pre.code .num  { color: #FAB387; }
+  pre.code .cmt  { color: #6C7086; font-style: italic; }
+  pre.code .anno { color: #F9E2AF; }
+  pre.code .type { color: #94E2D5; }
+
+  .points-stack { display: flex; flex-direction: column; gap: 14px; }
+  .point-card {
+    border-radius: 12px;
+    padding: 22px 22px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #FFFFFF;
+  }
+  .point-card.main { background: linear-gradient(135deg, #0284C7 0%, #075985 100%); }
+  .point-card.dark { background: linear-gradient(135deg, #1E1E2E 0%, #2C2C44 100%); }
+  .point-num {
+    font-size: 12px;
+    font-weight: 800;
+    color: #38BDF8;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .point-card.main .point-num { color: rgba(255,255,255,0.85); }
+  .point-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #FFFFFF;
+    margin-bottom: 8px;
+    letter-spacing: -0.3px;
+  }
+  .point-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,0.82);
+    line-height: 1.55;
+  }
+  .point-desc b { color: #FFFFFF; font-weight: 700; }
+  .point-desc code {
+    background: rgba(255,255,255,0.12);
+    color: #38BDF8;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .point-card.main .point-desc code { background: rgba(0,0,0,0.18); color: #FFFFFF; }
+</style>
+</head>
+<body>
+<div class="frame">
+
+  <!-- 헤더 -->
+  <div class="page-header">
+    <div class="page-title">모바일 OAuth2 + <span class="accent">딥링크</span></div>
+    <div class="project-chip">Project - 2</div>
+  </div>
+
+  <!-- PROBLEM -->
+  <div class="problem">
+    <div class="label">PROBLEM → SOLUTION</div>
+    <div class="text">
+      웹 OAuth2와 달리 <b>앱 환경</b>은 브라우저 → 앱 복귀 흐름이 끊긴다.
+      Authorization Code 교환 후 <code>toktokggubi://oauth/kakao</code> <b>커스텀 스킴 딥링크</b>로 안전 귀환 + JWT(Access/Refresh) 발급으로 이후 요청 인증.
+    </div>
+  </div>
+
+  <!-- 시퀀스 다이어그램 -->
+  <div class="seq-section">
+    <div class="section-title">OAuth2 + 딥링크 시퀀스</div>
+    <div class="seq-card">
+
+      <div class="seq-lanes">
+        <div class="seq-lane app">App<br><small>RN / Expo</small></div>
+        <div class="seq-lane kakao">Kakao<br><small>OAuth Server</small></div>
+        <div class="seq-lane be">Backend<br><small>Spring Boot</small></div>
+        <div class="seq-lane redis">Redis<br><small>토큰 저장</small></div>
+      </div>
+
+      <div class="seq-flow">
+
+        <div class="seq-row">
+          <div></div>
+          <div class="arrow"><div class="line"></div><div class="head-r"></div><div class="label">① 인증 URL 요청</div></div>
+          <div></div>
+          <div></div>
+        </div>
+
+        <div class="seq-row">
+          <div class="arrow return"><div class="line"></div><div class="head-l"></div><div class="label">② 카카오 로그인 + 동의</div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+
+        <div class="seq-row">
+          <div></div>
+          <div></div>
+          <div class="arrow" style="grid-column: 1/3"><div class="line"></div><div class="head-r"></div><div class="label">③ Authorization Code 콜백</div></div>
+          <div></div>
+        </div>
+
+        <div class="seq-row">
+          <div></div>
+          <div class="arrow"><div class="line"></div><div class="head-r"></div><div class="label">④ Code → Access Token 교환</div></div>
+          <div></div>
+          <div></div>
+        </div>
+
+        <div class="seq-row">
+          <div></div>
+          <div></div>
+          <div class="arrow"><div class="line"></div><div class="head-r"></div><div class="label">⑤ 사용자 조회/생성</div></div>
+          <div class="arrow"><div class="line"></div><div class="head-r"></div><div class="label">⑥ Refresh 저장 (TTL)</div></div>
+        </div>
+
+        <div class="seq-row">
+          <div class="arrow return" style="grid-column: 1/4"><div class="line"></div><div class="head-l"></div><div class="label">⑦ 딥링크 복귀 — toktokggubi://oauth/kakao?token=...</div></div>
+          <div></div>
+          <div></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- 코드 + 핵심 포인트 -->
+  <div class="code-points-grid">
+
+    <div class="code-card">
+      <div class="code-head">
+        <div class="left">
+          <div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
+          <span class="code-name">domain/auth/controller/AuthController.java</span>
+        </div>
+        <span class="code-tag">Kakao OAuth2 + 딥링크</span>
+      </div>
+<pre class="code"><span class="anno">@RestController @RequiredArgsConstructor</span>
+<span class="anno">@RequestMapping</span>(<span class="str">"/auth/kakao"</span>)
+<span class="kw">public class</span> <span class="type">AuthController</span> {
+
+    <span class="kw">private final</span> <span class="type">KakaoOAuthService</span> kakaoService;
+    <span class="kw">private final</span> <span class="type">JwtProvider</span> jwtProvider;
+
+    <span class="cmt">// ① 앱이 호출 — 카카오 인증 URL 생성</span>
+    <span class="anno">@GetMapping</span>(<span class="str">"/authorize-url"</span>)
+    <span class="kw">public</span> <span class="type">AuthorizeUrlResponse</span> <span class="fn">authorizeUrl</span>() {
+        <span class="kw">return new</span> <span class="type">AuthorizeUrlResponse</span>(kakaoService.<span class="fn">buildAuthorizeUrl</span>());
+    }
+
+    <span class="cmt">// ③~⑦ 카카오 콜백 — Code 교환 + 딥링크 복귀</span>
+    <span class="anno">@GetMapping</span>(<span class="str">"/callback"</span>)
+    <span class="kw">public</span> <span class="type">ResponseEntity</span>&lt;<span class="type">Void</span>&gt; <span class="fn">callback</span>(<span class="anno">@RequestParam</span> <span class="type">String</span> code) {
+
+        <span class="cmt">// 1. Authorization Code → Access Token 교환</span>
+        <span class="type">KakaoTokenResponse</span> kakaoToken = kakaoService.<span class="fn">exchangeToken</span>(code);
+
+        <span class="cmt">// 2. 카카오 프로필 조회 → 회원 조회/생성</span>
+        <span class="type">Member</span> member = kakaoService.<span class="fn">findOrCreate</span>(kakaoToken);
+
+        <span class="cmt">// 3. JWT 발급 (Access + Refresh, RTR)</span>
+        <span class="type">String</span> accessToken  = jwtProvider.<span class="fn">issueAccess</span>(member);
+        <span class="type">String</span> refreshToken = jwtProvider.<span class="fn">issueRefresh</span>(member);
+
+        <span class="cmt">// 4. Refresh Token Redis 저장 (TTL)</span>
+        jwtProvider.<span class="fn">saveRefresh</span>(member.<span class="fn">getId</span>(), refreshToken);
+
+        <span class="cmt">// 5. ★ 커스텀 스킴 딥링크로 복귀 — 앱이 자동 캐치</span>
+        <span class="type">String</span> deepLink = <span class="str">"toktokggubi://oauth/kakao"</span>
+            + <span class="str">"?accessToken="</span> + accessToken
+            + <span class="str">"&refreshToken="</span> + refreshToken;
+
+        <span class="kw">return</span> <span class="type">ResponseEntity</span>.<span class="fn">status</span>(HttpStatus.SEE_OTHER)
+            .<span class="fn">location</span>(URI.<span class="fn">create</span>(deepLink))
+            .<span class="fn">build</span>();
+    }
+
+    <span class="cmt">// Refresh Token Rotation — 탈취 시나리오 방어</span>
+    <span class="anno">@PostMapping</span>(<span class="str">"/token/refresh"</span>)
+    <span class="kw">public</span> <span class="type">TokenResponse</span> <span class="fn">refresh</span>(<span class="anno">@RequestBody</span> <span class="type">RefreshRequest</span> req) {
+        <span class="kw">return</span> jwtProvider.<span class="fn">rotate</span>(req.refreshToken());
+    }
+}</pre>
+    </div>
+
+    <div class="points-stack">
+
+      <div class="point-card main">
+        <div class="point-num">▎ APP RETURN</div>
+        <div class="point-title">커스텀 스킴 딥링크</div>
+        <div class="point-desc">
+          <code>toktokggubi://oauth/kakao</code> 로 앱이 등록한 스킴 사용. 외부 브라우저 → 앱 자동 복귀로 <b>인증 흐름 단절 없음</b>.
+        </div>
+      </div>
+
+      <div class="point-card dark">
+        <div class="point-num">▎ JWT FLOW</div>
+        <div class="point-title">Access · Refresh 분리 + RTR</div>
+        <div class="point-desc">
+          Access는 짧은 TTL · Refresh는 Redis TTL 보관. Refresh 쓰는 순간 <b>새 토큰 발급 + 이전 무효화</b>로 탈취 시나리오 방어.
+        </div>
+      </div>
+
+      <div class="point-card dark">
+        <div class="point-num">▎ FILTER + REVOCATION</div>
+        <div class="point-title">JwtAuthenticationFilter</div>
+        <div class="point-desc">
+          요청마다 JWT 검증 + <code>auth:blacklist:{jti}</code> 확인. <code>permitAll</code> 경로 정책으로 OAuth2 콜백 인증 우회.
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+</body>
+</html>

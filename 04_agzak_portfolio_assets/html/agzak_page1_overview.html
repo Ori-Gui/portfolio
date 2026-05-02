@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>아그작 — Project 1 (Overview, Figma A4 1190×1684)</title>
+<style>
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    font-family: 'Pretendard', -apple-system, sans-serif;
+    background: #DDE0E5;
+    color: #1E1E2E;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ============ PDF 출력 전용 ============ */
+  @page { size: 1190px 1684px; margin: 0; }
+  @media print {
+    html, body { background: #FFFFFF; margin: 0; padding: 0; }
+  }
+
+  /* ========== Figma A4 정확한 사이즈 (W1190 × H1684) ========== */
+  .frame {
+    width: 1190px;
+    height: 1684px;
+    margin: 0;
+    padding: 64px 76px 56px;
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* ============ 1. 헤더 (좌: 큰 프로젝트명 / 우: Project 칩) ============ */
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 34px;
+    flex-shrink: 0;
+  }
+  .project-name {
+    font-size: 64px;
+    font-weight: 800;
+    color: #B0B5BD;            /* 살짝 회색 (A4-23 reference 톤) */
+    letter-spacing: -2px;
+    line-height: 1;
+  }
+  .project-name .underline {
+    border-bottom: 3px solid #B0B5BD;
+    padding-bottom: 4px;
+  }
+  .project-chip {
+    background: #FFD43B;        /* 노란색 (A4-23 reference) */
+    color: #1E1E2E;
+    font-size: 22px;
+    font-weight: 800;
+    padding: 14px 38px;
+    border-radius: 99px;
+    letter-spacing: -0.5px;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.05);
+  }
+
+  /* ============ 2. Hero — 모바일 mockup 4장 가로 ============ */
+  .hero-mockups {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 36px;
+    flex-shrink: 0;
+  }
+  .mockup {
+    position: relative;
+    background: #1E1E2E;
+    border-radius: 28px;
+    padding: 5px;
+    aspect-ratio: 9 / 19.5;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
+  }
+  .mockup .screen {
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
+    overflow: hidden;
+    background: #FFFFFF;
+    position: relative;
+  }
+  .mockup .notch {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 14px;
+    background: #1E1E2E;
+    border-radius: 99px;
+    z-index: 2;
+  }
+  .mockup img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+  }
+
+  /* ============ 3. 메타 그리드 — 2 col × 3 row ============ */
+  .meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: auto;             /* 각 행은 콘텐츠 높이만큼 */
+    align-content: space-between;     /* 행 간격을 위·중·아래 균등 분배 */
+    column-gap: 40px;
+    row-gap: 28px;                    /* 행 사이 최소 간격 */
+    flex: 1;
+    min-height: 0;
+  }
+  .meta-block {
+    /* 같은 행의 좌·우 항목이 자동으로 같은 시작 위치 + 같은 높이 */
+    display: flex;
+    flex-direction: column;
+  }
+
+  .meta-block .meta-label {
+    font-size: 22px;
+    font-weight: 800;
+    color: #1E1E2E;
+    margin-bottom: 14px;
+    letter-spacing: -0.5px;
+  }
+  .meta-block .meta-value {
+    font-size: 17px;
+    color: #374151;
+    line-height: 1.6;
+  }
+  .meta-block .meta-value b { color: #1E1E2E; font-weight: 700; }
+  .meta-block .meta-value a {
+    color: #4A6CF7;
+    text-decoration: underline;
+    font-size: 15.5px;
+  }
+  .meta-block .meta-value .strong {
+    font-size: 19px;
+    font-weight: 700;
+    color: #1E1E2E;
+    margin-bottom: 4px;
+    display: block;
+  }
+  .meta-block .meta-value .desc-line {
+    font-size: 14.5px;
+    color: #6B7280;
+    line-height: 1.5;
+    margin-bottom: 12px;
+    display: block;
+  }
+  /* 수상 태그 — 서비스 옆 inline */
+  .award-inline {
+    display: inline-block;
+    background: #FEF3C7;
+    color: #92400E;
+    font-size: 12px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 99px;
+    margin-left: 6px;
+    letter-spacing: -0.3px;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+  /* GitHub 버튼 */
+  .github-btn {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 8px;
+    background: #1E1E2E;
+    color: #FFFFFF !important;
+    text-decoration: none !important;
+    padding: 7px 14px;
+    border-radius: 6px;
+    font-size: 13px !important;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: -0.3px;
+    transition: background 0.2s;
+  }
+  .github-btn::before {
+    content: '';
+    width: 18px;
+    height: 18px;
+    background: url('../../skill_icon/svg/Github-Dark.svg') no-repeat center;
+    background-size: contain;
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 4px;
+  }
+
+  /* ============ 4. 기술 스택 ============ */
+  .tech-stack {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px 12px;                /* 14px → 16px */
+  }
+  .tech-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;                      /* 8px → 10px */
+    font-size: 16px;                /* 15px → 16px */
+    font-weight: 600;
+    color: #1E1E2E;
+  }
+  .tech-item img {
+    width: 30px;                    /* 28px → 30px */
+    height: 30px;
+    object-fit: contain;
+  }
+
+  /* ============ 5. 역할 / 회고 — 불릿 리스트 ============ */
+  .role-list {
+    list-style: none;
+    padding: 0;
+  }
+  .role-list > li {
+    margin-top: 18px;             /* 항목 사이 여백 — 12px → 18px */
+  }
+  .role-list > li:first-child { margin-top: 0; }
+  .role-list .role-name {
+    font-size: 17.5px;             /* 16px → 17.5px */
+    font-weight: 800;
+    color: #1E1E2E;
+    margin-bottom: 6px;             /* 4px → 6px */
+    display: block;
+  }
+  .role-list .role-desc {
+    font-size: 15.5px;             /* 14.5px → 15.5px */
+    color: #4B5563;
+    line-height: 1.6;               /* 1.55 → 1.6 */
+    padding-left: 0;
+  }
+
+  .review-list {
+    list-style: none;
+    padding: 0;
+  }
+  .review-list > li {
+    font-size: 16px;               /* 15px → 16px */
+    color: #374151;
+    line-height: 1.55;
+    padding: 6px 0 6px 18px;        /* 4px → 6px */
+    position: relative;
+  }
+  .review-list > li::before {
+    content: '·';
+    position: absolute;
+    left: 4px;
+    top: 6px;
+    color: #1E1E2E;
+    font-weight: 800;
+    font-size: 18px;
+  }
+  .review-list ul {
+    list-style: none;
+    padding: 4px 0 4px 18px;
+    margin: 0;
+  }
+  .review-list ul li {
+    font-size: 14.5px;             /* 13.5px → 14.5px */
+    color: #6B7280;
+    line-height: 1.55;
+    padding: 3px 0 3px 12px;
+    position: relative;
+  }
+  .review-list ul li::before {
+    content: '◦';
+    position: absolute;
+    left: 0;
+    color: #9CA3AF;
+  }
+  .review-list b { color: #1E1E2E; font-weight: 700; }
+
+</style>
+</head>
+<body>
+<div class="frame">
+
+  <!-- ============ 1. 헤더 ============ -->
+  <div class="page-header">
+    <div class="project-name"><span class="underline">아그작</span></div>
+    <div class="project-chip">Project - 1</div>
+  </div>
+
+  <!-- ============ 2. Hero — Mobile mockups ============ -->
+  <div class="hero-mockups">
+    <div class="mockup">
+      <div class="notch"></div>
+      <div class="screen"><img src="../img/p1_flow-02-signup-login-3.png" alt="회원가입 / 로그인"></div>
+    </div>
+    <div class="mockup">
+      <div class="notch"></div>
+      <div class="screen"><img src="../img/p2_flow-02-signup-login-5.png" alt="회원가입 완료"></div>
+    </div>
+    <div class="mockup">
+      <div class="notch"></div>
+      <div class="screen"><img src="../img/p3_flow-04-cookie-oven-baking-1.png" alt="강화 쿠키 오븐"></div>
+    </div>
+    <div class="mockup">
+      <div class="notch"></div>
+      <div class="screen"><img src="../img/p4_flow-03-member-fortune-1.png" alt="오늘의 운세 + 랭킹"></div>
+    </div>
+  </div>
+
+  <!-- ============ 3. 메타 그리드 — 2 col × 3 row 행별 정렬 ============ -->
+  <div class="meta-grid">
+
+    <!-- ===== 행 1: 서비스 ↔ 작업 기간 ===== -->
+    <div class="meta-block">
+      <div class="meta-label">서비스</div>
+      <div class="meta-value">
+        <span class="strong">운세 강화게임이 결합된 데일리 운세 플랫폼<span class="award-inline">🏆 자율 PJT 우수상 2등</span></span>
+        <span class="desc-line">AI 기반 운세 계산·강화·공유 + 포춘쿠키 수집·랭킹 시스템을 결합한 운세 강화 게임 & 소셜 웹 서비스</span>
+        <a href="https://github.com/project-agzak/agzak" class="github-btn">GitHub Repository</a>
+      </div>
+    </div>
+
+    <div class="meta-block">
+      <div class="meta-label">작업 기간</div>
+      <div class="meta-value">
+        2025. 10. 13 - 2025. 11. 20 (6주)<br>
+        <span style="color:#6B7280;font-size:15px;">SSAFY 13기 자율 프로젝트</span>
+      </div>
+    </div>
+
+    <!-- ===== 행 2: 기술 스택 ↔ 구성원 ===== -->
+    <div class="meta-block">
+      <div class="meta-label">기술 스택</div>
+      <div class="tech-stack">
+        <div class="tech-item"><img src="../../skill_icon/png/Java.png" alt=""> Java</div>
+        <div class="tech-item"><img src="../../skill_icon/png/springboot.png" alt=""> SpringBoot</div>
+        <div class="tech-item"><img src="../../skill_icon/png/FastAPI.png" alt=""> FastAPI</div>
+        <div class="tech-item"><img src="../../skill_icon/svg/open-ai-seeklogo.svg" alt=""> OpenAI</div>
+        <div class="tech-item"><img src="../../skill_icon/png/MySQL2.png" alt=""> MySQL</div>
+        <div class="tech-item"><img src="../../skill_icon/png/Redis.png" alt=""> Redis</div>
+        <div class="tech-item"><img src="../../skill_icon/png/Docker.png" alt=""> Docker</div>
+        <div class="tech-item"><img src="../../skill_icon/png/AWS EC2.png" alt=""> AWS EC2</div>
+        <div class="tech-item"><img src="../../skill_icon/png/Jenkins.png" alt=""> Jenkins</div>
+        <div class="tech-item"><img src="../../skill_icon/png/Elastic Search.png" alt=""> EFK</div>
+        <div class="tech-item"><img src="../../skill_icon/png/NGINX.png" alt=""> Nginx</div>
+        <div class="tech-item"><img src="../../skill_icon/png/React.png" alt=""> React</div>
+      </div>
+    </div>
+
+    <div class="meta-block">
+      <div class="meta-label">구성원</div>
+      <div class="meta-value">
+        <span class="strong">총 6명</span>
+        FE 3명 · <b>BE 2명 (본인포함)</b> · Infra 1명
+      </div>
+    </div>
+
+    <!-- ===== 행 3: 역할 ↔ 프로젝트 회고 ===== -->
+    <div class="meta-block">
+      <div class="meta-label">역할 — Backend</div>
+      <ul class="role-list">
+        <li>
+          <span class="role-name">인증/보안</span>
+          <span class="role-desc">OAuth2 + JWT, 토큰 회전(RTR) 및 CORS/SSL 최적화</span>
+        </li>
+        <li>
+          <span class="role-name">랭킹 설계</span>
+          <span class="role-desc">Redis ZSET(실시간) + MySQL 스냅샷(영속성) 랭킹 이원화 구축</span>
+        </li>
+        <li>
+          <span class="role-name">게임 로직</span>
+          <span class="role-desc">멱등성 키를 활용한 일일 제한(Cap) 및 동시성 제어</span>
+        </li>
+        <li>
+          <span class="role-name">API 설계</span>
+          <span class="role-desc">공유 토큰 기반 딥링크 API 및 쿠키/도감 도메인 구현</span>
+        </li>
+        <li>
+          <span class="role-name">협업 표준화</span>
+          <span class="role-desc">Swagger 기반 API 명세 및 DTO/에러 스펙 표준화</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="meta-block">
+      <div class="meta-label">프로젝트 회고</div>
+      <ul class="review-list">
+        <li><b>실 트래픽 운영을 처음 받아본 경험</b> — 14일간 1,100명+ / 11만 이벤트
+          <ul><li>수치로 안전했음을 증명할 수 있는 구조의 가치를 체감</li></ul>
+        </li>
+        <li><b>환경이 만드는 장애를 처음 진단</b> — 스케줄러 데드락
+          <ul>
+            <li>다중 인스턴스 + 자정 cron = 데드락</li>
+            <li>ShedLock + 매시간 분할로 발생률 0건 / 다음엔 예방적으로 잡기</li>
+          </ul>
+        </li>
+        <li><b>같은 단어 안의 다른 요구를 분리</b> — 랭킹 이원화
+          <ul><li>Redis ZSET(실시간) + MySQL 스냅샷(영속)으로 Slow Query 0건</li></ul>
+        </li>
+        <li><b>멱등성 = 비즈니스 정합성의 도구</b>
+          <ul><li>게임 일일 Cap에 멱등키 — 더블클릭·재시도에도 정확한 cap</li></ul>
+        </li>
+        <li><b>방어를 코드로 녹였지만, 효과 증명은 숙제</b>
+          <ul>
+            <li>JWT RTR + Redis 블랙리스트로 토큰 탈취 시나리오 방어</li>
+            <li>다음엔 모의 침해 회귀 테스트로 효과 증명</li>
+          </ul>
+        </li>
+        <li><b>모니터링은 질문하는 사람이 살아있게 한다</b>
+          <ul><li>대시보드를 매일 판독하며 "어떤 수치가 위험한가"를 묻는 습관 학습</li></ul>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+</div>
+</body>
+</html>
