@@ -1,6 +1,6 @@
-# 백엔드 포트폴리오
+# 포트폴리오
 
-Java · Spring Boot 백엔드 개발자 **양준하**의 포트폴리오입니다. SSAFY 13기와 NHN 아카데미 7기에서 진행한 프로젝트 4건을 "문제 → 해결 → 결과" 순서로 페이지마다 정리했고, 같은 내용을 PDF로도 내려받을 수 있습니다. 이 저장소는 [GitHub Pages](https://ori-gui.github.io/portfolio/)로 배포되는 사이트 소스이며, 빌드 과정 없이 정적 HTML만으로 동작합니다.
+Java · Spring Boot 개발자 **양준하**의 포트폴리오입니다. SSAFY 13기와 NHN 아카데미 7기에서 진행한 프로젝트 4건을 "문제 → 해결 → 결과" 순서로 페이지마다 정리했고, 같은 내용을 PDF로도 내려받을 수 있습니다. 이 저장소는 [GitHub Pages](https://ori-gui.github.io/portfolio/)로 배포되는 사이트 소스이며, 빌드 과정 없이 정적 HTML만으로 동작합니다.
 
 - 🌐 **배포 사이트** — https://ori-gui.github.io/portfolio/
 - 🪪 **이력서(프로필 · 자격증)** — [00_profile_summary_assets/html/profile_summary.html](00_profile_summary_assets/html/profile_summary.html) (2페이지)
