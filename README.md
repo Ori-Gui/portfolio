@@ -4,7 +4,7 @@ Java · Spring Boot 백엔드 개발자 **양준하**의 포트폴리오입니�
 
 - 🌐 **배포 사이트** — https://ori-gui.github.io/portfolio/
 - 🪪 **이력서(프로필 · 자격증)** — [00_profile_summary_assets/html/profile_summary.html](00_profile_summary_assets/html/profile_summary.html) (2페이지)
-- 📄 **통합 PDF** — [full_portfolio.pdf](pdf/full_portfolio.pdf) (17페이지 · 15.4MB) / [all_projects_portfolio.pdf](pdf/all_projects_portfolio.pdf) (백엔드 4건 13페이지 · 12.6MB)
+- 📄 **통합 PDF** — [full_portfolio.pdf](pdf/full_portfolio.pdf) (18페이지) / [all_projects_portfolio.pdf](pdf/all_projects_portfolio.pdf) (백엔드 4건 13페이지 · 12.6MB)
 - 🐙 **GitHub** — https://github.com/Ori-Gui
 - ✍️ **Velog** — https://velog.io/@ori_gui/posts
 
@@ -37,7 +37,7 @@ Java · Spring Boot 백엔드 개발자 **양준하**의 포트폴리오입니�
 
 ## 🚀 프로젝트
 
-전체 17페이지 구성입니다 — **이력서(프로필·자격증) 2p → 백엔드 메인 4건 13p → 서브/AI 2p**. 지원 직무에 따라 13페이지(백엔드 전용)와 17페이지(이력서·서브 포함) 중 골라 제출할 수 있습니다.
+전체 18페이지 구성입니다 — **이력서(프로필·자격증) 2p → 백엔드 메인 4건 13p → 서브/AI 3p**. 지원 직무에 따라 13페이지(백엔드 전용)와 18페이지(이력서·서브 포함) 중 골라 제출할 수 있습니다.
 
 | # | 프로젝트 | 기간 | 팀 · 역할 | 핵심 주제 |
 |---|---|---|---|---|
@@ -110,18 +110,18 @@ Spring Boot + Thymeleaf 기반 도서 커머스. NHN 아카데미 7기 8인 팀�
 - **지도·인증** — Kakao Map 마커로 던전 표시, 인증 사진 업로드(UUID 저장·10MB 제한) → 관리자 승인/반려 워크플로.
 - 팀 공동 구현으로 Kakao/Naver OIDC + JWT, STOMP 채팅(MongoDB), 직업군별 정원 검증이 함께 들어갔습니다(2인 분담).
 
-[페이지 보기](05_sub_projects_assets/html/sub_page1_travelquest_yolo.html) · [저장소](https://github.com/Ori-Gui/travelquest)
+[페이지 보기](05_sub_projects_assets/html/sub_page1_travelquest.html) · [저장소](https://github.com/Ori-Gui/travelquest)
 
 ### S2. YOLO 노면표지 탐지 — 횡단보도·과속방지턱 훼손 판별
 
-학부 졸업작품(3인, AI Model & Data). AI Hub 「도로 로드마크 인식용 주행 영상」 온전·비온전 약 59,000장 중 주간 28,000장으로 훼손 여부까지 4클래스 탐지를 학습했습니다.
+학부 졸업작품(3인, AI · 데이터). AI Hub 「도로 로드마크 인식을 위한 주행 영상」 온전·비온전 약 59,000장 중 주간 28,000장으로 훼손 여부까지 4클래스 탐지를 학습했습니다.
 `Python` `YOLOv8s` `PyTorch` `OpenCV` `AI Hub`
 
 - **전처리** — 라벨 bbox와 이미지 크기가 어긋난 사례가 잦아 segmentation 폴리곤을 [x,y] 쌍으로 풀어 0~1 정규화 후 YOLO 포맷으로 변환.
-- **학습** — YOLOv8s, 100 epoch, imgsz 640, batch 16 (8×Tesla P100). 1차 학습(42 epoch 중단) 후 설정을 정리해 2차에서 **mAP50 0.806 / Precision 0.78 / Recall 0.75** 달성.
+- **학습** — YOLOv8s, 100 epoch, imgsz 640, batch 16 (8×Tesla P100). 1차 학습(42 epoch 중단) 후 설정을 정리해 2차에서 **mAP50 0.8057 / Precision 0.780 / Recall 0.753** 달성.
 - **성과** — 「딥러닝 기반 횡단보도 및 과속방지턱 인식 및 훼손여부 탐지」로 2024 한국소프트웨어종합학술대회(KSC2024) 게재, 학부생/주니어 논문경진대회 **장려상**.
 
-[페이지 보기](05_sub_projects_assets/html/sub_page1_travelquest_yolo.html) · [저장소](https://github.com/Ori-Gui/yolodetect)
+[페이지 보기](05_sub_projects_assets/html/sub_page2_yolo.html) · [저장소](https://github.com/Ori-Gui/yolodetect)
 
 ### S3. FastAPI 운영 실습 — 28일 커리큘럼
 
@@ -138,7 +138,7 @@ Spring Boot + Thymeleaf 기반 도서 커머스. NHN 아카데미 7기 8인 팀�
 
 > 강의 기반 비공개 저장소이므로 전체 소스는 공개하지 않고, 아키텍처·설계 판단과 직접 추가 구현한 기능·테스트 결과만 정리했습니다.
 
-[페이지 보기](05_sub_projects_assets/html/sub_page2_fastapi_practice.html)
+[페이지 보기](05_sub_projects_assets/html/sub_page3_fastapi_practice.html)
 
 ---
 
@@ -148,10 +148,10 @@ Spring Boot + Thymeleaf 기반 도서 커머스. NHN 아카데미 7기 8인 팀�
 
 | 파일 | 내용 |
 |---|---|
-| [pdf/full_portfolio.pdf](pdf/full_portfolio.pdf) | **전체 17페이지** — 이력서 2 + 백엔드 4건 13 + 서브 2 |
+| [pdf/full_portfolio.pdf](pdf/full_portfolio.pdf) | **전체 18페이지** — 이력서 2 + 백엔드 4건 13 + 서브 3 |
 | [pdf/all_projects_portfolio.pdf](pdf/all_projects_portfolio.pdf) | 백엔드 4개 프로젝트 13페이지 통합본 (12.6MB) |
 | [pdf/profile_summary.pdf](pdf/profile_summary.pdf) | 이력서 2페이지 — 소개·주요 기술·학력·교육 / 수상·자격증·링크 |
-| [pdf/sub_projects_portfolio.pdf](pdf/sub_projects_portfolio.pdf) | 서브/AI 2페이지 — Travel Quest · YOLO, FastAPI 실습 |
+| [pdf/sub_projects_portfolio.pdf](pdf/sub_projects_portfolio.pdf) | 서브/AI 3페이지 — Travel Quest, YOLO Detect, FastAPI 실습 |
 | [pdf/agzak_portfolio.pdf](pdf/agzak_portfolio.pdf) | 아그작 — 개요·아키텍처·랭킹 이원화·운영 성과 4페이지 |
 | [pdf/toktokggubi_portfolio.pdf](pdf/toktokggubi_portfolio.pdf) | 똑똑꺼비 — 개요·OCR 파이프라인·OAuth2 딥링크 3페이지 |
 | [pdf/ttomanito_portfolio.pdf](pdf/ttomanito_portfolio.pdf) | 또마니또 — 개요·WebSocket Principal·3DB + AI 3페이지 |
@@ -201,10 +201,10 @@ Spring Boot + Thymeleaf 기반 도서 커머스. NHN 아카데미 7기 8인 팀�
 portfolio/
 ├── index.html                          # 포트폴리오 메인 (GitHub Pages 진입점)
 ├── pdf/
-│   ├── full_portfolio.pdf              # 전체 17페이지 (이력서 2 + 백엔드 13 + 서브 2)
+│   ├── full_portfolio.pdf              # 전체 18페이지 (이력서 2 + 백엔드 13 + 서브 3)
 │   ├── all_projects_portfolio.pdf      # 백엔드 4개 프로젝트 13페이지 통합본
 │   ├── profile_summary.pdf             # 이력서 2페이지
-│   ├── sub_projects_portfolio.pdf      # 서브/AI 2페이지
+│   ├── sub_projects_portfolio.pdf      # 서브/AI 3페이지
 │   ├── agzak_portfolio.pdf
 │   ├── ttomanito_portfolio.pdf
 │   ├── toktokggubi_portfolio.pdf
@@ -225,7 +225,7 @@ portfolio/
 │   ├── html/                           # 개요 · 아키텍처 · 랭킹 · 운영 (4페이지)
 │   └── img/                            # 아키텍처 다이어그램, GA4·Grafana·Jenkins 캡처
 ├── 05_sub_projects_assets/
-│   ├── html/                           # Travel Quest · YOLO (1p) / FastAPI 실습 (1p)
+│   ├── html/                           # Travel Quest (1p) / YOLO Detect (1p) / FastAPI 실습 (1p)
 │   └── img/                            # 서비스 화면 캡처, YOLO 예측·학습 곡선
 └── skill_icon/                         # 페이지용 기술 스택 아이콘 (png, svg)
 ```

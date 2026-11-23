@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>YOLO Detect — Side Project 2 (Figma A4 1190×1684)</title>
+<style>
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    font-family: 'Pretendard', -apple-system, sans-serif;
+    background: #DDE0E5;
+    color: #1E1E2E;
+    -webkit-font-smoothing: antialiased;
+    word-break: keep-all;
+  }
+  @page { size: 1190px 1684px; margin: 0; }
+  @media print { html, body { background: #FFFFFF; margin: 0; padding: 0; } }
+
+  .frame {
+    width: 1190px;
+    height: 1684px;
+    margin: 0;
+    padding: 56px 76px 48px;
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    overflow: hidden;
+  }
+
+  /* ============ 헤더 ============ */
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-shrink: 0;
+  }
+  .project-name {
+    font-size: 56px;
+    font-weight: 800;
+    color: #B0B5BD;
+    letter-spacing: -2px;
+    line-height: 1;
+  }
+  .project-name .underline { border-bottom: 3px solid #B0B5BD; padding-bottom: 4px; }
+  .project-chip {
+    background: #F472B6;
+    color: #FFFFFF;
+    font-size: 22px;
+    font-weight: 800;
+    padding: 14px 34px;
+    border-radius: 99px;
+    letter-spacing: -0.5px;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.05);
+    white-space: nowrap;
+  }
+
+  /* ============ 개요 ============ */
+  .lede {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    border-top: 2px solid #DB2777;
+    padding-top: 14px;
+    flex-shrink: 0;
+  }
+  .lede .left { max-width: 700px; }
+  .lede .headline {
+    font-size: 23px;
+    font-weight: 800;
+    letter-spacing: -0.8px;
+    margin-bottom: 9px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    white-space: nowrap;
+  }
+  .mini-chip {
+    font-size: 11.5px;
+    font-weight: 800;
+    padding: 5px 12px;
+    border-radius: 99px;
+    letter-spacing: -0.2px;
+    white-space: nowrap;
+    background: #FCE7F3;
+    color: #9D174D;
+  }
+  .lede .desc { font-size: 14px; color: #4B5563; line-height: 1.6; }
+  .lede .desc b { color: #1E1E2E; font-weight: 700; }
+  .lede .meta {
+    text-align: right;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: #6B7280;
+    line-height: 1.75;
+    white-space: nowrap;
+  }
+  .lede .meta b { color: #1E1E2E; }
+
+  /* ============ 지표 ============ */
+  .metric-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    flex-shrink: 0;
+  }
+  .metric {
+    border: 1.5px solid #F9A8D4;
+    background: #FFF1F6;
+    border-radius: 10px;
+    padding: 14px 6px;
+    text-align: center;
+  }
+  .metric .v { font-size: 30px; font-weight: 800; color: #9D174D; letter-spacing: -1px; line-height: 1.05; }
+  .metric .k { font-size: 11px; font-weight: 700; color: #6B7280; letter-spacing: 0.4px; margin-top: 4px; }
+  .metric.best { border-color: #DB2777; background: #FDF2F8; }
+  .metric.best .v { color: #831843; }
+  .metric.best .k { color: #BE185D; }
+
+  /* ============ 본문 2단 ============ */
+  .body-grid {
+    display: grid;
+    grid-template-columns: 1fr 496px;
+    gap: 30px;
+    flex-shrink: 0;
+  }
+  .block { margin-bottom: 22px; }
+  .block:last-child { margin-bottom: 0; }
+  .block .b-label {
+    font-size: 11.5px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #BE185D;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .block .b-label::after { content: ''; flex: 1; height: 1px; background: #F3F4F6; }
+  .block .b-body { font-size: 13.5px; color: #374151; line-height: 1.6; }
+  .block .b-body b { color: #1E1E2E; font-weight: 700; }
+  .block ul { list-style: none; }
+  .block li { padding: 3px 0 3px 11px; position: relative; font-size: 13.5px; color: #374151; line-height: 1.55; }
+  .block li::before { content: '·'; position: absolute; left: 2px; font-weight: 800; color: #DB2777; }
+  .block li b { color: #1E1E2E; font-weight: 700; }
+  .block code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    background: #FDF2F8;
+    color: #9D174D;
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+
+  /* 그림 */
+  .fig-stack { display: flex; flex-direction: column; gap: 14px; }
+  .fig {
+    border: 1px solid #E5E7EB;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #FFFFFF;
+  }
+  .fig img { width: 100%; display: block; }
+  .fig .fig-cap {
+    font-size: 11.5px;
+    color: #6B7280;
+    padding: 7px 11px;
+    border-top: 1px solid #E5E7EB;
+    line-height: 1.4;
+  }
+  .fig .fig-cap b { color: #1E1E2E; }
+
+  /* ============ 파이프라인 ============ */
+  .pipe {
+    border: 1.5px solid #E5E7EB;
+    border-radius: 12px;
+    padding: 14px 18px 16px;
+    background: #FFFFFF;
+    flex-shrink: 0;
+  }
+  .pipe-title { font-size: 13.5px; font-weight: 800; margin-bottom: 11px; }
+  .pipe-title span { font-weight: 600; color: #9CA3AF; font-size: 11.5px; margin-left: 6px; }
+  .pipe-row { display: flex; align-items: stretch; gap: 6px; }
+  .step {
+    flex: 1;
+    border: 1.5px solid #E5E7EB;
+    border-radius: 9px;
+    padding: 9px 10px;
+    font-size: 11.5px;
+    line-height: 1.4;
+    background: #F9FAFB;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .step .n { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; color: #9CA3AF; }
+  .step b { font-size: 12px; color: #1E1E2E; font-weight: 800; }
+  .step small { color: #6B7280; font-size: 10.5px; font-weight: 600; line-height: 1.35; }
+  .step.pink { border-color: #F9A8D4; background: #FFF1F6; }
+  .step.pink b { color: #9D174D; }
+  .pipe-arrow { display: flex; align-items: center; color: #D1D5DB; font-size: 13px; font-weight: 800; }
+
+  /* ============ 성과 / 연계 ============ */
+  .bottom-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr 330px;
+    gap: 18px;
+    flex-shrink: 0;
+    border-top: 1.5px solid #E5E7EB;
+    padding-top: 16px;
+  }
+  .box { background: #FFFFFF; border: 1.5px solid #E5E7EB; border-radius: 12px; padding: 14px 16px; }
+  .box.award { border-left: 5px solid #DB2777; background: #FFFBFD; }
+  .box .b-title { font-size: 13.5px; font-weight: 800; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+  .box .b-title .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    color: #9D174D;
+    background: #FCE7F3;
+    padding: 2px 8px;
+    border-radius: 99px;
+  }
+  .box ul { list-style: none; }
+  .box li { font-size: 12.5px; color: #374151; line-height: 1.55; padding: 3px 0 3px 11px; position: relative; }
+  .box li::before { content: '·'; position: absolute; left: 2px; font-weight: 800; color: #9CA3AF; }
+  .box li b { color: #1E1E2E; font-weight: 700; }
+  .box .note {
+    font-size: 11.5px;
+    color: #6B7280;
+    line-height: 1.5;
+    margin-top: 9px;
+    border-top: 1px dashed #E5E7EB;
+    padding-top: 8px;
+  }
+  .box .note b { color: #BE185D; }
+
+  /* ============ 근거 ============ */
+  .evidence {
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    border-top: 1px dashed #E5E7EB;
+    padding-top: 10px;
+    font-size: 10.5px;
+    color: #9CA3AF;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .evidence b { color: #6B7280; }
+  .evidence code { font-family: 'JetBrains Mono', monospace; font-size: 10px; }
+</style>
+</head>
+<body>
+<div class="frame">
+
+  <div class="page-header">
+    <div class="project-name"><span class="underline">YOLO Detect</span></div>
+    <div class="project-chip">Side Project — 2</div>
+  </div>
+
+  <!-- 개요 -->
+  <div class="lede">
+    <div class="left">
+      <div class="headline">노면표지 훼손 탐지 — 횡단보도 · 과속방지턱
+        <span class="mini-chip">AI · 데이터 (3인)</span>
+        <span class="mini-chip" style="background:#FEF3C7;color:#92400E;">KSC2024 장려상</span>
+      </div>
+      <div class="desc">
+        주행 영상 한 장에서 <b>시설물의 위치</b>와 <b>훼손 여부</b>를 함께 판별하는 객체 탐지 모델입니다.
+        AI Hub 「도로 로드마크 인식을 위한 주행 영상」 59,000장 가운데 주간 데이터 28,000장을 4개 클래스로 다시 라벨링해 학습시키고
+        <span style="white-space:nowrap;"><b>mAP50 0.8057</b> · <b>precision 0.780</b> · <b>recall 0.753</b></span>으로 마무리했습니다.
+        논문 「딥러닝 기반 횡단보도 및 과속방지턱 인식 및 훼손여부 탐지」에 <b style="white-space:nowrap;">2번째 저자</b>로 참여했고,
+        <b>KSC2024 학부생/주니어 논문경진대회 장려상</b>을 받았습니다.
+      </div>
+    </div>
+    <div class="meta">
+      <b>2024.03 – 2024.12</b><br>
+      충남대 창의작품경진대회 · 학부 졸업작품<br>
+      YOLOv8s · PyTorch · Ultralytics<br>
+      8 × Tesla P100
+    </div>
+  </div>
+
+  <!-- 지표 -->
+  <div class="metric-row">
+    <div class="metric"><div class="v">0.780</div><div class="k">PRECISION</div></div>
+    <div class="metric"><div class="v">0.753</div><div class="k">RECALL</div></div>
+    <div class="metric best"><div class="v">0.8057</div><div class="k">mAP50 · 100 epoch</div></div>
+    <div class="metric"><div class="v">0.587</div><div class="k">mAP50-95</div></div>
+  </div>
+
+  <!-- 본문 -->
+  <div class="body-grid">
+    <div>
+      <div class="block">
+        <div class="b-label">PROBLEM — 왜 주행 영상인가</div>
+        <div class="b-body">
+          도로 시설물 점검이 사람 눈에 의존해 시간·비용이 크고, 훼손을 조기에 잡지 못합니다.
+          위성 영상은 촬영 주기가 1~2년이라 상태 변화를 따라가기 어렵지만, 주행 영상은 <b>3~6개월 주기</b>로 갱신할 수 있습니다.
+          선행 연구의 횡단보도 탐지 mAP50이 <b>0.32</b>에 머문 한계를 YOLOv8로 넘어서는 것이 목표였습니다.
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="b-label">DATA — 28,000장 · 4 클래스</div>
+        <ul>
+          <li><b>AI Hub 「도로 로드마크 인식을 위한 주행 영상」</b> — 온전 23,000장(70GB) + 비온전 36,000장(110GB) ≈ <b>59,000장</b></li>
+          <li>주간(<code>time = light</code>) 데이터 <b>28,000장</b>만 학습에 사용 — 온전 10,000 · 훼손 18,000</li>
+          <li>클래스 4종 — <code>crosswalk</code> · <code>speed_bump</code> · <code>damaged_crosswalk</code> · <code>damaged_speed_bump</code></li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <div class="b-label">PREPROCESSING — 라벨이 어긋난 데이터 다루기</div>
+        <ul>
+          <li>COCO 라벨의 bbox와 실제 이미지 크기가 어긋난 사례가 잦아, bbox 대신 <b>segmentation 폴리곤</b>을 [x, y] 쌍으로 풀어 사용</li>
+          <li>좌표를 이미지 범위 안으로 클램프한 뒤 넓이·높이로 나눠 <b>0~1 정규화</b> → YOLO 중심 좌표 포맷으로 변환</li>
+          <li>훼손 여부는 도로 코드(온전 <code>0101·0102</code> / 훼손 <code>0201·0202</code>)로 구분해 <b>정상·훼손 라벨을 자동 부여</b></li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <div class="b-label">TRAINING — 두 번의 학습</div>
+        <ul>
+          <li><code>yolov8s</code> · 100 epoch · imgsz 640 · batch 16 · 8×Tesla P100 서버</li>
+          <li>1차 학습은 <b>42 epoch에서 중단</b>(mAP50 0.748) — 설정을 정리해 2차에서 <b>100 epoch 완주, mAP50 0.8057</b></li>
+          <li>정확도만 보지 않고 <b>recall(0.753)</b>을 함께 봤습니다. 훼손 시설을 놓치지 않는 것이 이 문제의 목적이기 때문입니다.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="fig-stack">
+      <div class="fig">
+        <img src="../img/yolo-val-pred.jpg" alt="검증 데이터 예측 결과">
+        <div class="fig-cap"><b>검증 배치 예측</b> — 주행 영상에서 정상·훼손 시설물을 클래스별 confidence와 함께 탐지</div>
+      </div>
+      <div class="fig">
+        <img src="../img/yolo-confusion-matrix.png" alt="혼동 행렬">
+        <div class="fig-cap"><b>Confusion matrix</b> — 정상/훼손 4클래스 분류, 훼손 클래스 간 혼동이 남은 과제</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 파이프라인 -->
+  <div class="pipe">
+    <div class="pipe-title">학습 파이프라인 <span>— 데이터 수집부터 지표 확정까지</span></div>
+    <div class="pipe-row">
+      <div class="step">
+        <div class="n">STEP 1</div>
+        <b>데이터 확보</b>
+        <small>AI Hub 주행 영상 59,000장 · 온전/비온전</small>
+      </div>
+      <div class="pipe-arrow">→</div>
+      <div class="step">
+        <div class="n">STEP 2</div>
+        <b>주간 필터</b>
+        <small><code>time = light</code> 28,000장 선별</small>
+      </div>
+      <div class="pipe-arrow">→</div>
+      <div class="step pink">
+        <div class="n">STEP 3</div>
+        <b>라벨 재구성</b>
+        <small>segmentation 폴리곤 → 정규화 → YOLO 포맷</small>
+      </div>
+      <div class="pipe-arrow">→</div>
+      <div class="step">
+        <div class="n">STEP 4</div>
+        <b>1차 학습</b>
+        <small>42 epoch 중단 · mAP50 0.748</small>
+      </div>
+      <div class="pipe-arrow">→</div>
+      <div class="step">
+        <div class="n">STEP 5</div>
+        <b>2차 학습</b>
+        <small>100 epoch 완주 · mAP50 0.8057</small>
+      </div>
+      <div class="pipe-arrow">→</div>
+      <div class="step pink">
+        <div class="n">STEP 6</div>
+        <b>평가 · 논문</b>
+        <small>confusion matrix · P/R 분석 · KSC2024</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- 성과 -->
+  <div class="bottom-grid">
+    <div class="box award">
+      <div class="b-title">성과 <span class="tag">KSC 2024</span></div>
+      <ul>
+        <li><b>논문 게재</b> — 「딥러닝 기반 횡단보도 및 과속방지턱 인식 및 훼손여부 탐지」, 2024 한국소프트웨어종합학술대회</li>
+        <li><b>장려상</b> — KSC2024 학부생/주니어 논문 경진대회 (2025.02)</li>
+        <li><b>작품</b> — 충남대 창의작품경진대회 결과보고서 · 발표자료 · 포스터</li>
+      </ul>
+    </div>
+    <div class="box">
+      <div class="b-title">응용 연계 · 후속</div>
+      <ul>
+        <li>주행 영상 기반 자동 점검으로 <b>유지보수 우선순위</b>를 정하는 시스템</li>
+        <li>표지판·신호등 등 <b>다른 도로 시설물로 클래스 확장</b></li>
+        <li>데이터 다양화로 일반화 성능 보강 (논문 결론)</li>
+      </ul>
+      <div class="note"><b>전처리 메모</b> — 라벨과 이미지 크기가 어긋난 데이터를 다루는 전처리가 이 프로젝트에서 가장 손이 많이 간 부분이었습니다.</div>
+    </div>
+    <div class="fig">
+      <img src="../img/yolo-results-curve.png" alt="학습 곡선">
+      <div class="fig-cap"><b>학습 곡선</b> — mAP50 0.042 → 0.806, 100 epoch</div>
+    </div>
+  </div>
+
+  <div class="evidence">
+    <span><b>근거</b> — 논문 PDF(2024 한국소프트웨어종합학술대회) · <code>runs/detect/train2/results.csv</code>(100 epoch) · <code>args.yaml</code> 학습 설정 · 라벨 전처리 노트북</span>
+    <span>github.com/Ori-Gui/yolodetect</span>
+  </div>
+
+</div>
+<!-- PAGE NAVIGATION INJECTED -->
+<style>
+  .page-nav {
+    position: fixed;
+    bottom: 16px; left: 50%;
+    transform: translateX(-50%);
+    background: rgba(30, 30, 46, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: #FFFFFF;
+    padding: 10px 14px;
+    border-radius: 99px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    font-family: 'Pretendard', sans-serif;
+    font-size: 13px;
+    z-index: 1000;
+  }
+  .page-nav .pn-btn { color: #FFFFFF; text-decoration: none; padding: 7px 14px; border-radius: 99px; font-weight: 600; white-space: nowrap; }
+  .page-nav .pn-btn:hover { background: rgba(255,255,255,0.12); }
+  .page-nav .pn-home { color: #FFFFFF; text-decoration: none; width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,0.1); font-size: 16px; }
+  .page-nav .pn-home:hover { background: rgba(255,255,255,0.22); }
+  .page-nav .pn-indicator { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: rgba(255,255,255,0.7); padding: 0 8px; font-weight: 600; }
+  @media print { .page-nav { display: none !important; } }
+</style>
+<nav class="page-nav">
+  <a href="sub_page1_travelquest.html" class="pn-btn pn-prev" title="이전: Travel Quest">← 이전</a>
+  <a href="../../index.html" class="pn-home" title="홈으로">⌂</a>
+  <span class="pn-indicator">17 / 18</span>
+  <a href="sub_page3_fastapi_practice.html" class="pn-btn pn-next" title="다음: FastAPI 실습">FastAPI 실습 →</a>
+</nav>
+<script>
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowLeft')  { var p = document.querySelector('.pn-prev'); if (p) p.click(); }
+    if (e.key === 'ArrowRight') { var n = document.querySelector('.pn-next'); if (n) n.click(); }
+    if (e.key === 'h' || e.key === 'H') { window.location.href = '../../index.html'; }
+  });
+</script>
+<!-- /PAGE NAVIGATION INJECTED -->
+
+</body>
+</html>

@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>Travel Quest — Side Project 1 (Figma A4 1190×1684)</title>
+<style>
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    font-family: 'Pretendard', -apple-system, sans-serif;
+    background: #DDE0E5;
+    color: #1E1E2E;
+    -webkit-font-smoothing: antialiased;
+    word-break: keep-all;
+  }
+  @page { size: 1190px 1684px; margin: 0; }
+  @media print { html, body { background: #FFFFFF; margin: 0; padding: 0; } }
+
+  .frame {
+    width: 1190px;
+    height: 1684px;
+    margin: 0;
+    padding: 56px 76px 48px;
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    gap: 19px;
+    overflow: hidden;
+  }
+
+  /* ============ 헤더 ============ */
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-shrink: 0;
+  }
+  .project-name {
+    font-size: 56px;
+    font-weight: 800;
+    color: #B0B5BD;
+    letter-spacing: -2px;
+    line-height: 1;
+  }
+  .project-name .underline { border-bottom: 3px solid #B0B5BD; padding-bottom: 4px; }
+  .project-chip {
+    background: #34D399;
+    color: #FFFFFF;
+    font-size: 22px;
+    font-weight: 800;
+    padding: 14px 34px;
+    border-radius: 99px;
+    letter-spacing: -0.5px;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.05);
+    white-space: nowrap;
+  }
+
+  /* ============ 개요 ============ */
+  .lede {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    border-top: 2px solid #10B981;
+    padding-top: 14px;
+    flex-shrink: 0;
+  }
+  .lede .left { max-width: 660px; }
+  .lede .headline {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.7px;
+    margin-bottom: 6px;
+  }
+  .lede .headline em { font-style: normal; color: #047857; }
+  .lede .desc { font-size: 13.5px; color: #4B5563; line-height: 1.55; }
+  .lede .desc b { color: #1E1E2E; font-weight: 700; }
+  .lede .meta {
+    text-align: right;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: #6B7280;
+    line-height: 1.7;
+    white-space: nowrap;
+  }
+  .lede .meta b { color: #1E1E2E; }
+
+  /* ============ 화면 캡처 ============ */
+  .shots {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    flex-shrink: 0;
+  }
+  .shot {
+    border: 1px solid #E5E7EB;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #F4F5F7;
+    display: flex;
+    flex-direction: column;
+  }
+  .shot .img-box { height: 332px; overflow: hidden; background: #EEF1F4; }
+  .shot img { width: 100%; display: block; object-fit: cover; object-position: top; }
+  .shot .cap {
+    font-size: 11.5px;
+    color: #6B7280;
+    font-weight: 600;
+    padding: 7px 9px;
+    line-height: 1.3;
+    border-top: 1px solid #E5E7EB;
+    background: #FFFFFF;
+    margin-top: auto;
+  }
+  .shot .cap b { color: #065F46; }
+
+  /* ============ 섹션 라벨 ============ */
+  .sec-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: -0.4px;
+    color: #1E1E2E;
+    flex-shrink: 0;
+  }
+  .sec-label::after { content: ''; flex: 1; height: 1px; background: #E5E7EB; }
+  .sec-label .tail { font-size: 11.5px; font-weight: 600; color: #9CA3AF; letter-spacing: 0; }
+
+  /* ============ 본인 담당 ============ */
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    flex-shrink: 0;
+  }
+  .card {
+    border: 1.5px solid #E5E7EB;
+    border-left: 5px solid #34D399;
+    border-radius: 12px;
+    background: #FAFBFD;
+    padding: 13px 18px 13px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .card .card-top { display: flex; align-items: center; gap: 10px; }
+  .card .n {
+    width: 24px; height: 24px;
+    border-radius: 7px;
+    background: #059669;
+    color: #FFFFFF;
+    font-size: 12.5px;
+    font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    flex-shrink: 0;
+  }
+  .card .t { font-size: 15.5px; font-weight: 800; letter-spacing: -0.4px; }
+  .card .tag-mine {
+    margin-left: auto;
+    font-size: 10.5px;
+    font-weight: 800;
+    color: #047857;
+    background: #D1FAE5;
+    padding: 3px 9px;
+    border-radius: 99px;
+    white-space: nowrap;
+  }
+  .card .body { font-size: 12.5px; color: #374151; line-height: 1.5; }
+  .card .body b { color: #1E1E2E; font-weight: 700; }
+  .card .body ul { list-style: none; }
+  .card .body li { padding: 2px 0 2px 11px; position: relative; }
+  .card .body li::before { content: '·'; position: absolute; left: 2px; font-weight: 800; color: #059669; }
+  .card code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    background: #ECFDF5;
+    color: #065F46;
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+
+  /* ============ 아키텍처 ============ */
+  .arch {
+    border: 1.5px solid #E5E7EB;
+    border-radius: 12px;
+    background: #FFFFFF;
+    padding: 14px 18px 16px;
+    flex-shrink: 0;
+  }
+  .arch-title { font-size: 13.5px; font-weight: 800; margin-bottom: 12px; }
+  .arch-title span { font-weight: 600; color: #9CA3AF; font-size: 11.5px; margin-left: 6px; }
+  .arch-row { display: flex; align-items: stretch; gap: 10px; }
+  .arch-col { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .arch-box {
+    border: 1.5px solid #D1D5DB;
+    background: #F9FAFB;
+    border-radius: 9px;
+    padding: 9px 12px;
+    font-size: 11.5px;
+    line-height: 1.35;
+    font-weight: 700;
+    color: #1E1E2E;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+  }
+  .arch-box small { display: block; font-size: 10.5px; font-weight: 600; color: #6B7280; }
+  .arch-box.green { border-color: #6EE7B7; background: #ECFDF5; }
+  .arch-box.green small { color: #047857; }
+  .arch-box.blue { border-color: #BFDBFE; background: #EFF6FF; }
+  .arch-box.blue small { color: #1D4ED8; }
+  .arch-box.violet { border-color: #DDD6FE; background: #F5F3FF; }
+  .arch-box.violet small { color: #6D28D9; }
+  .arch-box.amber { border-color: #FDE68A; background: #FFFBEB; }
+  .arch-box.amber small { color: #B45309; }
+  .arch-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #9CA3AF;
+    font-size: 15px;
+    font-weight: 800;
+    flex-shrink: 0;
+    width: 18px;
+  }
+  .arch-note {
+    margin-top: 10px;
+    font-size: 11px;
+    color: #6B7280;
+    line-height: 1.45;
+    background: #F9FAFB;
+    border: 1px dashed #E5E7EB;
+    border-radius: 8px;
+    padding: 7px 10px;
+  }
+  .arch-note b { color: #047857; }
+
+  /* ============ 성과 KPI ============ */
+  .kpi-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: #1E1E2E;
+    border-radius: 14px;
+    padding: 16px 8px;
+    flex-shrink: 0;
+  }
+  .kpi { text-align: center; border-right: 1px solid rgba(255,255,255,0.12); padding: 0 8px; }
+  .kpi:last-child { border-right: none; }
+  .kpi .num { font-size: 25px; font-weight: 800; color: #6EE7B7; letter-spacing: -1px; line-height: 1.1; }
+  .kpi .num small { font-size: 13px; color: rgba(255,255,255,0.7); font-weight: 700; margin-left: 3px; }
+  .kpi .cap { margin-top: 5px; font-size: 12px; color: rgba(255,255,255,0.72); font-weight: 500; line-height: 1.35; }
+
+  /* ============ 팀 공동 구현 ============ */
+  .team {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 22px;
+    border-top: 1.5px solid #E5E7EB;
+    padding-top: 14px;
+    flex-shrink: 0;
+  }
+  .team .b-title { font-size: 13.5px; font-weight: 800; margin-bottom: 7px; }
+  .team .b-title .who {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: #6B7280;
+    background: #F3F4F6;
+    padding: 2px 8px;
+    border-radius: 99px;
+    margin-left: 7px;
+  }
+  .team ul { list-style: none; }
+  .team li { font-size: 12px; color: #374151; line-height: 1.5; padding: 2px 0 2px 11px; position: relative; }
+  .team li::before { content: '·'; position: absolute; left: 2px; font-weight: 800; color: #9CA3AF; }
+  .team li b { color: #1E1E2E; font-weight: 700; }
+  .team .learn { font-size: 12px; color: #374151; line-height: 1.55; }
+  .team .learn b { color: #047857; }
+</style>
+</head>
+<body>
+<div class="frame">
+
+  <div class="page-header">
+    <div class="project-name"><span class="underline">Travel Quest</span></div>
+    <div class="project-chip">Side Project — 1</div>
+  </div>
+
+  <!-- 개요 -->
+  <div class="lede">
+    <div class="left">
+      <div class="headline">여행을 RPG로 치환한 파티 매칭 서비스 — <em>던전·퀘스트를 매일 자동으로 만드는 파이프라인</em></div>
+      <div class="desc">
+        여행지를 던전으로, 여행 계획을 퀘스트로, MBTI 성향을 직업으로 바꿔 낯선 사람과 파티를 이루는 게이미피케이션 여행 플랫폼입니다.
+        SSAFY 13기 관통 프로젝트(2인)에서 <b>던전·퀘스트 도메인 설계와 자동 생성 파이프라인</b>, 지도·인증 화면을 맡아
+        <b>매일 00시 던전 10개 → MySQL 저장 프로시저로 명소 배정 → LLM 퀘스트 생성</b>까지 사람 손 없이 돌아가는 흐름을 만들었습니다.
+      </div>
+    </div>
+    <div class="meta">
+      <b>2025.05 · 2명 (도메인 분담)</b><br>
+      Spring Boot 3.4.5 · MyBatis · MySQL 8<br>
+      Redis · MongoDB · Spring AI<br>
+      Vue 3 · Kakao Map
+    </div>
+  </div>
+
+  <!-- 화면 -->
+  <div class="shots">
+    <div class="shot">
+      <div class="img-box"><img src="../img/tq-02-job-result.png" alt="MBTI 결과 — 직업군 배정"></div>
+      <div class="cap"><b>① 직업군 배정</b> — MBTI 결과로 8직업 중 1개</div>
+    </div>
+    <div class="shot">
+      <div class="img-box"><img src="../img/tq-03-dungeon-map.png" alt="던전 탐색 — Kakao Map"></div>
+      <div class="cap"><b>② 던전 탐색</b> — Kakao Map 마커 · 조건 검색</div>
+    </div>
+    <div class="shot">
+      <div class="img-box"><img src="../img/tq-04-dungeon-party.png" alt="던전 상세 · 파티 목록"></div>
+      <div class="cap"><b>③ 던전 상세</b> — 명소 · 직업군별 파티 모집</div>
+    </div>
+    <div class="shot">
+      <div class="img-box"><img src="../img/tq-07-quest-list.png" alt="AI 생성 퀘스트 목록"></div>
+      <div class="cap"><b>④ 퀘스트</b> — LLM이 만든 미션 · 인증 제출</div>
+    </div>
+  </div>
+
+  <div class="sec-label">본인 담당 구현 <span class="tail">던전 · 퀘스트 도메인 / 자동 생성 / 지도 / 인증 업로드</span></div>
+
+  <!-- 본인 담당 4종 -->
+  <div class="cards">
+
+    <div class="card">
+      <div class="card-top">
+        <div class="n">01</div>
+        <div class="t">던전 자동 생성 — MySQL 저장 프로시저</div>
+        <div class="tag-mine">MY PART</div>
+      </div>
+      <div class="body">
+        <ul>
+          <li><b>매일 00시</b> <code>@Scheduled(cron = "0 0 0 * * ?")</code> 스케줄러가 던전 <b>10개</b> 생성 — 기간 0~8일·최대 인원 4~10명을 무작위로 결정</li>
+          <li>기간에서 <b>난이도(1~5)·필요 명소 수(1~8)를 역산</b>해 저장 프로시저 <code>create_dungeon_with_attractions</code>로 조건에 맞는 지역(area_code)을 랜덤 배정 → 1일 던전은 가볍게, 8일 던전은 8개 명소를 도는 구조가 자동으로 만들어짐</li>
+          <li>프로시저 호출과 퀘스트 저장을 <code>@Transactional</code>로 묶어, 실패 시 던전만 남는 상태를 차단</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="n">02</div>
+        <div class="t">퀘스트 자동 생성 — Spring AI + 검증 계층</div>
+        <div class="tag-mine">MY PART</div>
+      </div>
+      <div class="body">
+        <ul>
+          <li>던전에 배정된 관광지 목록을 JSON으로 직렬화해 <b>ChatClient(gpt-4o-mini)</b>에 전달, 관광지당 퀘스트 1개를 <code>{title, description}</code> 배열로 요청</li>
+          <li>응답의 <b>코드펜스 제거 → 역직렬화</b>, 관광지 수와 퀘스트 수가 다르면 <code>QuestGenerationException</code>으로 중단 — LLM 응답을 그대로 신뢰하지 않는 검증 계층</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="n">03</div>
+        <div class="t">던전 지도 · 조건 검색 — Kakao Map</div>
+        <div class="tag-mine">MY PART</div>
+      </div>
+      <div class="body">
+        <ul>
+          <li>시도·구군·테마·키워드·기간 조건을 <b>MyBatis 동적 SQL</b>로 조회, 대표 관광지 좌표로 지도 마커 표시</li>
+          <li>던전 탐색·상세·퀘스트·인증 화면을 <b>Vue 3</b>로 구현 (Pinia 상태 · axios 인터셉터 위에서 동작)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="n">04</div>
+        <div class="t">퀘스트 인증 업로드 — 승인 워크플로</div>
+        <div class="tag-mine">MY PART</div>
+      </div>
+      <div class="body">
+        <ul>
+          <li>인증 사진을 <b>UUID 파일명</b>으로 <code>uploads/images</code>에 저장(10MB 제한)하고 <code>/images/**</code> 리소스 핸들러로 제공</li>
+          <li>제출 <b>PENDING</b> → 관리자 승인 <b>COMPLETED</b> / 반려 <b>FAILED</b>, 던전 진행 상태는 MATCHING → IN_PROGRESS → COMPLETED / FAILED 4단계</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 아키텍처 -->
+  <div class="arch">
+    <div class="arch-title">아키텍처 <span>— 본인이 만든 자동 생성 파이프라인은 초록 라인</span></div>
+    <div class="arch-row">
+      <div class="arch-col" style="flex:0 0 190px;">
+        <div class="arch-box blue">Vue 3 SPA<small>던전·파티·인증 화면</small></div>
+        <div class="arch-box blue">Kakao Map SDK<small>던전 위치 마커</small></div>
+        <div class="arch-box blue">STOMP Client<small>파티 실시간 채팅</small></div>
+      </div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-col" style="flex:1.15;">
+        <div class="arch-box">Spring Boot 3.4.5<small>Controller · Service · MyBatis Mapper</small></div>
+        <div class="arch-box green">Scheduler 00:00<small>던전 10개 생성 · 기간→난이도 역산</small></div>
+        <div class="arch-box green">Spring AI ChatClient<small>관광지 JSON → 퀘스트 1개/명소</small></div>
+      </div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-col" style="flex:1;">
+        <div class="arch-box amber">MySQL 8<small>저장 프로시저 create_dungeon_with_attractions · 18 테이블</small></div>
+        <div class="arch-box violet">OpenAI gpt-4o-mini<small>코드펜스·개수 검증 후 저장</small></div>
+        <div class="arch-box" style="background:#F9FAFB;">Redis · MongoDB · 파일 저장소<small>토큰·접속 상태 / 채팅 / 인증 사진</small></div>
+      </div>
+    </div>
+    <div class="arch-note">
+      <b>왜 저장 프로시저인가</b> — 던전 1개와 명소 N개 매핑을 한 번의 호출로 원자적으로 만들고, 랜덤 지역 선택·조건 필터를 DB에서 처리해
+      애플리케이션은 생성 조건만 넘기도록 분리했습니다. 규모는 <b>Java 128개 파일 · Vue 35개 파일 · MyBatis 매퍼 11종 · 테이블 18개</b>입니다.
+    </div>
+  </div>
+
+  <!-- KPI -->
+  <div class="kpi-strip">
+    <div class="kpi">
+      <div class="num">10<small>개 / 일</small></div>
+      <div class="cap">00시 자동 생성되는 던전<br>기간 0~8일 · 난이도 1~5</div>
+    </div>
+    <div class="kpi">
+      <div class="num">18<small>테이블</small></div>
+      <div class="cap">MySQL 스키마 ·<br>MyBatis 매퍼 11종</div>
+    </div>
+    <div class="kpi">
+      <div class="num">128<small>Java</small></div>
+      <div class="cap">Java 파일 · Vue 35개 파일<br>도메인 9개</div>
+    </div>
+    <div class="kpi">
+      <div class="num">4<small>단계</small></div>
+      <div class="cap">던전 진행 상태<br>+ 인증 승인/반려 워크플로</div>
+    </div>
+  </div>
+
+  <!-- 팀 공동 구현 -->
+  <div class="team">
+    <div>
+      <div class="b-title">팀 공동 구현 <span class="who">2인 · 신승용</span></div>
+      <ul>
+        <li><b>인증</b> — Kakao/Naver OIDC 로그인, JWT 액세스 15분 · 리다이렉트/리프레시 14일(Redis), 로그아웃 블랙리스트</li>
+        <li><b>실시간</b> — STOMP 파티 채팅(메시지 MongoDB · 접속 상태 Redis), 파티 도메인</li>
+        <li><b>매칭</b> — 파티 참가 검증 3단계(전체 정원 → 중복 → 직업군별 정원), MBTI·직업군 매핑</li>
+      </ul>
+    </div>
+    <div>
+      <div class="b-title">이 프로젝트에서 남긴 것</div>
+      <div class="learn">
+        <b>콘텐츠를 사람이 만들지 않아도 서비스가 굴러가는 구조</b>를 2인 팀에서 직접 설계했습니다.
+        LLM을 붙일 때는 결과를 그대로 저장하지 않고 <b>개수·형식 검증을 코드로 두는 습관</b>을 얻었고,
+        DB가 할 일(랜덤 배정·조건 필터)과 애플리케이션이 할 일(검증·트랜잭션)을 나누는 판단을 경험했습니다.
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- PAGE NAVIGATION INJECTED -->
+<style>
+  .page-nav {
+    position: fixed;
+    bottom: 16px; left: 50%;
+    transform: translateX(-50%);
+    background: rgba(30, 30, 46, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: #FFFFFF;
+    padding: 10px 14px;
+    border-radius: 99px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    font-family: 'Pretendard', sans-serif;
+    font-size: 13px;
+    z-index: 1000;
+  }
+  .page-nav .pn-btn { color: #FFFFFF; text-decoration: none; padding: 7px 14px; border-radius: 99px; font-weight: 600; white-space: nowrap; }
+  .page-nav .pn-btn:hover { background: rgba(255,255,255,0.12); }
+  .page-nav .pn-home { color: #FFFFFF; text-decoration: none; width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,0.1); font-size: 16px; }
+  .page-nav .pn-home:hover { background: rgba(255,255,255,0.22); }
+  .page-nav .pn-indicator { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: rgba(255,255,255,0.7); padding: 0 8px; font-weight: 600; }
+  @media print { .page-nav { display: none !important; } }
+</style>
+<nav class="page-nav">
+  <a href="../../01_bookstore_portfolio_assets/html/bookstore_page3_korean_analyzer.html" class="pn-btn pn-prev" title="이전: 한글 분석기">← 이전</a>
+  <a href="../../index.html" class="pn-home" title="홈으로">⌂</a>
+  <span class="pn-indicator">16 / 18</span>
+  <a href="sub_page2_yolo.html" class="pn-btn pn-next" title="다음: YOLO 노면표지 훼손 탐지">YOLO →</a>
+</nav>
+<script>
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowLeft')  { var p = document.querySelector('.pn-prev'); if (p) p.click(); }
+    if (e.key === 'ArrowRight') { var n = document.querySelector('.pn-next'); if (n) n.click(); }
+    if (e.key === 'h' || e.key === 'H') { window.location.href = '../../index.html'; }
+  });
+</script>
+<!-- /PAGE NAVIGATION INJECTED -->
+
+</body>
+</html>
