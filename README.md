@@ -121,7 +121,7 @@ Spring Boot + Thymeleaf 기반 도서 커머스. NHN 아카데미 7기 8인 팀�
 - **학습** — YOLOv8s, 100 epoch, imgsz 640, batch 16 (8×Tesla P100). 1차 학습(42 epoch 중단) 후 설정을 정리해 2차에서 **mAP50 0.8057 / Precision 0.780 / Recall 0.753** 달성.
 - **성과** — 「딥러닝 기반 횡단보도 및 과속방지턱 인식 및 훼손여부 탐지」로 2024 한국소프트웨어종합학술대회(KSC2024) 게재, 학부생/주니어 논문경진대회 **장려상**.
 
-[페이지 보기](05_sub_projects_assets/html/sub_page2_yolo.html) · [저장소](https://github.com/Ori-Gui/yolodetect)
+[페이지 보기](05_sub_projects_assets/html/sub_page2_yolo.html)
 
 ### S3. FastAPI 운영 실습 — 28일 커리큘럼
 

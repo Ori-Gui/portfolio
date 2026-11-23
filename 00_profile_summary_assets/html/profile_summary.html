@@ -72,9 +72,9 @@
   .rule { height: 2px; background: var(--line); }
 
   /* ───────── 소개 문단 ───────── */
-  .lead { height: 212px; padding-top: 40px; }
+  .lead { height: 269px; padding-top: 65px; }
   .lead-title { font-size: 24px; line-height: 34px; font-weight: 700; }
-  .lead-body { margin-top: 14px; font-size: 18px; line-height: 28px;  color: var(--ink); }
+  .lead-body { margin-top: 16px; font-size: 18px; line-height: 30px;  color: var(--ink); }
 
   /* ───────── 공통 2단 섹션 ───────── */
   .sec { border-top: 2px solid var(--line); display: grid; grid-template-columns: 517px 1fr; }
@@ -86,13 +86,10 @@
   }
   .sec > .body { padding-right: 22px; }
 
-  .sec-role { height: 150px; }
-  .sec-role .body { padding-top: 57px; font-size: 18px;  }
-
-  .sec-skills { height: 382px; }
-  .sec-skills .label { padding-top: 63px; }
-  .skill-list { padding-top: 51px; }
-  .skill-row { display: flex; align-items: center; height: 56px; }
+  .sec-skills { height: 419px; }
+  .sec-skills .label { padding-top: 76px; }
+  .skill-list { padding-top: 64px; }
+  .skill-row { display: flex; align-items: center; height: 58px; }
   .skill-row img { width: 28px; height: 28px; object-fit: contain; margin: 0 8px 0 33px; }
   .skill-row .name { font-size: 18px;  }
   .level { margin-left: auto; display: flex; height: 28px; border-radius: 4px; overflow: hidden; }
@@ -111,10 +108,12 @@
   .level span.on { background: var(--accent); color: #FFFFFF; }
 
   /* ───────── 학력 · 교육 ───────── */
-  .sec-school { height: 152px; }
-  .sec-school .body { padding-top: 49px; }
-  .sec-training { height: 294px; }
-  .sec-training .body { padding-top: 52px; }
+  .sec-school { height: 183px; }
+  .sec-school .body { padding-top: 64px; }
+  .sec-training { height: 319px; }
+  .sec-training .body { padding-top: 64px; }
+  .sec-school .label,
+  .sec-training .label { padding-top: 60px; }
 
   .entry { position: relative; }
   .entry .row-1 { display: flex; justify-content: space-between; align-items: baseline; }
@@ -122,8 +121,8 @@
   .entry .date { font-size: 16px; color: var(--sub);  }
   .entry .detail { margin-top: 3px; font-size: 16px; color: var(--sub);  }
 
-  .sec-school .entry { height: 100px; }
-  .sec-training .entry { height: 70px; }
+  .sec-school .entry { height: 56px; }
+  .sec-training .entry { height: 68px; }
 
   /* ───────── 2p: 수상 · 자격증 · 링크 ───────── */
   .page-2 { padding-top: 91px; }
@@ -195,11 +194,6 @@
       실제 구현 과정에서 성능, 유지보수성, 확장성을 함께 고려하는 개발자로 성장하고 있습니다.
     </p>
   </div>
-
-  <section class="sec sec-role">
-    <div class="label">희망 직무</div>
-    <div class="body">백엔드 엔지니어</div>
-  </section>
 
   <section class="sec sec-skills">
     <div class="label">주요 기술</div>
