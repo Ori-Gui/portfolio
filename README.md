@@ -3,8 +3,8 @@
 Java · Spring Boot 백엔드 개발자 **양준하**의 포트폴리오입니다. SSAFY 13기와 NHN 아카데미 7기에서 진행한 프로젝트 4건을 "문제 → 해결 → 결과" 순서로 페이지마다 정리했고, 같은 내용을 PDF로도 내려받을 수 있습니다. 이 저장소는 [GitHub Pages](https://ori-gui.github.io/portfolio/)로 배포되는 사이트 소스이며, 빌드 과정 없이 정적 HTML만으로 동작합니다.
 
 - 🌐 **배포 사이트** — https://ori-gui.github.io/portfolio/
-- 🪪 **프로필 · 자격증** — [00_profile_summary_assets/html/profile_summary.html](00_profile_summary_assets/html/profile_summary.html) (1페이지)
-- 📄 **통합 PDF** — [full_portfolio.pdf](pdf/full_portfolio.pdf) (16페이지 · 15.3MB) / [all_projects_portfolio.pdf](pdf/all_projects_portfolio.pdf) (백엔드 4건 13페이지 · 12.6MB)
+- 🪪 **이력서(프로필 · 자격증)** — [00_profile_summary_assets/html/profile_summary.html](00_profile_summary_assets/html/profile_summary.html) (2페이지)
+- 📄 **통합 PDF** — [full_portfolio.pdf](pdf/full_portfolio.pdf) (17페이지 · 15.4MB) / [all_projects_portfolio.pdf](pdf/all_projects_portfolio.pdf) (백엔드 4건 13페이지 · 12.6MB)
 - 🐙 **GitHub** — https://github.com/Ori-Gui
 - ✍️ **Velog** — https://velog.io/@ori_gui/posts
 
@@ -37,7 +37,7 @@ Java · Spring Boot 백엔드 개발자 **양준하**의 포트폴리오입니�
 
 ## 🚀 프로젝트
 
-전체 16페이지 구성입니다 — **프로필·자격증 1p → 백엔드 메인 4건 13p → 서브/AI 2p**. 지원 직무에 따라 13페이지(백엔드 전용)와 16페이지(프로필·서브 포함) 중 골라 제출할 수 있습니다.
+전체 17페이지 구성입니다 — **이력서(프로필·자격증) 2p → 백엔드 메인 4건 13p → 서브/AI 2p**. 지원 직무에 따라 13페이지(백엔드 전용)와 17페이지(이력서·서브 포함) 중 골라 제출할 수 있습니다.
 
 | # | 프로젝트 | 기간 | 팀 · 역할 | 핵심 주제 |
 |---|---|---|---|---|
@@ -148,9 +148,9 @@ Spring Boot + Thymeleaf 기반 도서 커머스. NHN 아카데미 7기 8인 팀�
 
 | 파일 | 내용 |
 |---|---|
-| [pdf/full_portfolio.pdf](pdf/full_portfolio.pdf) | **전체 16페이지** — 프로필 1 + 백엔드 4건 13 + 서브 2 |
+| [pdf/full_portfolio.pdf](pdf/full_portfolio.pdf) | **전체 17페이지** — 이력서 2 + 백엔드 4건 13 + 서브 2 |
 | [pdf/all_projects_portfolio.pdf](pdf/all_projects_portfolio.pdf) | 백엔드 4개 프로젝트 13페이지 통합본 (12.6MB) |
-| [pdf/profile_summary.pdf](pdf/profile_summary.pdf) | 프로필·자격증·수상·교육 요약 1페이지 |
+| [pdf/profile_summary.pdf](pdf/profile_summary.pdf) | 이력서 2페이지 — 소개·주요 기술·학력·교육 / 수상·자격증·링크 |
 | [pdf/sub_projects_portfolio.pdf](pdf/sub_projects_portfolio.pdf) | 서브/AI 2페이지 — Travel Quest · YOLO, FastAPI 실습 |
 | [pdf/agzak_portfolio.pdf](pdf/agzak_portfolio.pdf) | 아그작 — 개요·아키텍처·랭킹 이원화·운영 성과 4페이지 |
 | [pdf/toktokggubi_portfolio.pdf](pdf/toktokggubi_portfolio.pdf) | 똑똑꺼비 — 개요·OCR 파이프라인·OAuth2 딥링크 3페이지 |
@@ -163,15 +163,15 @@ Spring Boot + Thymeleaf 기반 도서 커머스. NHN 아카데미 7기 8인 팀�
 
 ## 🪪 자격증 · 어학
 
-| 구분 | 자격증 / 시험 | 발급 기관 | 취득일 | 점수 |
-|---|---|---|---|---|
-| 자격증 | 정보처리기사 | 한국산업인력공단 | 2025.06.13 | 75/100 |
-| 자격증 | SQLD | 한국데이터산업진흥원 | 2023.07.07 | 66/100 |
-| 자격증 | ADsP | 한국데이터산업진흥원 | 2026.06.05 | 74/100 |
-| 자격증 | 리눅스마스터 2급 | 한국정보통신진흥협회 | 2026.07.03 | 80/100 |
-| 자격증 | TOPCIT | 정보통신기획평가원 | 2024.10.12 | 595/1000 (3수준) |
-| 자격증 | 한국사능력검정 2급 | 국사편찬위원회 | 2026.10.30 | 74/100 |
-| 어학 | TOEIC Speaking | YBM한국TOEIC위원회 | 2025.10.11 | IM3 (130점) |
+| 구분 | 자격증 / 시험 | 발급 기관 | 취득일 |
+|---|---|---|---|
+| 자격증 | 정보처리기사 | 한국산업인력공단 | 2025.06.13 |
+| 자격증 | SQLD | 한국데이터산업진흥원 | 2023.07.07 |
+| 자격증 | ADsP | 한국데이터산업진흥원 | 2026.06.05 |
+| 자격증 | 리눅스마스터 2급 | 한국정보통신진흥협회 | 2026.07.03 |
+| 자격증 | TOPCIT — 3수준 | 정보통신기획평가원 | 2024.10.12 |
+| 자격증 | 한국사능력검정 2급 | 국사편찬위원회 | 2026.10.30 |
+| 어학 | TOEIC Speaking — IM3 | YBM한국TOEIC위원회 | 2025.10.11 |
 
 ## 🏆 수상
 
@@ -201,16 +201,17 @@ Spring Boot + Thymeleaf 기반 도서 커머스. NHN 아카데미 7기 8인 팀�
 portfolio/
 ├── index.html                          # 포트폴리오 메인 (GitHub Pages 진입점)
 ├── pdf/
-│   ├── full_portfolio.pdf              # 전체 16페이지 (프로필 + 백엔드 13 + 서브 2)
+│   ├── full_portfolio.pdf              # 전체 17페이지 (이력서 2 + 백엔드 13 + 서브 2)
 │   ├── all_projects_portfolio.pdf      # 백엔드 4개 프로젝트 13페이지 통합본
-│   ├── profile_summary.pdf             # 프로필·자격증 1페이지
+│   ├── profile_summary.pdf             # 이력서 2페이지
 │   ├── sub_projects_portfolio.pdf      # 서브/AI 2페이지
 │   ├── agzak_portfolio.pdf
 │   ├── ttomanito_portfolio.pdf
 │   ├── toktokggubi_portfolio.pdf
 │   └── bookstore_portfolio.pdf
 ├── 00_profile_summary_assets/
-│   └── html/                           # 프로필·자격증 요약 (1페이지)
+│   ├── html/                           # 이력서 (2페이지)
+│   └── img/profile_photo.jpg            # 증명사진
 ├── 01_bookstore_portfolio_assets/
 │   ├── html/                           # 개요 · 검색 엔진 · 한글 분석기 (3페이지)
 │   └── img/                            # 검색 화면 스크린샷

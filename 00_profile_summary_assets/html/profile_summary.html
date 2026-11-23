@@ -2,570 +2,158 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>양준하 — Profile &amp; Credentials (Figma A4 1190×1684)</title>
+<title>양준하 — 이력서 (Profile &amp; Credentials)</title>
+<link rel="icon" href="data:,">
 <style>
-  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
-  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800;900&family=Noto+Serif+KR:wght@400;500;600;700&display=swap');
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #212121;
+    --sub: #3F3F46;
+    --line: #E4E4E7;
+    --mark: #CFD0D4;
+    --accent: #2563EB;
+  }
+
   html, body {
-    font-family: 'Pretendard', -apple-system, sans-serif;
+    font-family: 'Noto Sans KR', 'Pretendard', -apple-system, 'Malgun Gothic', sans-serif;
     background: #DDE0E5;
-    color: #1E1E2E;
+    color: var(--ink);
     -webkit-font-smoothing: antialiased;
   }
 
   @page { size: 1190px 1684px; margin: 0; }
-  @media print { html, body { background: #FFFFFF; margin: 0; padding: 0; } }
 
-  .frame {
+  .page {
+    position: relative;
     width: 1190px;
     height: 1684px;
-    margin: 0;
-    padding: 64px 76px 56px;
+    margin: 0 auto 24px;
+    padding: 40px 40px 0;
     background: #FFFFFF;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     overflow: hidden;
-    gap: 20px;
+    page-break-after: always;
+    break-after: page;
   }
+  .page:last-of-type { margin-bottom: 0; page-break-after: auto; break-after: auto; }
 
-  /* ============ 헤더 ============ */
-  .page-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    flex-shrink: 0;
-  }
-  .project-name {
-    font-size: 56px;
-    font-weight: 800;
-    color: #B0B5BD;
-    letter-spacing: -2px;
+  /* ───────── 머리글 (1p) ───────── */
+  .page-1 { padding-top: 34px; }
+  .masthead { position: relative; height: 331px; }
+  .wordmark {
+    font-family: 'Noto Serif KR', 'Noto Serif CJK KR', 'Noto Serif', Georgia, serif;
+    font-size: 72px;
     line-height: 1;
-  }
-  .project-name .underline { border-bottom: 3px solid #B0B5BD; padding-bottom: 4px; }
-  .project-chip {
-    background: #1E1E2E;
-    color: #FFFFFF;
-    font-size: 22px;
-    font-weight: 800;
-    padding: 14px 34px;
-    border-radius: 99px;
-    letter-spacing: -0.5px;
-    box-shadow: 0 2px 0 rgba(0,0,0,0.05);
-    white-space: nowrap;
-  }
-
-  /* ============ 인적사항 ============ */
-  .identity {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-shrink: 0;
-    border-top: 2px solid #1E1E2E;
-    padding-top: 16px;
-    gap: 30px;
-  }
-  .id-left .role-line {
-    font-size: 21px;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-    margin-bottom: 6px;
-  }
-  .id-left .role-line span { color: #6B7280; font-weight: 600; font-size: 17px; }
-  .id-left .birth {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13.5px;
-    color: #6B7280;
-    letter-spacing: 0.2px;
-  }
-  .id-right {
-    display: grid;
-    grid-template-columns: auto auto;
-    gap: 6px 34px;
-    font-size: 14px;
-    color: #374151;
-    align-content: start;
-  }
-  .id-right .k {
-    font-size: 11.5px;
-    font-weight: 800;
-    color: #9CA3AF;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-    align-self: center;
-  }
-  .id-right a { color: #1E1E2E; text-decoration: none; font-weight: 600; }
-
-  /* ============ 요약 지표 ============ */
-  .kpi-strip {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    background: #1E1E2E;
-    border-radius: 14px;
-    padding: 20px 8px;
-    flex-shrink: 0;
-  }
-  .kpi {
-    text-align: center;
-    border-right: 1px solid rgba(255,255,255,0.12);
-    padding: 0 10px;
-  }
-  .kpi:last-child { border-right: none; }
-  .kpi .num {
-    font-size: 27px;
-    font-weight: 800;
-    color: #FFD43B;
-    letter-spacing: -1px;
-    line-height: 1.1;
-  }
-  .kpi .num small { font-size: 15px; color: rgba(255,255,255,0.7); font-weight: 700; margin-left: 3px; }
-  .kpi .cap {
-    margin-top: 5px;
-    font-size: 12.5px;
-    color: rgba(255,255,255,0.72);
-    font-weight: 500;
-    line-height: 1.35;
-  }
-
-  /* ============ 섹션 ============ */
-  .section {
-    display: flex;
-    flex-direction: column;
-    flex-shrink: 0;
-  }
-  .sec-head {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 12px;
-  }
-  .sec-title {
-    font-size: 21px;
-    font-weight: 800;
-    letter-spacing: -0.6px;
-  }
-  .sec-sub {
-    font-size: 12.5px;
-    color: #6B7280;
-    font-weight: 500;
-  }
-  .sec-rule { flex: 1; height: 1px; background: #E5E7EB; }
-
-  /* 표 */
-  table.cred {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  table.cred th {
-    font-size: 11.5px;
-    font-weight: 800;
-    color: #9CA3AF;
-    letter-spacing: 1px;
-    text-align: left;
-    padding: 0 10px 8px;
-    border-bottom: 1.5px solid #1E1E2E;
-  }
-  table.cred td {
-    font-size: 14.5px;
-    color: #374151;
-    padding: 9px 10px;
-    border-bottom: 1px solid #F1F2F4;
-    vertical-align: middle;
-  }
-  table.cred td.name { font-weight: 700; color: #1E1E2E; }
-  table.cred td.mono {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13px;
-    color: #4B5563;
-    white-space: nowrap;
-  }
-  table.cred td.score { font-weight: 700; color: #1E1E2E; white-space: nowrap; }
-  table.cred td.org { font-size: 13px; color: #6B7280; line-height: 1.35; }
-  table.cred tr:last-child td { border-bottom: none; }
-  .badge-2nd {
-    display: inline-block;
-    background: #FEF3C7;
-    color: #92400E;
-    font-size: 11px;
-    font-weight: 800;
-    padding: 2px 8px;
-    border-radius: 99px;
-    margin-left: 6px;
-    vertical-align: middle;
-    letter-spacing: -0.2px;
-  }
-
-  /* 2열 영역 */
-  .two-col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 34px;
-  }
-
-  /* 교육 타임라인 */
-  .edu-list { list-style: none; }
-  .edu-list li {
-    padding: 8px 0 8px 16px;
-    position: relative;
-    border-bottom: 1px dashed #E5E7EB;
-  }
-  .edu-list li:last-child { border-bottom: none; }
-  .edu-list li::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 15px;
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: #1E1E2E;
-  }
-  .edu-list .edu-name { font-size: 14.5px; font-weight: 700; color: #1E1E2E; }
-  .edu-list .edu-meta {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    color: #6B7280;
-    margin-left: 6px;
-  }
-  .edu-list .edu-desc { display: block; font-size: 13px; color: #6B7280; margin-top: 2px; }
-
-  /* 기술 스택 */
-  .stack-groups {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
-  }
-  .stack-group {
-    background: #FAFBFD;
-    border: 1.5px solid #E5E7EB;
-    border-radius: 12px;
-    padding: 12px 14px;
-  }
-  .stack-group .g-label {
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 1.1px;
-    color: #9CA3AF;
-    margin-bottom: 9px;
-  }
-  .chip-row { display: flex; flex-wrap: wrap; gap: 6px; }
-  .chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 12.5px;
-    font-weight: 600;
-    color: #374151;
-    background: #FFFFFF;
-    border: 1px solid #E5E7EB;
-    border-radius: 6px;
-    padding: 4px 8px;
-    line-height: 1;
-    white-space: nowrap;
-  }
-  .chip img { width: 15px; height: 15px; object-fit: contain; }
-
-  /* 강점 */
-  .strength-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px 34px;
-  }
-  .strength { display: flex; gap: 12px; }
-  .strength .idx {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
     font-weight: 700;
-    color: #9CA3AF;
-    padding-top: 2px;
+    letter-spacing: 1px;
+    color: var(--mark);
+    padding-top: 9px;
   }
-  .strength .txt { font-size: 14px; color: #374151; line-height: 1.5; }
-  .strength .txt b { color: #1E1E2E; font-weight: 800; }
-</style>
-</head>
-<body>
-<div class="frame">
+  .headline {
+    margin-top: 14px;
+    font-size: 48px;
+    line-height: 57px;
+    font-weight: 800;
+    color: var(--ink);
+  }
+  .contact { margin-top: 18px; font-size: 18px; line-height: 35px; font-weight: 600;  }
+  .portrait {
+    position: absolute;
+    top: 121px;
+    right: 19px;
+    width: 148px;
+    height: 190px;
+  }
+  .portrait img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-  <div class="page-header">
-    <div class="project-name"><span class="underline">양준하</span></div>
-    <div class="project-chip">Profile &amp; Credentials</div>
-  </div>
+  .rule-strong { height: 4px; background: var(--ink); }
+  .rule { height: 2px; background: var(--line); }
 
-  <!-- 인적사항 -->
-  <div class="identity">
-    <div class="id-left">
-      <div class="role-line">백엔드 개발자 <span>— Java · Spring Boot · FastAPI</span></div>
-      <div class="birth">YANG JUN-HA · 2000.04.28 · 경기도 과천 · 희망 직무 백엔드 엔지니어</div>
-    </div>
-    <div class="id-right">
-      <div class="k">Mail</div><div>dign552@naver.com</div>
-      <div class="k">Phone</div><div>+82 10-6306-9465</div>
-      <div class="k">GitHub</div><div><a href="https://github.com/Ori-Gui">github.com/Ori-Gui</a></div>
-      <div class="k">Blog</div><div><a href="https://velog.io/@ori_gui/posts">velog.io/@ori_gui</a></div>
-    </div>
-  </div>
+  /* ───────── 소개 문단 ───────── */
+  .lead { height: 212px; padding-top: 40px; }
+  .lead-title { font-size: 24px; line-height: 34px; font-weight: 700; }
+  .lead-body { margin-top: 14px; font-size: 18px; line-height: 28px;  color: var(--ink); }
 
-  <!-- 핵심 지표 -->
-  <div class="kpi-strip">
-    <div class="kpi">
-      <div class="num">1,100<small>명</small></div>
-      <div class="cap">아그작 14일 운영<br>실사용자 · 이벤트 11만 건</div>
-    </div>
-    <div class="kpi">
-      <div class="num">76<small>%</small></div>
-      <div class="cap">검색 응답 1.2s → 280ms<br>Elasticsearch 마이그레이션</div>
-    </div>
-    <div class="kpi">
-      <div class="num">7<small>종</small></div>
-      <div class="cap">자격증 · 어학 1건<br>정보처리기사 · 한능검 2급 포함</div>
-    </div>
-    <div class="kpi">
-      <div class="num">6<small>건</small></div>
-      <div class="cap">수상 (SSAFY 우수상 3건<br>KSC2024 장려상 포함)</div>
-    </div>
-  </div>
+  /* ───────── 공통 2단 섹션 ───────── */
+  .sec { border-top: 2px solid var(--line); display: grid; grid-template-columns: 517px 1fr; }
+  .sec > .label {
+    font-size: 24px;
+    font-weight: 700;
+    padding-top: 58px;
+    color: var(--ink);
+  }
+  .sec > .body { padding-right: 22px; }
 
-  <!-- 핵심 역량 -->
-  <div class="section">
-    <div class="sec-head">
-      <div class="sec-title">핵심 역량</div>
-      <div class="sec-sub">근거가 남은 구현만 정리</div>
-      <div class="sec-rule"></div>
-    </div>
-    <div class="strength-grid">
-      <div class="strength">
-        <div class="idx">01</div>
-        <div class="txt"><b>실 트래픽을 받아 운영한 경험</b> — 아그작 14일간 방문자 1,100명·이벤트 11만 건. Redis ZSET·MySQL 스냅샷 랭킹 이원화로 Slow Query 0건, ShedLock으로 자정 스케줄러 데드락(SQLState 40001) 재발 0건.</div>
-      </div>
-      <div class="strength">
-        <div class="idx">02</div>
-        <div class="txt"><b>병목을 측정해 구조로 해결</b> — 이조핑 북스토어 검색을 LIKE·N+1에서 Elasticsearch(nori·ngram·jaso)로 이전해 평균 1.2초 → 약 280ms. FastAPI 실습에서는 Keyset 페이지네이션과 복합·정렬·부분 인덱스를 <span style="font-family:'JetBrains Mono',monospace;font-size:12.5px;">EXPLAIN QUERY PLAN</span>으로 검증.</div>
-      </div>
-      <div class="strength">
-        <div class="idx">03</div>
-        <div class="txt"><b>배포·장애를 코드로 다루는 습관</b> — Blue/Green 무중단 배포와 롤백 CLI, liveness/readiness 분리 헬스체크, RDS 커넥션 풀 튜닝을 실습으로 직접 구현하고 테스트로 고정.</div>
-      </div>
-      <div class="strength">
-        <div class="idx">04</div>
-        <div class="txt"><b>AI·데이터 파이프라인</b> — YOLOv8s로 횡단보도·과속방지턱 훼손 탐지 mAP50 0.80(KSC2024 수록·장려상), Spring AI·스케줄러로 던전·퀘스트 자동 생성, 아그작 FastAPI RAG 연동.</div>
-      </div>
-    </div>
-  </div>
+  .sec-role { height: 150px; }
+  .sec-role .body { padding-top: 57px; font-size: 18px;  }
 
-  <!-- 자격증 -->
-  <div class="section">
-    <div class="sec-head">
-      <div class="sec-title">자격증 · 어학</div>
-      <div class="sec-sub">총 7종 (국가기술·데이터·리눅스·IT역량·한국사·어학)</div>
-      <div class="sec-rule"></div>
-    </div>
-    <table class="cred">
-      <thead>
-        <tr>
-          <th style="width:30%">자격증 / 시험</th>
-          <th style="width:31%">발급 기관</th>
-          <th style="width:19%">취득일</th>
-          <th style="width:20%">점수</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="name">정보처리기사</td>
-          <td>한국산업인력공단</td>
-          <td class="mono">2025. 06. 13</td>
-          <td class="score">75 / 100</td>
-        </tr>
-        <tr>
-          <td class="name">SQLD</td>
-          <td>한국데이터산업진흥원</td>
-          <td class="mono">2023. 07. 07</td>
-          <td class="score">66 / 100</td>
-        </tr>
-        <tr>
-          <td class="name">ADsP</td>
-          <td>한국데이터산업진흥원</td>
-          <td class="mono">2026. 06. 05</td>
-          <td class="score">74 / 100</td>
-        </tr>
-        <tr>
-          <td class="name">리눅스마스터 2급</td>
-          <td>한국정보통신진흥협회</td>
-          <td class="mono">2026. 07. 03</td>
-          <td class="score">80 / 100</td>
-        </tr>
-        <tr>
-          <td class="name">TOPCIT</td>
-          <td>정보통신기획평가원</td>
-          <td class="mono">2024. 10. 12</td>
-          <td class="score">595 / 1000 · 3수준</td>
-        </tr>
-        <tr>
-          <td class="name">한국사능력검정시험 2급</td>
-          <td>국사편찬위원회</td>
-          <td class="mono">2026. 10. 30</td>
-          <td class="score">74 / 100</td>
-        </tr>
-        <tr>
-          <td class="name">TOEIC Speaking</td>
-          <td>YBM 한국TOEIC위원회</td>
-          <td class="mono">2025. 10. 11</td>
-          <td class="score">IM3 · 130점</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  .sec-skills { height: 382px; }
+  .sec-skills .label { padding-top: 63px; }
+  .skill-list { padding-top: 51px; }
+  .skill-row { display: flex; align-items: center; height: 56px; }
+  .skill-row img { width: 28px; height: 28px; object-fit: contain; margin: 0 8px 0 33px; }
+  .skill-row .name { font-size: 18px;  }
+  .level { margin-left: auto; display: flex; height: 28px; border-radius: 4px; overflow: hidden; }
+  .level span {
+    width: 29px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: #4B5563;
+    background: var(--line);
+    border-left: 1px solid rgba(0,0,0,0.05);
+  }
+  .level span:first-child { border-left: none; }
+  .level span.on { background: var(--accent); color: #FFFFFF; }
 
-  <!-- 수상 · 교육 -->
-  <div class="section">
-    <div class="two-col">
-      <div>
-        <div class="sec-head">
-          <div class="sec-title">수상</div>
-          <div class="sec-sub">6건</div>
-          <div class="sec-rule"></div>
-        </div>
-        <table class="cred awards">
-          <thead>
-            <tr>
-              <th style="width:19%">수상일</th>
-              <th>대회 · 수상</th>
-              <th style="width:33%">수여 기관</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="mono">2025. 12. 18</td>
-              <td><b>SSAFY 성적 부문</b> — 우수상</td>
-              <td class="org">고용노동부</td>
-            </tr>
-            <tr>
-              <td class="mono">2025. 11. 20</td>
-              <td><b>SSAFY 자율 프로젝트</b> — 우수상 2등</td>
-              <td class="org">삼성전자</td>
-            </tr>
-            <tr>
-              <td class="mono">2025. 09. 29</td>
-              <td><b>SSAFY 특화 프로젝트</b> — 우수상 1등</td>
-              <td class="org">삼성전자</td>
-            </tr>
-            <tr>
-              <td class="mono">2025. 02. 03</td>
-              <td><b>KSC2024 논문경진대회</b> — 장려상</td>
-              <td class="org">한국정보과학회</td>
-            </tr>
-            <tr>
-              <td class="mono">2024. 11. 22</td>
-              <td><b>CNU DevDay 코딩경진대회</b> — 장려상</td>
-              <td class="org">충남대학교 컴퓨터융합학부</td>
-            </tr>
-            <tr>
-              <td class="mono">2023. 11. 10</td>
-              <td><b>CNU SW 아카데미 프로젝트 경진대회</b> — 우수상</td>
-              <td class="org">충남대학교 정보화본부</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+  /* ───────── 학력 · 교육 ───────── */
+  .sec-school { height: 152px; }
+  .sec-school .body { padding-top: 49px; }
+  .sec-training { height: 294px; }
+  .sec-training .body { padding-top: 52px; }
 
-      <div>
-        <div class="sec-head">
-          <div class="sec-title">교육 · 학력</div>
-          <div class="sec-sub">4건</div>
-          <div class="sec-rule"></div>
-        </div>
-        <ul class="edu-list">
-          <li>
-            <span class="edu-name">삼성 청년 SW·AI 아카데미 13기</span>
-            <span class="edu-meta">2025.01 – 2025.12</span>
-            <span class="edu-desc">Java 전공자반 — 알고리즘·DB·웹 개발 전반, 자율/특화 프로젝트 수행</span>
-          </li>
-          <li>
-            <span class="edu-name">NHN 아카데미 7기</span>
-            <span class="edu-meta">2024.07 – 2024.12</span>
-            <span class="edu-desc">Backend 과정 — Java·Spring Boot·MySQL, 8인 팀 도서 커머스 프로젝트</span>
-          </li>
-          <li>
-            <span class="edu-name">CNU SW 아카데미 3기</span>
-            <span class="edu-meta">2023.07 – 2023.12</span>
-            <span class="edu-desc">Frontend 과정 — HTML·CSS·JavaScript·React</span>
-          </li>
-          <li>
-            <span class="edu-name">충남대학교 컴퓨터융합학부</span>
-            <span class="edu-meta">2019.03 – 2025.02</span>
-            <span class="edu-desc">졸업 — 졸업작품: 딥러닝 기반 도로 시설물 훼손 탐지 (KSC2024)</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
+  .entry { position: relative; }
+  .entry .row-1 { display: flex; justify-content: space-between; align-items: baseline; }
+  .entry .name { font-size: 18px; font-weight: 700;  }
+  .entry .date { font-size: 16px; color: var(--sub);  }
+  .entry .detail { margin-top: 3px; font-size: 16px; color: var(--sub);  }
 
-  <!-- 기술 스택 -->
-  <div class="section">
-    <div class="sec-head">
-      <div class="sec-title">기술 스택</div>
-      <div class="sec-sub">프로젝트에서 직접 사용한 기술만</div>
-      <div class="sec-rule"></div>
-    </div>
-    <div class="stack-groups">
-      <div class="stack-group">
-        <div class="g-label">LANGUAGE</div>
-        <div class="chip-row">
-          <span class="chip"><img src="../../skill_icon/png/Java.png" alt="">Java 21</span>
-          <span class="chip">Python 3.12</span>
-          <span class="chip">JavaScript</span>
-        </div>
-      </div>
-      <div class="stack-group">
-        <div class="g-label">BACKEND</div>
-        <div class="chip-row">
-          <span class="chip"><img src="../../skill_icon/png/springboot.png" alt="">Spring Boot</span>
-          <span class="chip">JPA · QueryDSL</span>
-          <span class="chip"><img src="../../skill_icon/png/FastAPI.png" alt="">FastAPI</span>
-          <span class="chip">Spring Security · JWT</span>
-        </div>
-      </div>
-      <div class="stack-group">
-        <div class="g-label">DATA</div>
-        <div class="chip-row">
-          <span class="chip"><img src="../../skill_icon/png/MySQL2.png" alt="">MySQL 8</span>
-          <span class="chip">PostgreSQL</span>
-          <span class="chip"><img src="../../skill_icon/png/Redis.png" alt="">Redis</span>
-          <span class="chip"><img src="../../skill_icon/png/Elastic Search.png" alt="">Elasticsearch</span>
-        </div>
-      </div>
-      <div class="stack-group">
-        <div class="g-label">INFRA · DEVOPS</div>
-        <div class="chip-row">
-          <span class="chip"><img src="../../skill_icon/png/Docker.png" alt="">Docker</span>
-          <span class="chip"><img src="../../skill_icon/png/NGINX.png" alt="">Nginx</span>
-          <span class="chip"><img src="../../skill_icon/png/AWS EC2.png" alt="">EC2 · RDS</span>
-          <span class="chip"><img src="../../skill_icon/png/Jenkins.png" alt="">Jenkins</span>
-          <span class="chip"><img src="../../skill_icon/png/GitHub Actions.png" alt="">Actions</span>
-        </div>
-      </div>
-      <div class="stack-group">
-        <div class="g-label">TEST · TOOL</div>
-        <div class="chip-row">
-          <span class="chip">JUnit5 · Mockito</span>
-          <span class="chip">pytest</span>
-          <span class="chip">Swagger</span>
-          <span class="chip">Git</span>
-        </div>
-      </div>
-    </div>
-  </div>
+  .sec-school .entry { height: 100px; }
+  .sec-training .entry { height: 70px; }
 
-</div>
-<!-- PAGE NAVIGATION INJECTED -->
-<style>
+  /* ───────── 2p: 수상 · 자격증 · 링크 ───────── */
+  .page-2 { padding-top: 91px; }
+  .sec-awards { height: 527px; }
+  .sec-awards .label { padding-top: 55px; }
+  .sec-certs { height: 724px; }
+  .sec-certs .label { padding-top: 71px; }
+  .sec-links { height: 258px; }
+  .sec-links .label { padding-top: 54px; }
+  .sec-links { height: 258px; border-bottom: 2px solid var(--line); }
+  .sec-links + .rule { background: var(--line); }
+
+  .award-list { padding-top: 63px; }
+  .award-list .entry { height: 80px; }
+  .cert-list { padding-top: 68px; }
+  .cert-list .entry { height: 97px; }
+  .cert-list .date { color: var(--sub); }
+
+  .link-list { padding-top: 69px; }
+  .link-list .link { display: block; text-decoration: none; color: var(--ink); margin-bottom: 22px; }
+  .link-list .url { font-size: 18px; font-weight: 600;  }
+  .link-list .kind { margin-top: 4px; font-size: 16px; color: var(--sub); }
+
+  /* ───────── 페이지 이동 (화면용) ───────── */
+  @media print { .page-nav { display: none !important; } }
   .page-nav {
     position: fixed;
     bottom: 16px; left: 50%;
     transform: translateX(-50%);
-    background: rgba(30, 30, 46, 0.95);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: rgba(33, 33, 33, 0.95);
     color: #FFFFFF;
     padding: 10px 14px;
     border-radius: 99px;
@@ -573,30 +161,258 @@
     align-items: center;
     gap: 4px;
     box-shadow: 0 8px 24px rgba(0,0,0,0.25);
-    font-family: 'Pretendard', sans-serif;
     font-size: 13px;
     z-index: 1000;
   }
   .page-nav .pn-btn { color: #FFFFFF; text-decoration: none; padding: 7px 14px; border-radius: 99px; font-weight: 600; white-space: nowrap; }
   .page-nav .pn-btn:hover { background: rgba(255,255,255,0.12); }
-  .page-nav .pn-disabled { color: rgba(255,255,255,0.3); padding: 7px 14px; cursor: not-allowed; font-weight: 600; white-space: nowrap; }
   .page-nav .pn-home { color: #FFFFFF; text-decoration: none; width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,0.1); font-size: 16px; }
   .page-nav .pn-home:hover { background: rgba(255,255,255,0.22); }
-  .page-nav .pn-indicator { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: rgba(255,255,255,0.7); padding: 0 8px; font-weight: 600; }
-  @media print { .page-nav { display: none !important; } }
+  .page-nav .pn-indicator { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: rgba(255,255,255,0.7); padding: 0 8px; font-weight: 600; }
 </style>
+</head>
+<body>
+
+<!-- ═══════════════ 1 / 2 ═══════════════ -->
+<section class="page page-1">
+
+  <header class="masthead">
+    <div class="wordmark">Intro</div>
+    <h1 class="headline">경험과 열정으로 끊임없이<br>성장하는 개발자, 양준하 입니다.</h1>
+    <div class="contact">
+      <div>2000.04.28</div>
+      <div>dign552@naver.com / 010-6306-9465</div>
+    </div>
+    <figure class="portrait"><img src="../img/profile_photo.jpg" alt="양준하 증명사진"></figure>
+  </header>
+
+  <div class="rule-strong"></div>
+
+  <div class="lead">
+    <p class="lead-title">좋은 서비스를 만들기 위해 깊이 고민하고 책임감 있게 구현하는 백엔드 개발자입니다.</p>
+    <p class="lead-body">
+      서비스를 단순히 “만드는 대상”이 아니라 지속적으로 개선하고 책임져야 하는 결과물로 바라봅니다.<br>
+      Spring Boot 기반 백엔드 개발, 데이터베이스 설계, 서버 구조 설계에 관심을 가지고 다양한 프로젝트를 수행해왔으며,<br>
+      실제 구현 과정에서 성능, 유지보수성, 확장성을 함께 고려하는 개발자로 성장하고 있습니다.
+    </p>
+  </div>
+
+  <section class="sec sec-role">
+    <div class="label">희망 직무</div>
+    <div class="body">백엔드 엔지니어</div>
+  </section>
+
+  <section class="sec sec-skills">
+    <div class="label">주요 기술</div>
+    <div class="body">
+      <div class="skill-list">
+        <div class="skill-row">
+          <img src="../../skill_icon/png/Java.png" alt="">
+          <span class="name">Java</span>
+          <span class="level"><span>하</span><span>중</span><span class="on">상</span></span>
+        </div>
+        <div class="skill-row">
+          <img src="../../skill_icon/png/springboot.png" alt="">
+          <span class="name">Spring</span>
+          <span class="level"><span>하</span><span>중</span><span class="on">상</span></span>
+        </div>
+        <div class="skill-row">
+          <img src="../../skill_icon/png/MySQL2.png" alt="">
+          <span class="name">MySQL</span>
+          <span class="level"><span>하</span><span>중</span><span class="on">상</span></span>
+        </div>
+        <div class="skill-row">
+          <img src="../../skill_icon/png/Redis.png" alt="">
+          <span class="name">Redis</span>
+          <span class="level"><span>하</span><span class="on">중</span><span>상</span></span>
+        </div>
+        <div class="skill-row">
+          <img src="../../skill_icon/png/Docker.png" alt="">
+          <span class="name">Docker</span>
+          <span class="level"><span>하</span><span class="on">중</span><span>상</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-school">
+    <div class="label">학력</div>
+    <div class="body">
+      <div class="entry">
+        <div class="row-1">
+          <span class="name">충남대학교 공과대학</span>
+          <span class="date">2019.03 - 2025.02</span>
+        </div>
+        <div class="detail">컴퓨터융합학부</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-training">
+    <div class="label">교육</div>
+    <div class="body">
+      <div class="entry">
+        <div class="row-1">
+          <span class="name">삼성 청년 SW·AI 아카데미 (SSAFY)</span>
+          <span class="date">2025. 01 - 2025.12</span>
+        </div>
+        <div class="detail">13기 Java 전공자반</div>
+      </div>
+      <div class="entry">
+        <div class="row-1">
+          <span class="name">NHN 아카데미</span>
+          <span class="date">2024. 07 - 2024.12</span>
+        </div>
+        <div class="detail">Java / Spring 백엔드 과정</div>
+      </div>
+      <div class="entry">
+        <div class="row-1">
+          <span class="name">CNU SW 아카데미</span>
+          <span class="date">2023. 07 - 2023.12</span>
+        </div>
+        <div class="detail">3기 Frontend 과정</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule" style="position:absolute;left:40px;right:40px;bottom:123px;"></div>
+
+</section>
+
+<!-- ═══════════════ 2 / 2 ═══════════════ -->
+<section class="page page-2">
+
+  <section class="sec sec-awards">
+    <div class="label">수상</div>
+    <div class="body">
+      <div class="award-list">
+        <div class="entry">
+          <div class="row-1">
+            <span class="name">KSC2024 학부생/주니어 논문 경진대회 - 장려상</span>
+            <span class="date">2025.02</span>
+          </div>
+          <div class="detail">한국정보과학회</div>
+        </div>
+        <div class="entry">
+          <div class="row-1">
+            <span class="name">삼성 청년 SW·AI 아카데미 특화 PJT - 우수상 (1등)</span>
+            <span class="date">2025.09</span>
+          </div>
+          <div class="detail">삼성전자</div>
+        </div>
+        <div class="entry">
+          <div class="row-1">
+            <span class="name">삼성 청년 SW·AI 아카데미 자율 PJT - 우수상 (2등)</span>
+            <span class="date">2025.11</span>
+          </div>
+          <div class="detail">삼성전자</div>
+        </div>
+        <div class="entry">
+          <div class="row-1">
+            <span class="name">삼성 청년 SW·AI 아카데미 성적 우수상</span>
+            <span class="date">2025.12</span>
+          </div>
+          <div class="detail">고용노동부</div>
+        </div>
+        <div class="entry">
+          <div class="row-1">
+            <span class="name">CNU 창의SW/AI 축전 DevDay 코딩경진대회 - 장려상</span>
+            <span class="date">2024.11</span>
+          </div>
+          <div class="detail">충남대학교 컴퓨터융합학부</div>
+        </div>
+        <div class="entry">
+          <div class="row-1">
+            <span class="name">CNU SW 아카데미 프로젝트 경진대회 - 우수상</span>
+            <span class="date">2023.11</span>
+          </div>
+          <div class="detail">충남대학교 정보화본부</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-certs">
+    <div class="label">자격증</div>
+    <div class="body">
+      <div class="cert-list">
+        <div class="entry">
+          <div class="row-1">
+            <span class="name">SQLD</span>
+            <span class="date">2023.07</span>
+          </div>
+          <div class="detail">한국데이터산업진흥원</div>
+        </div>
+        <div class="entry">
+          <div class="row-1">
+            <span class="name">TOPCIT - 3수준</span>
+            <span class="date">2024.10</span>
+          </div>
+          <div class="detail">정보통신기획평가원</div>
+        </div>
+        <div class="entry">
+          <div class="row-1">
+            <span class="name">정보처리기사</span>
+            <span class="date">2025.06</span>
+          </div>
+          <div class="detail">한국산업인력공단</div>
+        </div>
+        <div class="entry">
+          <div class="row-1">
+            <span class="name">TOEIC Speaking - IM3</span>
+            <span class="date">2025.09</span>
+          </div>
+          <div class="detail">YBM 한국TOEIC위원회</div>
+        </div>
+        <div class="entry">
+          <div class="row-1">
+            <span class="name">ADsP</span>
+            <span class="date">2026.06</span>
+          </div>
+          <div class="detail">한국데이터산업진흥원</div>
+        </div>
+        <div class="entry">
+          <div class="row-1">
+            <span class="name">리눅스마스터 2급</span>
+            <span class="date">2026.07</span>
+          </div>
+          <div class="detail">한국정보통신진흥협회</div>
+        </div>
+        <div class="entry">
+          <div class="row-1">
+            <span class="name">한국사능력검정시험 2급</span>
+            <span class="date">2026.10</span>
+          </div>
+          <div class="detail">국사편찬위원회</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-links">
+    <div class="label">링크</div>
+    <div class="body">
+      <div class="link-list">
+        <a class="link" href="https://velog.io/@ori_gui/posts">
+          <div class="url">https://velog.io/@ori_gui/posts</div>
+          <div class="kind">블로그</div>
+        </a>
+        <a class="link" href="https://github.com/Ori-Gui">
+          <div class="url">https://github.com/Ori-Gui</div>
+          <div class="kind">github</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</section>
+
 <nav class="page-nav">
+  <span class="pn-btn" style="color:rgba(255,255,255,0.3);cursor:not-allowed;">← 이전</span>
   <a href="../../index.html" class="pn-home" title="홈으로">⌂</a>
-  <span class="pn-indicator">Profile · 1 / 16</span>
-  <a href="../../04_agzak_portfolio_assets/html/agzak_page1_overview.html" class="pn-btn pn-next" title="다음: 아그작 개요">아그작 →</a>
+  <span class="pn-indicator">Profile · 1–2 / 17</span>
+  <a href="../../04_agzak_portfolio_assets/html/agzak_page1_overview.html" class="pn-btn pn-next" title="다음: 아그작">아그작 →</a>
 </nav>
-<script>
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'ArrowRight') { var n = document.querySelector('.pn-next'); if (n) n.click(); }
-    if (e.key === 'h' || e.key === 'H') { window.location.href = '../../index.html'; }
-  });
-</script>
-<!-- /PAGE NAVIGATION INJECTED -->
 
 </body>
 </html>
