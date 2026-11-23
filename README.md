@@ -26,8 +26,11 @@ Java · Spring Boot 백엔드 개발자 **양준하**의 포트폴리오입니�
 **Infra / DevOps**
 <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white"> <img src="https://img.shields.io/badge/Jenkins-D24939?style=flat-square&logo=jenkins&logoColor=white"> <img src="https://img.shields.io/badge/Nginx-009639?style=flat-square&logo=nginx&logoColor=white"> <img src="https://img.shields.io/badge/AWS%20EC2-FF9900?style=flat-square&logo=amazonec2&logoColor=white"> <img src="https://img.shields.io/badge/GitHub%20Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white">
 
-**Frontend / Collaboration**
-<img src="https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB"> <img src="https://img.shields.io/badge/Thymeleaf-005F0F?style=flat-square&logo=thymeleaf&logoColor=white"> <img src="https://img.shields.io/badge/Swagger%20%2F%20OpenAPI-85EA2D?style=flat-square&logo=swagger&logoColor=black"> <img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white"> <img src="https://img.shields.io/badge/Jira-0052CC?style=flat-square&logo=jira&logoColor=white"> <img src="https://img.shields.io/badge/Notion-000000?style=flat-square&logo=notion&logoColor=white">
+**Frontend**
+<img src="https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB"> <img src="https://img.shields.io/badge/Thymeleaf-005F0F?style=flat-square&logo=thymeleaf&logoColor=white">
+
+**Collaboration / Docs**
+<img src="https://img.shields.io/badge/Swagger%20%2F%20OpenAPI-85EA2D?style=flat-square&logo=swagger&logoColor=black"> <img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white"> <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white"> <img src="https://img.shields.io/badge/Jira-0052CC?style=flat-square&logo=jira&logoColor=white"> <img src="https://img.shields.io/badge/Notion-000000?style=flat-square&logo=notion&logoColor=white">
 
 ---
 
@@ -80,7 +83,7 @@ Spring Boot + Thymeleaf 기반 도서 커머스. NHN 아카데미 7기 8인 팀�
 `Spring Boot` `Thymeleaf` `MySQL` `Elasticsearch` `Redis` `Nginx` `GitHub Actions` `SonarQube` `NHN Cloud`
 
 - **검색 마이그레이션** — `LIKE '%키워드%'` 앞 와일드카드로 B-Tree 인덱스를 쓰지 못하고 4개 테이블 LEFT JOIN·N+1까지 겹쳐 평균 1.2초가 걸리던 검색을 Elasticsearch로 이전. nori(형태소)·ngram(부분 일치)·jaso(자모·초성) 3개 분석기와 BM25 가중치(`title^10`/`desc^3`/`publisher^2`)로 약 280ms(76% 단축).
-- **인덱스 운영** — 운영 DB와 검색 인덱스를 분리하고 Logstash JDBC 10초 polling upsert로 동기화. 정렬 6종(popularity·newest·price·rating·reviews) 지원.
+- **인덱스 운영** — 운영 DB와 검색 인덱스를 분리하고 Logstash JDBC 10초 polling upsert로 동기화. 정렬 6종(popularity·newest·price·rating·reviews 등)을 지원.
 - **팀 협업** — 8인 팀의 WBS 기반 일정·분담, Swagger API 문서화, PR 코드 리뷰 정책과 스프린트 회고(KPT)를 주도.
 
 [개요](01_bookstore_portfolio_assets/html/bookstore_page1_overview.html) · [검색 엔진 도입](01_bookstore_portfolio_assets/html/bookstore_page2_search_engine.html) · [한글 분석기](01_bookstore_portfolio_assets/html/bookstore_page3_korean_analyzer.html) · [PDF](pdf/bookstore_portfolio.pdf)
