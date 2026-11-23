@@ -102,6 +102,9 @@
   .project-card.toktokggubi .top-stripe { background: #38BDF8; }
   .project-card.ttomanito .top-stripe   { background: #C4B5FD; }
   .project-card.bookstore .top-stripe   { background: #FB923C; }
+  .project-card.travelquest .top-stripe { background: #34D399; }
+  .project-card.yolo .top-stripe        { background: #F472B6; }
+  .project-card.fastapi .top-stripe     { background: #60A5FA; }
 
   .project-num {
     display: inline-block;
@@ -155,6 +158,9 @@
   .project-card.toktokggubi .action-btn.view { background: #0284C7; }
   .project-card.ttomanito .action-btn.view   { background: #6D28D9; }
   .project-card.bookstore .action-btn.view   { background: #C2410C; }
+  .project-card.travelquest .action-btn.view { background: #059669; }
+  .project-card.yolo .action-btn.view        { background: #BE185D; }
+  .project-card.fastapi .action-btn.view     { background: #2563EB; }
 
   .action-btn.pdf {
     background: #F3F4F6;
@@ -180,6 +186,85 @@
     border-radius: 4px;
   }
   .pages-list a:hover { background: #F3F4F6; color: #1E1E2E; }
+
+  /* 프로필 & 자격증 카드 */
+  .profile-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    background: linear-gradient(135deg, #1E1E2E 0%, #2C2C44 100%);
+    color: #FFFFFF;
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-bottom: 20px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.10);
+  }
+  .profile-card .pc-eyebrow {
+    font-size: 11.5px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #FFD43B;
+    margin-bottom: 8px;
+  }
+  .profile-card .pc-title {
+    font-size: 27px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 6px;
+  }
+  .profile-card .pc-desc {
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.55;
+  }
+  .profile-card .pc-actions {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+  .profile-card .pc-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 800;
+    text-decoration: none;
+    background: #FFD43B;
+    color: #1E1E2E;
+    white-space: nowrap;
+  }
+  .profile-card .pc-btn.ghost {
+    background: rgba(255,255,255,0.12);
+    color: #FFFFFF;
+    border: 1px solid rgba(255,255,255,0.25);
+  }
+  .profile-card .pc-btn:hover { opacity: 0.88; }
+
+  /* 섹션 제목 */
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.6px;
+    margin: 8px 0 18px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #E5E7EB;
+  }
+  .section-title span {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #9CA3AF;
+    letter-spacing: 0;
+  }
 
   /* 전체 PDF */
   .full-pdf {
@@ -211,6 +296,18 @@
     font-size: 15px;
     font-weight: 800;
   }
+  .full-pdf .download.ghost {
+    background: rgba(255,255,255,0.12);
+    color: #FFFFFF;
+    border: 1px solid rgba(255,255,255,0.25);
+    margin-left: 10px;
+  }
+  .full-pdf .download-note {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    margin-top: 12px;
+    margin-bottom: 0;
+  }
 
   footer {
     text-align: center;
@@ -230,7 +327,7 @@
 
   <header class="header">
     <h1>백엔드 포트폴리오</h1>
-    <p class="subtitle">SSAFY 13기 · NHN Academy 7기 · 프로젝트 풀스크립트</p>
+    <p class="subtitle">SSAFY 13기 · NHN Academy 7기 · 프로필·자격증 + 프로젝트 7건</p>
     <div class="links">
       <a class="icon-btn" href="https://github.com/Ori-Gui" target="_blank" title="GitHub" aria-label="GitHub">
         <img src="skill_icon/svg/Github-Dark.svg" alt="GitHub">
@@ -240,6 +337,19 @@
       </a>
     </div>
   </header>
+
+  <!-- 프로필 & 자격증 -->
+  <div class="profile-card">
+    <div class="pc-main">
+      <div class="pc-eyebrow">PROFILE &amp; CREDENTIALS</div>
+      <div class="pc-title">양준하 — 백엔드 개발자</div>
+      <div class="pc-desc">인적사항 · 핵심 역량 · 자격증 7종(정보처리기사·SQLD·ADsP·리눅스마스터 2급·TOPCIT·한국사능력검정 2급·TOEIC Speaking) · 수상 6건 · 교육 4건 · 기술 스택 요약</div>
+    </div>
+    <div class="pc-actions">
+      <a class="pc-btn" href="00_profile_summary_assets/html/profile_summary.html">View Page</a>
+      <a class="pc-btn ghost" href="pdf/profile_summary.pdf" target="_blank">PDF ↓</a>
+    </div>
+  </div>
 
   <div class="projects">
 
@@ -318,11 +428,68 @@
 
   </div>
 
+  <!-- 서브 · AI 프로젝트 -->
+  <h2 class="section-title">Sub / AI &amp; FastAPI Projects <span>백엔드 메인 4건 외 — 게임화 서비스 · 비전 AI · 운영 실습</span></h2>
+
+  <div class="projects">
+
+    <!-- Side 1 — Travel Quest -->
+    <div class="project-card travelquest">
+      <div class="top-stripe"></div>
+      <div class="project-num">SIDE 1</div>
+      <div class="project-name">트래블 퀘스트</div>
+      <div class="project-tagline">여행을 RPG로 — MBTI 8직업 · 던전 · LLM 퀘스트 자동 생성 (Spring AI + Scheduler)</div>
+      <div class="project-meta">2025.05 · SSAFY 13기 관통 PJT · 2명 (FullStack 본인 포함)</div>
+      <div class="project-actions">
+        <a class="action-btn view" href="05_sub_projects_assets/html/sub_page1_travelquest_yolo.html">View Pages</a>
+        <a class="action-btn pdf" href="pdf/sub_projects_portfolio.pdf" target="_blank">PDF ↓</a>
+      </div>
+      <div class="pages-list">
+        <a href="05_sub_projects_assets/html/sub_page1_travelquest_yolo.html">P1 Travel Quest · YOLO</a>
+      </div>
+    </div>
+
+    <!-- Side 2 — YOLO -->
+    <div class="project-card yolo">
+      <div class="top-stripe"></div>
+      <div class="project-num">SIDE 2</div>
+      <div class="project-name">YOLO 노면표지 탐지</div>
+      <div class="project-tagline">횡단보도·과속방지턱 훼손 판별 — 데이터 전처리부터 학습·평가까지 (mAP50 0.80)</div>
+      <div class="project-meta">2024.03 – 12 · 학부 졸업작품 · 3명 (AI Model &amp; Data) · KSC2024 장려상</div>
+      <div class="project-actions">
+        <a class="action-btn view" href="05_sub_projects_assets/html/sub_page1_travelquest_yolo.html">View Pages</a>
+        <a class="action-btn pdf" href="pdf/sub_projects_portfolio.pdf" target="_blank">PDF ↓</a>
+      </div>
+      <div class="pages-list">
+        <a href="05_sub_projects_assets/html/sub_page1_travelquest_yolo.html">P1 Travel Quest · YOLO</a>
+      </div>
+    </div>
+
+    <!-- Side 3 — FastAPI -->
+    <div class="project-card fastapi">
+      <div class="top-stripe"></div>
+      <div class="project-num">SIDE 3</div>
+      <div class="project-name">FastAPI 운영 실습</div>
+      <div class="project-tagline">28일 커리큘럼을 하나의 채용 API로 — 인덱스 최적화 · 인증 테스트 · Redis/Celery · RDS 풀 · Blue/Green 배포</div>
+      <div class="project-meta">2026 · 개인 실습 27 브랜치 · 직접 추가 테스트 72건 통과</div>
+      <div class="project-actions">
+        <a class="action-btn view" href="05_sub_projects_assets/html/sub_page2_fastapi_practice.html">View Page</a>
+        <a class="action-btn pdf" href="pdf/sub_projects_portfolio.pdf" target="_blank">PDF ↓</a>
+      </div>
+      <div class="pages-list">
+        <a href="05_sub_projects_assets/html/sub_page2_fastapi_practice.html">P2 FastAPI Practice</a>
+      </div>
+    </div>
+
+  </div>
+
   <!-- 전체 PDF -->
   <div class="full-pdf">
-    <h2>📄 전체 프로젝트 통합 포트폴리오</h2>
-    <p>4개 프로젝트의 13페이지를 한 PDF 로 (12.6 MB)</p>
-    <a class="download" href="pdf/all_projects_portfolio.pdf" target="_blank">통합 PDF 다운로드</a>
+    <h2>📄 통합 포트폴리오 PDF</h2>
+    <p>백엔드 4개 프로젝트 13페이지 · 프로필/서브 포함 16페이지</p>
+    <a class="download" href="pdf/full_portfolio.pdf" target="_blank">전체 16p 다운로드 (이력서·서브 포함)</a>
+    <a class="download ghost" href="pdf/all_projects_portfolio.pdf" target="_blank">백엔드 4건 13p</a>
+    <p class="download-note">지원 직무에 따라 13p(백엔드 전용) 또는 16p(프로필·서브 포함)를 선택해 제출하세요.</p>
   </div>
 
   <footer>

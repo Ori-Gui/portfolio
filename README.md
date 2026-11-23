@@ -3,7 +3,8 @@
 Java · Spring Boot 백엔드 개발자 **양준하**의 포트폴리오입니다. SSAFY 13기와 NHN 아카데미 7기에서 진행한 프로젝트 4건을 "문제 → 해결 → 결과" 순서로 페이지마다 정리했고, 같은 내용을 PDF로도 내려받을 수 있습니다. 이 저장소는 [GitHub Pages](https://ori-gui.github.io/portfolio/)로 배포되는 사이트 소스이며, 빌드 과정 없이 정적 HTML만으로 동작합니다.
 
 - 🌐 **배포 사이트** — https://ori-gui.github.io/portfolio/
-- 📄 **통합 PDF** — [all_projects_portfolio.pdf](pdf/all_projects_portfolio.pdf) (13페이지, 12.6MB)
+- 🪪 **프로필 · 자격증** — [00_profile_summary_assets/html/profile_summary.html](00_profile_summary_assets/html/profile_summary.html) (1페이지)
+- 📄 **통합 PDF** — [full_portfolio.pdf](pdf/full_portfolio.pdf) (16페이지 · 15.3MB) / [all_projects_portfolio.pdf](pdf/all_projects_portfolio.pdf) (백엔드 4건 13페이지 · 12.6MB)
 - 🐙 **GitHub** — https://github.com/Ori-Gui
 - ✍️ **Velog** — https://velog.io/@ori_gui/posts
 
@@ -36,12 +37,17 @@ Java · Spring Boot 백엔드 개발자 **양준하**의 포트폴리오입니�
 
 ## 🚀 프로젝트
 
+전체 16페이지 구성입니다 — **프로필·자격증 1p → 백엔드 메인 4건 13p → 서브/AI 2p**. 지원 직무에 따라 13페이지(백엔드 전용)와 16페이지(프로필·서브 포함) 중 골라 제출할 수 있습니다.
+
 | # | 프로젝트 | 기간 | 팀 · 역할 | 핵심 주제 |
 |---|---|---|---|---|
 | 1 | [아그작](#1-아그작--데일리-운세-플랫폼) | 2025.10 – 11 (6주) | 6명 · Backend | Redis ZSET + MySQL 랭킹 이원화, 토큰 회전(RTR), 일일 Cap 멱등성 |
 | 2 | [똑똑꺼비](#2-똑똑꺼비--ai-기반-예산-관리-앱) | 2025.08 – 09 (5주) | 6명 · Backend | 모바일 OAuth2 딥링크, GCP Vision OCR 파이프라인 |
 | 3 | [또마니또](#3-또마니또--실시간-익명-채팅-마니또) | 2025.07 – 08 (5주) | 6명 · Backend | WebSocket Principal 통일, MySQL·MongoDB·Redis 3DB 분리 |
 | 4 | [이조핑 북스토어](#4-이조핑-북스토어--온라인-도서-쇼핑몰) | 2024.10 – 12 (9주) | 8명 · FullStack | MySQL → Elasticsearch 검색 마이그레이션 (1.2초 → 280ms) |
+| S1 | [트래블 퀘스트](#s1-트래블-퀘스트--여행-rpg-파티-매칭) | 2025.05 | 2명 · FullStack | MySQL 프로시저 던전 생성, Spring AI + Scheduler 퀘스트 자동 생성 |
+| S2 | [YOLO 노면표지 탐지](#s2-yolo-노면표지-탐지--횡단보도과속방지턱-훼손-판별) | 2024.03 – 12 | 3명 · AI Model & Data | AI Hub 주행영상 전처리, YOLOv8s mAP50 0.80 (KSC2024 장려상) |
+| S3 | [FastAPI 운영 실습](#s3-fastapi-운영-실습--28일-커리큘럼) | 2026 | 개인 | Keyset 인덱스, 인증 테스트, Redis/Celery, RDS 풀, Blue/Green 배포 |
 
 ### 1. 아그작 — 데일리 운세 플랫폼
 
@@ -90,13 +96,62 @@ Spring Boot + Thymeleaf 기반 도서 커머스. NHN 아카데미 7기 8인 팀�
 
 ---
 
+## 🧩 서브 / AI · 실습 프로젝트
+
+메인 4건과 성격·무게가 다른 프로젝트는 별도 섹션으로 분리해, 백엔드 지원 시 기존 13페이지의 밀도가 흐려지지 않게 했습니다.
+
+### S1. 트래블 퀘스트 — 여행 RPG 파티 매칭
+
+여행을 RPG로 치환한 게이미피케이션 여행 플랫폼(SSAFY 13기 관통 프로젝트 · 2인). 직업 = MBTI 8종, 던전 = 여행지+기간, 퀘스트 = 여행지 미션, 파티 = 동행 모집으로 구조화했습니다.
+`Spring Boot 3.4.5` `MyBatis` `MySQL 8` `Redis` `MongoDB` `Spring AI` `Vue 3` `Kakao Map`
+
+- **던전 자동 생성** — 매일 00시 `@Scheduled` 배치가 던전 10개를 생성하고, MySQL 저장 프로시저 `create_dungeon_with_attractions`가 기간(0~8일)에서 난이도·필요 명소 수를 역산해 지역을 배정합니다.
+- **퀘스트 자동 생성** — 배정된 관광지 정보를 LLM(gpt-4o-mini)에 JSON으로 넘겨 관광지당 퀘스트 1개를 생성하고, 코드펜스 제거·개수 불일치 검증(`QuestGenerationException`) 후 `@Transactional`로 저장합니다.
+- **지도·인증** — Kakao Map 마커로 던전 표시, 인증 사진 업로드(UUID 저장·10MB 제한) → 관리자 승인/반려 워크플로.
+- 팀 공동 구현으로 Kakao/Naver OIDC + JWT, STOMP 채팅(MongoDB), 직업군별 정원 검증이 함께 들어갔습니다(2인 분담).
+
+[페이지 보기](05_sub_projects_assets/html/sub_page1_travelquest_yolo.html) · [저장소](https://github.com/Ori-Gui/travelquest)
+
+### S2. YOLO 노면표지 탐지 — 횡단보도·과속방지턱 훼손 판별
+
+학부 졸업작품(3인, AI Model & Data). AI Hub 「도로 로드마크 인식용 주행 영상」 온전·비온전 약 59,000장 중 주간 28,000장으로 훼손 여부까지 4클래스 탐지를 학습했습니다.
+`Python` `YOLOv8s` `PyTorch` `OpenCV` `AI Hub`
+
+- **전처리** — 라벨 bbox와 이미지 크기가 어긋난 사례가 잦아 segmentation 폴리곤을 [x,y] 쌍으로 풀어 0~1 정규화 후 YOLO 포맷으로 변환.
+- **학습** — YOLOv8s, 100 epoch, imgsz 640, batch 16 (8×Tesla P100). 1차 학습(42 epoch 중단) 후 설정을 정리해 2차에서 **mAP50 0.806 / Precision 0.78 / Recall 0.75** 달성.
+- **성과** — 「딥러닝 기반 횡단보도 및 과속방지턱 인식 및 훼손여부 탐지」로 2024 한국소프트웨어종합학술대회(KSC2024) 게재, 학부생/주니어 논문경진대회 **장려상**.
+
+[페이지 보기](05_sub_projects_assets/html/sub_page1_travelquest_yolo.html) · [저장소](https://github.com/Ori-Gui/yolodetect)
+
+### S3. FastAPI 운영 실습 — 28일 커리큘럼
+
+하나의 채용 서비스 API를 Day 단위 브랜치(27개)로 점진 진화시킨 개인 실습. 강의 골격 위에 5개 브랜치를 직접 구현·검증했습니다(직접 추가한 테스트 72건 전부 통과).
+`Python 3.12` `FastAPI` `SQLModel` `PostgreSQL` `Redis` `Celery` `Docker` `AWS EC2/RDS` `GitHub Actions`
+
+| 실습 | 구현 | 검증 |
+|---|---|---|
+| 인덱스 최적화 | `GET /job-posts/feed` Keyset 커서 페이지네이션, 복합·정렬·부분 인덱스 | `EXPLAIN QUERY PLAN` 인덱스 사용 확인 · 7 passed |
+| 인증 · CRUD | 비밀번호 변경(Refresh 전체 폐기), 이메일 변경(400/409 구분) | 상태 코드별 13 케이스 · 27 passed |
+| Redis · Celery | `CacheManager`(TTL·적중률·장애 폴백), 이메일 비동기 202 | TTL 경계·폴백·취소 시나리오 · 31 passed |
+| RDS PostgreSQL | `build_engine()` 풀 튜닝(`pool_pre_ping`), `/health/db` | 풀 설정 주입·503 확인 · 28 passed |
+| CI/CD · Blue/Green | `/health/ready`·`/health/version`, `scripts/bluegreen.py` CLI | 전환·롤백·구성 일치 · 35 passed |
+
+> 강의 기반 비공개 저장소이므로 전체 소스는 공개하지 않고, 아키텍처·설계 판단과 직접 추가 구현한 기능·테스트 결과만 정리했습니다.
+
+[페이지 보기](05_sub_projects_assets/html/sub_page2_fastapi_practice.html)
+
+---
+
 ## 📄 포트폴리오 PDF · 에셋
 
 각 HTML 페이지는 Figma A4(1190×1684) 기준으로 제작된 정적 문서이고, 같은 내용을 PDF로도 제공합니다.
 
 | 파일 | 내용 |
 |---|---|
-| [pdf/all_projects_portfolio.pdf](pdf/all_projects_portfolio.pdf) | 4개 프로젝트 13페이지 통합본 (12.6MB) |
+| [pdf/full_portfolio.pdf](pdf/full_portfolio.pdf) | **전체 16페이지** — 프로필 1 + 백엔드 4건 13 + 서브 2 |
+| [pdf/all_projects_portfolio.pdf](pdf/all_projects_portfolio.pdf) | 백엔드 4개 프로젝트 13페이지 통합본 (12.6MB) |
+| [pdf/profile_summary.pdf](pdf/profile_summary.pdf) | 프로필·자격증·수상·교육 요약 1페이지 |
+| [pdf/sub_projects_portfolio.pdf](pdf/sub_projects_portfolio.pdf) | 서브/AI 2페이지 — Travel Quest · YOLO, FastAPI 실습 |
 | [pdf/agzak_portfolio.pdf](pdf/agzak_portfolio.pdf) | 아그작 — 개요·아키텍처·랭킹 이원화·운영 성과 4페이지 |
 | [pdf/toktokggubi_portfolio.pdf](pdf/toktokggubi_portfolio.pdf) | 똑똑꺼비 — 개요·OCR 파이프라인·OAuth2 딥링크 3페이지 |
 | [pdf/ttomanito_portfolio.pdf](pdf/ttomanito_portfolio.pdf) | 또마니또 — 개요·WebSocket Principal·3DB + AI 3페이지 |
@@ -146,11 +201,16 @@ Spring Boot + Thymeleaf 기반 도서 커머스. NHN 아카데미 7기 8인 팀�
 portfolio/
 ├── index.html                          # 포트폴리오 메인 (GitHub Pages 진입점)
 ├── pdf/
-│   ├── all_projects_portfolio.pdf      # 4개 프로젝트 13페이지 통합본
+│   ├── full_portfolio.pdf              # 전체 16페이지 (프로필 + 백엔드 13 + 서브 2)
+│   ├── all_projects_portfolio.pdf      # 백엔드 4개 프로젝트 13페이지 통합본
+│   ├── profile_summary.pdf             # 프로필·자격증 1페이지
+│   ├── sub_projects_portfolio.pdf      # 서브/AI 2페이지
 │   ├── agzak_portfolio.pdf
 │   ├── ttomanito_portfolio.pdf
 │   ├── toktokggubi_portfolio.pdf
 │   └── bookstore_portfolio.pdf
+├── 00_profile_summary_assets/
+│   └── html/                           # 프로필·자격증 요약 (1페이지)
 ├── 01_bookstore_portfolio_assets/
 │   ├── html/                           # 개요 · 검색 엔진 · 한글 분석기 (3페이지)
 │   └── img/                            # 검색 화면 스크린샷
@@ -163,6 +223,9 @@ portfolio/
 ├── 04_agzak_portfolio_assets/
 │   ├── html/                           # 개요 · 아키텍처 · 랭킹 · 운영 (4페이지)
 │   └── img/                            # 아키텍처 다이어그램, GA4·Grafana·Jenkins 캡처
+├── 05_sub_projects_assets/
+│   ├── html/                           # Travel Quest · YOLO (1p) / FastAPI 실습 (1p)
+│   └── img/                            # 서비스 화면 캡처, YOLO 예측·학습 곡선
 └── skill_icon/                         # 페이지용 기술 스택 아이콘 (png, svg)
 ```
 

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>Travel Quest · YOLO 도로 탐지 — Sub Projects 1 (Figma A4 1190×1684)</title>
+<style>
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    font-family: 'Pretendard', -apple-system, sans-serif;
+    background: #DDE0E5;
+    color: #1E1E2E;
+    -webkit-font-smoothing: antialiased;
+  }
+  @page { size: 1190px 1684px; margin: 0; }
+  @media print { html, body { background: #FFFFFF; margin: 0; padding: 0; } }
+
+  .frame {
+    width: 1190px;
+    height: 1684px;
+    margin: 0;
+    padding: 62px 76px 52px;
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    gap: 18px;
+  }
+
+  /* ============ 헤더 ============ */
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-shrink: 0;
+  }
+  .project-name {
+    font-size: 56px;
+    font-weight: 800;
+    color: #B0B5BD;
+    letter-spacing: -2px;
+    line-height: 1;
+  }
+  .project-name .underline { border-bottom: 3px solid #B0B5BD; padding-bottom: 4px; }
+  .project-chip {
+    background: #34D399;
+    color: #FFFFFF;
+    font-size: 22px;
+    font-weight: 800;
+    padding: 14px 34px;
+    border-radius: 99px;
+    letter-spacing: -0.5px;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.05);
+    white-space: nowrap;
+  }
+
+  /* ============ 프로젝트 블록 ============ */
+  .proj {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    flex-shrink: 0;
+  }
+  .proj-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-top: 2px solid #1E1E2E;
+    padding-top: 12px;
+  }
+  .proj-title {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.7px;
+    white-space: nowrap;
+  }
+  .mini-chip {
+    font-size: 12px;
+    font-weight: 800;
+    padding: 4px 12px;
+    border-radius: 99px;
+    letter-spacing: -0.2px;
+    white-space: nowrap;
+  }
+  .tq .mini-chip { background: #D1FAE5; color: #047857; }
+  .tq .proj-head { border-top-color: #10B981; }
+  .yolo .mini-chip { background: #FCE7F3; color: #9D174D; }
+  .yolo .proj-head { border-top-color: #DB2777; }
+  .proj-meta {
+    margin-left: auto;
+    font-size: 13px;
+    color: #6B7280;
+    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: -0.2px;
+  }
+  .proj-meta b { color: #1E1E2E; }
+
+  /* ---------- TravelQuest ---------- */
+  .tq-grid {
+    display: grid;
+    grid-template-columns: 828px 1fr;
+    gap: 18px;
+  }
+  .shots {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .shot {
+    border: 1px solid #E5E7EB;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #F4F5F7;
+    display: flex;
+    flex-direction: column;
+  }
+  .shot img { width: 100%; height: auto; flex: 0 0 auto; display: block; }
+  .shot .cap {
+    font-size: 11.5px;
+    color: #6B7280;
+    font-weight: 600;
+    padding: 6px 8px;
+    line-height: 1.25;
+    border-top: 1px solid #E5E7EB;
+    background: #FFFFFF;
+  }
+  .tq-side {
+    background: #F0FDF4;
+    border: 1.5px solid #BBF7D0;
+    border-radius: 12px;
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .side-label {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    color: #047857;
+  }
+  .side-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .side-list li { font-size: 13px; color: #374151; line-height: 1.45; padding-left: 12px; position: relative; }
+  .side-list li::before { content: ''; position: absolute; left: 0; top: 7px; width: 5px; height: 5px; border-radius: 50%; background: #34D399; }
+  .side-list b { color: #065F46; font-weight: 800; }
+
+  .cols3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    padding-top: 4px;
+  }
+  .col-block .c-label {
+    font-size: 11.5px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #9CA3AF;
+    margin-bottom: 8px;
+  }
+  .col-block .c-body { font-size: 13px; color: #374151; line-height: 1.55; }
+  .col-block .c-body b { color: #1E1E2E; font-weight: 800; }
+  .col-block ul { list-style: none; }
+  .col-block ul li { padding: 3px 0 3px 11px; position: relative; font-size: 13px; color: #374151; line-height: 1.5; }
+  .col-block ul li::before { content: '·'; position: absolute; left: 2px; font-weight: 800; color: #1E1E2E; }
+  .col-block ul li b { color: #1E1E2E; font-weight: 700; }
+  .col-block ul li .muted { color: #6B7280; }
+
+  /* ---------- YOLO ---------- */
+  .yolo-grid {
+    display: grid;
+    grid-template-columns: 520px 1fr;
+    gap: 24px;
+  }
+  .fig {
+    border: 1px solid #E5E7EB;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #FFFFFF;
+  }
+  .fig img { width: 100%; display: block; }
+  .fig .fig-cap {
+    font-size: 11.5px;
+    color: #6B7280;
+    padding: 6px 10px;
+    border-top: 1px solid #E5E7EB;
+    line-height: 1.3;
+  }
+  .fig-stack { display: flex; flex-direction: column; gap: 10px; }
+
+  .metric-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .metric {
+    border: 1.5px solid #F9A8D4;
+    background: #FFF1F6;
+    border-radius: 10px;
+    padding: 10px 6px;
+    text-align: center;
+  }
+  .metric .v { font-size: 22px; font-weight: 800; color: #9D174D; letter-spacing: -0.8px; line-height: 1.1; }
+  .metric .k { font-size: 10.5px; font-weight: 700; color: #6B7280; letter-spacing: 0.4px; margin-top: 3px; }
+  .metric.best { border-color: #DB2777; background: #FDF2F8; }
+  .metric.best .v { color: #831843; }
+
+  .yolo-side { display: flex; flex-direction: column; gap: 12px; }
+  .yolo-bullets { list-style: none; }
+  .yolo-bullets > li {
+    font-size: 13px;
+    color: #374151;
+    line-height: 1.5;
+    padding: 5px 0 5px 14px;
+    position: relative;
+    border-bottom: 1px dashed #EEF0F3;
+  }
+  .yolo-bullets > li:last-child { border-bottom: none; }
+  .yolo-bullets > li::before { content: '▸'; position: absolute; left: 0; top: 4px; color: #DB2777; font-size: 10px; }
+  .yolo-bullets b { color: #1E1E2E; font-weight: 800; }
+  .yolo-bullets code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    background: #F3F4F6;
+    padding: 1px 5px;
+    border-radius: 3px;
+    color: #374151;
+  }
+  .award-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12.5px;
+    color: #6B7280;
+    background: #FAFBFD;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    padding: 8px 12px;
+    line-height: 1.35;
+  }
+  .award-line b { color: #1E1E2E; }
+</style>
+</head>
+<body>
+<div class="frame">
+
+  <div class="page-header">
+    <div class="project-name"><span class="underline">Travel Quest</span></div>
+    <div class="project-chip">Side Project — 1</div>
+  </div>
+
+  <!-- ============ Travel Quest ============ -->
+  <div class="proj tq">
+    <div class="proj-head">
+      <div class="proj-title">여행 RPG — MBTI 직업 · 던전 · 퀘스트</div>
+      <span class="mini-chip">풀스택 (2인)</span>
+      <span class="mini-chip" style="background:#EEF2FF;color:#3730A3;">SSAFY 13기 관통</span>
+      <div class="proj-meta"><b>2025.05</b> · Spring Boot 3.4.5 · Vue 3</div>
+    </div>
+
+    <div class="tq-grid">
+      <div class="shots">
+        <div class="shot">
+          <img src="../img/tq-02-job-result.png" alt="직업군 배정">
+          <div class="cap">MBTI 결과 → 8직업 중 1개 배정</div>
+        </div>
+        <div class="shot">
+          <img src="../img/tq-03-dungeon-map.png" alt="던전 탐색 지도">
+          <div class="cap">던전 탐색 — Kakao Map 마커</div>
+        </div>
+        <div class="shot">
+          <img src="../img/tq-04-dungeon-party.png" alt="던전 상세 · 파티 목록">
+          <div class="cap">던전 상세 · 직업군별 파티 모집</div>
+        </div>
+        <div class="shot">
+          <img src="../img/tq-07-quest-list.png" alt="AI 생성 퀘스트">
+          <div class="cap">LLM이 만든 퀘스트 · 인증 제출</div>
+        </div>
+      </div>
+
+      <div class="tq-side">
+        <div class="side-label">KEY DELIVERABLES</div>
+        <ul class="side-list">
+          <li><b>던전 10개 / 일</b> 자동 생성 — 매일 00시 스케줄러 → MySQL 프로시저</li>
+          <li><b>관광지당 퀘스트 1개</b> LLM 자동 생성 + 개수 검증 계층</li>
+          <li><b>4단계 진행 상태</b> — MATCHING → IN_PROGRESS → COMPLETED / FAILED</li>
+          <li><b>사진 인증 워크플로</b> — 제출(PENDING) → 관리자 승인/반려</li>
+          <li><b>파티 정원 3단계 검증</b> — 총원 → 중복 → 직업군별 정원</li>
+          <li><b>규모</b> — 테이블 18개 · MyBatis 매퍼 11종</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cols3">
+      <div class="col-block">
+        <div class="c-label">기획 — 왜 RPG인가</div>
+        <div class="c-body">
+          2030 혼행·자유여행은 늘었지만 동행자를 구하는 경로는 당근·오픈카톡 같은 범용 채널에 머물러 있었습니다.
+          여행을 RPG로 치환해 <b>참여 문턱을 낮추고</b>, 역할(직업)을 명시해 <b>파티 구성을 예측 가능</b>하게 만들었습니다.
+          <br><br>
+          직업 = MBTI 8종 · 던전 = 여행지+기간 · 퀘스트 = 여행지 미션 · 파티 = 동행 모집(직업군별 정원)
+        </div>
+      </div>
+
+      <div class="col-block">
+        <div class="c-label">본인 담당 — 던전 · 퀘스트 · 지도</div>
+        <ul>
+          <li><b>던전 자동 생성</b> — 기간(0~8일)에서 난이도·필요 명소 수를 역산, 저장 프로시저 <code>create_dungeon_with_attractions</code>로 지역 랜덤 배정</li>
+          <li><b>퀘스트 자동 생성</b> — Spring AI ChatClient(gpt-4o-mini)에 관광지 JSON 전달, 코드펜스 제거·개수 불일치 시 <code>QuestGenerationException</code>으로 중단</li>
+          <li><b>지도·인증</b> — Kakao Map 마커, 인증 사진 UUID 저장(10MB 제한) → 관리자 승인/반려</li>
+          <li><b>화면</b> — 던전 탐색·상세·퀘스트·인증 Vue 화면 구현</li>
+        </ul>
+      </div>
+
+      <div class="col-block">
+        <div class="c-label">팀 공동 구현 (2인)</div>
+        <ul>
+          <li><span class="muted">인증 —</span> Kakao/Naver OIDC + JWT (Access 15분 · Refresh 14일, Redis 블랙리스트)</li>
+          <li><span class="muted">실시간 —</span> STOMP 파티 채팅, 메시지는 MongoDB · 접속 상태는 Redis</li>
+          <li><span class="muted">파티 —</span> 직업군별 정원 3단계 검증(총원·중복·모집 직업군)</li>
+          <li><span class="muted">규모 —</span> Java 128파일 · MyBatis 매퍼 11종 · 테이블 18개 · Vue 35파일</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ YOLO ============ -->
+  <div class="proj yolo">
+    <div class="proj-head">
+      <div class="proj-title">노면표지 훼손 탐지 — 횡단보도 · 과속방지턱</div>
+      <span class="mini-chip">AI · 데이터 (3인)</span>
+      <span class="mini-chip" style="background:#FEF3C7;color:#92400E;">KSC2024 장려상</span>
+      <div class="proj-meta"><b>2024.03 – 12</b> · YOLOv8s · PyTorch</div>
+    </div>
+
+    <div class="yolo-grid">
+      <div class="fig-stack">
+        <div class="fig">
+          <img src="../img/yolo-val-pred.jpg" alt="검증 배치 예측 결과">
+          <div class="fig-cap">검증 데이터 예측 — crosswalk 0.8 / damaged_crosswalk 0.6 / damaged_speed_bump 0.9 (클래스별 conf 표기)</div>
+        </div>
+        <div class="fig">
+          <img src="../img/yolo-results-curve.png" alt="학습 곡선">
+          <div class="fig-cap">100 epoch 학습 곡선 — box/cls loss 감소, mAP50 0.042 → 0.806</div>
+        </div>
+      </div>
+
+      <div class="yolo-side">
+        <div class="metric-row">
+          <div class="metric"><div class="v">0.78</div><div class="k">PRECISION</div></div>
+          <div class="metric"><div class="v">0.75</div><div class="k">RECALL</div></div>
+          <div class="metric best"><div class="v">0.80</div><div class="k">mAP50</div></div>
+          <div class="metric"><div class="v">0.59</div><div class="k">mAP50-95</div></div>
+        </div>
+
+        <ul class="yolo-bullets">
+          <li><b>문제</b> — 도로 시설물 점검이 사람 눈에 의존해 시간·비용이 크고, 훼손을 조기에 못 잡음. 주행 영상만으로 <b>위치 + 훼손 여부</b>를 함께 판별하는 모델을 목표로 함.</li>
+          <li><b>데이터</b> — AI Hub 「도로 로드마크 인식용 주행 영상」 온전 23,000장(70GB) + 비온전 36,000장(110GB) ≈ <b>59,000장</b> 중 주간(<code>time = light</code>) 28,000장을 학습에 사용 (정상 10,000 · 훼손 18,000).</li>
+          <li><b>전처리</b> — 라벨 bbox와 이미지 크기가 어긋난 사례가 잦아, <b>segmentation 폴리곤</b>을 [x,y] 쌍으로 풀어 이미지 크기로 0~1 정규화 후 YOLO 포맷으로 변환. 클래스는 4종(<code>crosswalk</code> · <code>speed_bump</code> · <code>damaged_crosswalk</code> · <code>damaged_speed_bump</code>).</li>
+          <li><b>학습</b> — YOLOv8s, 100 epoch, imgsz 640, batch 16, 8×Tesla P100 서버. 1차 학습(42 epoch 중단, mAP50 0.748) 후 설정을 정리해 2차에서 <b>mAP50 0.806</b>으로 마무리.</li>
+          <li><b>성과</b> — 논문 「딥러닝 기반 횡단보도 및 과속방지턱 인식 및 훼손여부 탐지」로 <b>2024 한국소프트웨어종합학술대회(KSC2024)</b> 게재, 학부생/주니어 논문경진대회 <b>장려상</b>.</li>
+        </ul>
+
+        <div class="award-line">
+          <b>후속</b> — 표지판·신호등 등 다른 도로 시설물로 클래스 확장, 데이터 다양화로 일반화 성능 보강 (논문 결론)
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- PAGE NAVIGATION INJECTED -->
+<style>
+  .page-nav {
+    position: fixed;
+    bottom: 16px; left: 50%;
+    transform: translateX(-50%);
+    background: rgba(30, 30, 46, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: #FFFFFF;
+    padding: 10px 14px;
+    border-radius: 99px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    font-family: 'Pretendard', sans-serif;
+    font-size: 13px;
+    z-index: 1000;
+  }
+  .page-nav .pn-btn { color: #FFFFFF; text-decoration: none; padding: 7px 14px; border-radius: 99px; font-weight: 600; white-space: nowrap; }
+  .page-nav .pn-btn:hover { background: rgba(255,255,255,0.12); }
+  .page-nav .pn-home { color: #FFFFFF; text-decoration: none; width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,0.1); font-size: 16px; }
+  .page-nav .pn-home:hover { background: rgba(255,255,255,0.22); }
+  .page-nav .pn-indicator { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: rgba(255,255,255,0.7); padding: 0 8px; font-weight: 600; }
+  @media print { .page-nav { display: none !important; } }
+</style>
+<nav class="page-nav">
+  <a href="../../01_bookstore_portfolio_assets/html/bookstore_page3_korean_analyzer.html" class="pn-btn pn-prev" title="이전: 한글 분석기">← 이전</a>
+  <a href="../../index.html" class="pn-home" title="홈으로">⌂</a>
+  <span class="pn-indicator">15 / 16</span>
+  <a href="sub_page2_fastapi_practice.html" class="pn-btn pn-next" title="다음: FastAPI 실습">FastAPI 실습 →</a>
+</nav>
+<script>
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowLeft')  { var p = document.querySelector('.pn-prev'); if (p) p.click(); }
+    if (e.key === 'ArrowRight') { var n = document.querySelector('.pn-next'); if (n) n.click(); }
+    if (e.key === 'h' || e.key === 'H') { window.location.href = '../../index.html'; }
+  });
+</script>
+<!-- /PAGE NAVIGATION INJECTED -->
+
+</body>
+</html>

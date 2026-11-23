@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>FastAPI 백엔드 운영 실습 — Sub Projects 2 (Figma A4 1190×1684)</title>
+<style>
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    font-family: 'Pretendard', -apple-system, sans-serif;
+    background: #DDE0E5;
+    color: #1E1E2E;
+    -webkit-font-smoothing: antialiased;
+  }
+  @page { size: 1190px 1684px; margin: 0; }
+  @media print { html, body { background: #FFFFFF; margin: 0; padding: 0; } }
+
+  .frame {
+    width: 1190px;
+    height: 1684px;
+    margin: 0;
+    padding: 62px 76px 52px;
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    gap: 18px;
+  }
+
+  /* ============ 헤더 ============ */
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-shrink: 0;
+  }
+  .project-name {
+    font-size: 56px;
+    font-weight: 800;
+    color: #B0B5BD;
+    letter-spacing: -2px;
+    line-height: 1;
+  }
+  .project-name .underline { border-bottom: 3px solid #B0B5BD; padding-bottom: 4px; }
+  .project-chip {
+    background: #60A5FA;
+    color: #FFFFFF;
+    font-size: 22px;
+    font-weight: 800;
+    padding: 14px 34px;
+    border-radius: 99px;
+    letter-spacing: -0.5px;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.05);
+    white-space: nowrap;
+  }
+
+  /* ============ 개요 ============ */
+  .lede {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    border-top: 2px solid #2563EB;
+    padding-top: 14px;
+    flex-shrink: 0;
+  }
+  .lede .left { max-width: 690px; }
+  .lede .headline {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.7px;
+    margin-bottom: 6px;
+  }
+  .lede .headline em { font-style: normal; color: #2563EB; }
+  .lede .desc {
+    font-size: 13.5px;
+    color: #4B5563;
+    line-height: 1.55;
+  }
+  .lede .desc b { color: #1E1E2E; font-weight: 700; }
+  .lede .meta {
+    text-align: right;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    color: #6B7280;
+    line-height: 1.7;
+    white-space: nowrap;
+  }
+  .lede .meta b { color: #1E1E2E; }
+
+  /* ============ KPI ============ */
+  .kpi-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: #1E1E2E;
+    border-radius: 14px;
+    padding: 18px 8px;
+    flex-shrink: 0;
+  }
+  .kpi { text-align: center; border-right: 1px solid rgba(255,255,255,0.12); padding: 0 10px; }
+  .kpi:last-child { border-right: none; }
+  .kpi .num { font-size: 27px; font-weight: 800; color: #93C5FD; letter-spacing: -1px; line-height: 1.1; }
+  .kpi .num small { font-size: 14px; color: rgba(255,255,255,0.7); font-weight: 700; margin-left: 3px; }
+  .kpi .cap { margin-top: 5px; font-size: 12.5px; color: rgba(255,255,255,0.72); font-weight: 500; line-height: 1.35; }
+
+  /* ============ 실습 카드 ============ */
+  .practice-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    flex-shrink: 0;
+  }
+  .card {
+    border: 1.5px solid #E5E7EB;
+    border-left: 5px solid #60A5FA;
+    border-radius: 12px;
+    background: #FAFBFD;
+    padding: 14px 18px 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .card .card-top { display: flex; align-items: center; gap: 10px; }
+  .card .n {
+    width: 26px; height: 26px;
+    border-radius: 7px;
+    background: #2563EB;
+    color: #FFFFFF;
+    font-size: 13px;
+    font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    flex-shrink: 0;
+  }
+  .card .t { font-size: 16px; font-weight: 800; letter-spacing: -0.4px; }
+  .card .tests {
+    margin-left: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #047857;
+    background: #ECFDF5;
+    border: 1px solid #A7F3D0;
+    padding: 3px 9px;
+    border-radius: 99px;
+    white-space: nowrap;
+  }
+  .card .body { font-size: 13px; color: #374151; line-height: 1.55; }
+  .card .body b { color: #1E1E2E; font-weight: 700; }
+  .card code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    background: #EEF2FF;
+    color: #1E3A8A;
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+  .card .why {
+    font-size: 12px;
+    color: #6B7280;
+    line-height: 1.45;
+    border-top: 1px dashed #E5E7EB;
+    padding-top: 6px;
+  }
+  .card .why b { color: #2563EB; }
+
+  /* 5번 카드 — Blue/Green */
+  .card.wide { grid-column: 1 / -1; flex-direction: row; align-items: stretch; gap: 22px; }
+  .card.wide .left { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+  .bg-diagram {
+    width: 430px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+  .node {
+    text-align: center;
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 11.5px;
+    font-weight: 800;
+    line-height: 1.3;
+    flex-shrink: 0;
+  }
+  .node small { display: block; font-size: 10px; font-weight: 600; color: rgba(0,0,0,0.45); margin-top: 2px; }
+  .node.nginx { background: #F3F4F6; border: 1px solid #D1D5DB; color: #1E1E2E; }
+  .node.blue { background: #DBEAFE; border: 1.5px solid #60A5FA; color: #1E3A8A; }
+  .node.green { background: #DCFCE7; border: 1.5px solid #86EFAC; color: #166534; }
+  .node.ghost { border: 1.5px dashed #D1D5DB; color: #9CA3AF; background: #FFFFFF; }
+  .arrow { color: #9CA3AF; font-size: 15px; font-weight: 800; }
+  .vstack { display: flex; flex-direction: column; gap: 8px; }
+
+  /* ============ 트러블슈팅 ============ */
+  .bottom-grid {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    gap: 26px;
+    flex-shrink: 0;
+  }
+  .box {
+    background: #FFFFFF;
+    border: 1.5px solid #E5E7EB;
+    border-radius: 12px;
+    padding: 14px 18px;
+  }
+  .box.trouble { border-left: 5px solid #DC2626; background: #FFFBFB; }
+  .box .b-title {
+    font-size: 15.5px;
+    font-weight: 800;
+    letter-spacing: -0.4px;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .box .b-title .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: #991B1B;
+    background: #FEE2E2;
+    padding: 2px 8px;
+    border-radius: 99px;
+  }
+  .box .b-sub { font-size: 12px; color: #6B7280; margin-bottom: 8px; line-height: 1.4; }
+  .box ul { list-style: none; }
+  .box li {
+    font-size: 12.5px;
+    color: #374151;
+    line-height: 1.5;
+    padding: 4px 0 4px 12px;
+    position: relative;
+  }
+  .box li::before { content: '·'; position: absolute; left: 2px; font-weight: 800; color: #1E1E2E; }
+  .box li b { color: #1E1E2E; font-weight: 700; }
+  .box code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    background: #F3F4F6;
+    padding: 1px 4px;
+    border-radius: 3px;
+    color: #374151;
+  }
+  .stack-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #374151;
+    background: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 6px;
+    padding: 4px 8px;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .chip img { width: 14px; height: 14px; object-fit: contain; }
+  .notice {
+    margin-top: 10px;
+    font-size: 11px;
+    color: #92400E;
+    background: #FFFBEB;
+    border: 1px solid #FDE68A;
+    border-radius: 8px;
+    padding: 8px 10px;
+    line-height: 1.45;
+  }
+</style>
+</head>
+<body>
+<div class="frame">
+
+  <div class="page-header">
+    <div class="project-name"><span class="underline">FastAPI Practice</span></div>
+    <div class="project-chip">Side Project — 2</div>
+  </div>
+
+  <!-- 개요 -->
+  <div class="lede">
+    <div class="left">
+      <div class="headline">28일 커리큘럼을 <em>하나의 채용 서비스 API</em>로 점진 진화시킨 운영 실습</div>
+      <div class="desc">
+        매일 브랜치 하나씩, 이전 Day 위에 기능을 쌓아 올리는 구조(브랜치 = Day)로 진행했습니다.
+        강의 골격 위에 <b>Keyset 페이지네이션 · 인증/CRUD 통합 테스트 · Redis/Celery 비동기 · RDS 커넥션 풀 튜닝 · Blue/Green 무중단 배포</b>를
+        직접 구현하고, 라이브러리 호환 문제까지 잡아 <b>테스트로 고정</b>한 5개 브랜치를 포트폴리오 근거로 남겼습니다.
+      </div>
+    </div>
+    <div class="meta">
+      <b>2026 · 개인 실습 (28일 커리큘럼)</b><br>
+      Python 3.12 · FastAPI · SQLModel<br>
+      PostgreSQL · Redis · Celery · Docker<br>
+      AWS EC2 / RDS · GitHub Actions
+    </div>
+  </div>
+
+  <!-- KPI -->
+  <div class="kpi-strip">
+    <div class="kpi">
+      <div class="num">27<small>개</small></div>
+      <div class="cap">Day 단위 브랜치<br>Part 1~4 누적 진화</div>
+    </div>
+    <div class="kpi">
+      <div class="num">5<small>개</small></div>
+      <div class="cap">직접 구현·검증한<br>핵심 실무 브랜치</div>
+    </div>
+    <div class="kpi">
+      <div class="num">72<small>건</small></div>
+      <div class="cap">직접 추가한 테스트<br>전부 통과 (pytest)</div>
+    </div>
+    <div class="kpi">
+      <div class="num">5<small>건</small></div>
+      <div class="cap">SQLAlchemy 2.0 호환<br>트러블슈팅 해결</div>
+    </div>
+  </div>
+
+  <!-- 실습 5종 -->
+  <div class="practice-grid">
+
+    <div class="card">
+      <div class="card-top">
+        <div class="n">01</div>
+        <div class="t">인덱스 최적화 · Keyset 페이지네이션</div>
+        <div class="tests">7 passed</div>
+      </div>
+      <div class="body">
+        <code>GET /job-posts/feed</code> — <b>(created_at DESC, id DESC)</b> 정렬 키를 base64url 커서로 인코딩해
+        다음 페이지는 그 키 뒤만 범위 스캔. <code>limit + 1</code>로 다음 페이지 유무를 판단해 <code>COUNT(*)</code>를 없앴습니다.
+        깊은 offset이 앞 행을 버리며 읽던 비용을 제거하고, 동일 생성시각은 <b>id로 안정 정렬</b>.
+      </div>
+      <div class="why">
+        <b>검증</b> — 복합·정렬(desc)·부분(<code>status='OPEN'</code>) 인덱스를 선언하고, <code>EXPLAIN QUERY PLAN</code>에
+        <code>ix_job_posts_*</code> 사용(풀스캔 아님)을 테스트로 고정
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="n">02</div>
+        <div class="t">인증 · User CRUD 통합 테스트</div>
+        <div class="tests">27 passed</div>
+      </div>
+      <div class="body">
+        <code>POST /users/me/password</code> — 현재 비밀번호를 Argon2id로 검증하고, 변경 시 <b>기존 Refresh Token 전체 폐기</b>.
+        <code>PATCH /users/me/email</code>은 <b>비밀번호 확인 → 동일 여부(400) → 중복(409)</b> 순서로 판정해
+        "빈자리 없음"과 "잘못된 요청"을 상태 코드로 구분했습니다.
+      </div>
+      <div class="why">
+        <b>검증</b> — 204/200·400·401·403·409·422를 상태 코드별 13 케이스로 고정, 회원가입 → 로그인 → 비밀번호 변경 → 기존 쿠키 갱신 401까지 통합 확인
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="n">03</div>
+        <div class="t">Redis 캐시 · Celery 비동기 처리</div>
+        <div class="tests">31 passed</div>
+      </div>
+      <div class="body">
+        <code>POST /tasks/email</code> — 발송은 큐에 넘기고 즉시 <b>202 Accepted</b>로 응답, 재시도·지수 백오프·지터는 워커가 담당.
+        <code>CacheManager</code>는 <code>get_or_load(key, loader, ttl)</code>로 캐시 미스 시 DB 로더를 호출하고,
+        <b>적중률(hits/misses/hit_rate)</b>을 계측해 <code>GET /monitoring/cache</code>로 노출했습니다.
+      </div>
+      <div class="why">
+        <b>검증</b> — TTL 경계(59초 유효 / 60초 만료), 무효화 후 재로드, <b>Redis 장애 시 로더 결과 폴백</b>, 깨진 JSON 폐기, 422·취소(terminate) 시나리오
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="n">04</div>
+        <div class="t">RDS PostgreSQL · 커넥션 풀 튜닝</div>
+        <div class="tests">28 passed</div>
+      </div>
+      <div class="body">
+        <code>build_engine()</code> — <b>pool_size · max_overflow · pool_timeout · pool_recycle</b>과
+        <b>pool_pre_ping</b>(RDS 페일오버 후 끊긴 커넥션 폐기)을 인자로 주입. 엔진 생성 시점에는 접속하지 않는 lazy 특성을 이용해
+        서버 없이 <b>설정 적용 여부를 테스트</b>했습니다.
+      </div>
+      <div class="why">
+        <b>검증</b> — <code>GET /health/db</code>가 <code>SELECT 1</code> 왕복 레이턴시와 풀 상태(size/checkedout/overflow)를 반환, DB 실패 시 503. liveness(<code>/health</code>)는 DB 장애와 무관하게 200
+      </div>
+    </div>
+
+    <div class="card wide">
+      <div class="left">
+        <div class="card-top">
+          <div class="n">05</div>
+          <div class="t">CI/CD · EC2 Blue/Green 무중단 배포</div>
+          <div class="tests">35 passed</div>
+        </div>
+        <div class="body">
+          배포를 "서버에 올렸다"가 아니라 <b>"새 버전이 건강한지 확인하고, 실패하면 되돌린다"</b>까지로 정의했습니다.
+          <code>GET /health/ready</code>(DB 필수 · Redis는 <code>REQUIRE_REDIS=true</code>일 때 필수 → 미충족 503)와
+          <code>GET /health/version</code>(APP_VERSION / GIT_SHA)으로 전환 직후 새 색이 응답 중인지 확인하고,
+          셸에 있던 색 판정 로직을 <code>scripts/bluegreen.py</code>의 <b>순수 함수 + CLI</b>로 옮겨 테스트 가능하게 만들었습니다.
+        </div>
+        <div class="why">
+          <b>검증</b> — readiness·version·blue/green 왕복 항등·배포 구성 일치(Dockerfile health, compose <code>service_healthy</code>, deploy 재시도·롤백, CI pytest+postgres, CD <code>IMAGE_TAG</code>→<code>deploy.sh</code>)까지 21건
+        </div>
+      </div>
+
+      <div class="bg-diagram">
+        <div class="node nginx">Nginx<small>:80</small></div>
+        <div class="arrow">→</div>
+        <div class="vstack">
+          <div class="node blue">app-blue<small>ACTIVE · /health/ready 200</small></div>
+          <div class="node ghost">app-green<small>대기 → 전환 후 active</small></div>
+        </div>
+        <div class="arrow">↺</div>
+        <div class="node nginx" style="background:#FEF2F2;border-color:#FCA5A5;color:#991B1B;">rollback<small>.previous_upstream</small></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 트러블슈팅 + 스택 -->
+  <div class="bottom-grid">
+    <div class="box trouble">
+      <div class="b-title">라이브러리 호환 트러블슈팅 <span class="tag">sqlmodel 0.0.32 · SQLAlchemy 2.0.46</span></div>
+      <div class="b-sub">강의 원본 코드는 그대로는 <code>pytest</code>가 시작조차 못 했습니다. 기능을 바꾸지 않고 실행·검증 가능하게 만드는 최소 수정 5건.</div>
+      <ul>
+        <li><b>relationship 대상 해석</b> — <code>from __future__ import annotations</code> 때문에 sqlmodel이 <code>relationship('list[Permission]')</code>을 해석하지 못해 mapper 초기화 실패 → future import 제거, forward reference만 문자열화</li>
+        <li><b>트랜잭션 경계</b> — SQLAlchemy 2.0 autobegin 이후 <code>session.begin()</code>이 "transaction already begun" → <code>transactional()</code> 헬퍼로 커밋/롤백 책임 이동(라우터 8곳)</li>
+        <li><b>fixture 이름 충돌</b> — <code>import app.models.role</code>이 FastAPI 인스턴스 <code>app</code>을 덮어씀 → <code>from app.models import role</code></li>
+        <li><b>미들웨어 · 지연 로딩</b> — TrustedHost가 테스트 호스트를 400으로 거부(base_url 변경), <code>user.roles</code> 접근 시 <code>MissingGreenlet</code> → <code>selectinload</code> 선로딩</li>
+        <li><b>린트 기준 정리</b> — <code>ruff check</code> 29건 실패를 자동수정 + 규칙 예외(한글 테스트명 N802 등)로 통과시켜 CI를 초록으로</li>
+      </ul>
+    </div>
+
+    <div class="box">
+      <div class="b-title">기술 스택 · 이 실습에서 얻은 것</div>
+      <div class="b-sub">Java/Spring 이후 <b>Python 생태계의 운영 도구</b>를 같은 기준(측정 → 구조 → 테스트)으로 다뤄 본 경험</div>
+      <ul>
+        <li><b>설계 판단을 테스트로 남기기</b> — 캐시가 없어도 동작해야 한다는 규칙, readiness와 liveness의 분리처럼 "왜"를 코드로 고정</li>
+        <li><b>로컬에 없는 인프라 검증</b> — RDS·Redis·워커 없이도 엔진 설정·캐시 폴백·태스크 계약을 확인하는 대역 설계</li>
+        <li><b>배포 자동화의 마지막 한 걸음</b> — 전환·롤백 판정을 사람 눈이 아니라 CLI와 헬스체크가 하도록</li>
+      </ul>
+      <div class="stack-row">
+        <span class="chip"><img src="../../skill_icon/png/FastAPI.png" alt="">FastAPI</span>
+        <span class="chip">SQLModel</span>
+        <span class="chip">PostgreSQL</span>
+        <span class="chip"><img src="../../skill_icon/png/Redis.png" alt="">Redis</span>
+        <span class="chip">Celery</span>
+        <span class="chip"><img src="../../skill_icon/png/Docker.png" alt="">Docker</span>
+        <span class="chip"><img src="../../skill_icon/png/NGINX.png" alt="">Nginx</span>
+        <span class="chip"><img src="../../skill_icon/png/AWS EC2.png" alt="">EC2 · RDS</span>
+        <span class="chip"><img src="../../skill_icon/png/GitHub Actions.png" alt="">Actions</span>
+      </div>
+      <div class="notice">
+        이 레포지토리는 <b>비공개 강의 실습</b> 기반입니다. 저작권상 전체 소스 공개·재배포는 하지 않고,
+        포트폴리오에는 아키텍처·설계 판단과 <b>직접 추가 구현한 기능·테스트 결과</b>만 정리했습니다.
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- PAGE NAVIGATION INJECTED -->
+<style>
+  .page-nav {
+    position: fixed;
+    bottom: 16px; left: 50%;
+    transform: translateX(-50%);
+    background: rgba(30, 30, 46, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: #FFFFFF;
+    padding: 10px 14px;
+    border-radius: 99px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    font-family: 'Pretendard', sans-serif;
+    font-size: 13px;
+    z-index: 1000;
+  }
+  .page-nav .pn-btn { color: #FFFFFF; text-decoration: none; padding: 7px 14px; border-radius: 99px; font-weight: 600; white-space: nowrap; }
+  .page-nav .pn-btn:hover { background: rgba(255,255,255,0.12); }
+  .page-nav .pn-home { color: #FFFFFF; text-decoration: none; width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,0.1); font-size: 16px; }
+  .page-nav .pn-home:hover { background: rgba(255,255,255,0.22); }
+  .page-nav .pn-indicator { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: rgba(255,255,255,0.7); padding: 0 8px; font-weight: 600; }
+  @media print { .page-nav { display: none !important; } }
+</style>
+<nav class="page-nav">
+  <a href="sub_page1_travelquest_yolo.html" class="pn-btn pn-prev" title="이전: Travel Quest · YOLO">← 이전</a>
+  <a href="../../index.html" class="pn-home" title="홈으로">⌂</a>
+  <span class="pn-indicator">16 / 16</span>
+  <a href="../../00_profile_summary_assets/html/profile_summary.html" class="pn-btn pn-next" title="처음으로: 프로필">프로필 →</a>
+</nav>
+<script>
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowLeft')  { var p = document.querySelector('.pn-prev'); if (p) p.click(); }
+    if (e.key === 'ArrowRight') { var n = document.querySelector('.pn-next'); if (n) n.click(); }
+    if (e.key === 'h' || e.key === 'H') { window.location.href = '../../index.html'; }
+  });
+</script>
+<!-- /PAGE NAVIGATION INJECTED -->
+
+</body>
+</html>
